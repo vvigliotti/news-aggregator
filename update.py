@@ -2,15 +2,6 @@ import feedparser
 from datetime import datetime
 
 feeds = {
-    "media": [
-        {"name": "SpaceNews", "url": "https://spacenews.com/feed/"},
-        {"name": "Breaking Defense", "url": "https://breakingdefense.com/feed/"},
-        {"name": "Air & Space Forces Magazine", "url": "https://www.airandspaceforces.com/feed/"},
-        {"name": "DefenseScoop", "url": "https://defensescoop.com/feed/"},
-        {"name": "Ars Technica (Space)", "url": "https://feeds.arstechnica.com/arstechnica/space"},
-        {"name": "The Verge (Space)", "url": "https://www.theverge.com/rss/index.xml"},
-        {"name": "Military.com", "url": "https://www.military.com/rss-feeds"}
-    ],
     "gov": [
         {"name": "USSF", "url": "https://www.spaceforce.mil/DesktopModules/ArticleCS/rss.ashx?ContentType=1&Site=496"},
         {"name": "SSC", "url": "https://www.ssc.spaceforce.mil/Portals/3/rss/ssc-news.xml"},
@@ -19,6 +10,15 @@ feeds = {
         {"name": "USSPACECOM", "url": "https://www.spacecom.mil/DesktopModules/ArticleCS/rss.ashx?ContentType=1&Site=513"},
         {"name": "NASA", "url": "https://www.nasa.gov/rss/dyn/breaking_news.rss"},
         {"name": "Space Development Agency", "url": "https://www.sda.mil/feed.xml"}
+    ],
+    "media": [
+        {"name": "SpaceNews", "url": "https://spacenews.com/feed/"},
+        {"name": "Breaking Defense", "url": "https://breakingdefense.com/feed/"},
+        {"name": "Air & Space Forces Magazine", "url": "https://www.airandspaceforces.com/feed/"},
+        {"name": "DefenseScoop", "url": "https://defensescoop.com/feed/"},
+        {"name": "Ars Technica (Space)", "url": "https://feeds.arstechnica.com/arstechnica/space"},
+        {"name": "The Verge (Space)", "url": "https://www.theverge.com/rss/index.xml"},
+        {"name": "Military.com", "url": "https://www.military.com/rss-feeds"}
     ],
     "international": [
         {"name": "ESA", "url": "https://www.esa.int/rssfeed/Our_Activities"},
@@ -36,7 +36,7 @@ def fetch_articles(feed_info, limit=5):
 def build_column(title, links):
     return f'<div class="column"><h2>{title}</h2><ul>{"".join(links)}</ul></div>'
 
-columns_html = {"media": [], "gov": [], "international": []}
+columns_html = {"gov": [], "media": [], "international": []}
 top_story = None
 
 for section in feeds:
@@ -114,8 +114,8 @@ html = f"""<!DOCTYPE html>
   <div class="banner">🚨 Breaking: {top_story if top_story else "No stories available"}</div>
   <h1>Space Headlines</h1>
   <div class="columns">
-    {build_column("Media", columns_html['media'])}
     {build_column("Government & Military", columns_html['gov'])}
+    {build_column("Media", columns_html['media'])}
     {build_column("International & Science", columns_html['international'])}
   </div>
   <footer>
@@ -126,5 +126,5 @@ html = f"""<!DOCTYPE html>
 </html>
 """
 
-with open("index.html", "w") as f:
+with open("index.html", "w", encoding="utf-8") as f:
     f.write(html)
