@@ -1,4 +1,5 @@
 import feedparser
+import re
 from jinja2 import Template
 from datetime import datetime
 from time import mktime
@@ -16,7 +17,7 @@ feeds = {
 
 all_items = []
 
-# Parse feeds
+# Parse feeds and extract articles
 for source, url in feeds.items():
     parsed = feedparser.parse(url)
     for entry in parsed.entries:
@@ -24,13 +25,20 @@ for source, url in feeds.items():
         if not published:
             continue
         timestamp = datetime.fromtimestamp(mktime(published))
-        image = ""
 
-        # Try to grab image
-        if "media_content" in entry:
+        # ✅ Robust image scraping logic
+        image = ""
+        if "media_content" in entry and entry.media_content:
             image = entry.media_content[0].get("url", "")
-        elif "media_thumbnail" in entry:
+        elif "media_thumbnail" in entry and entry.media_thumbnail:
             image = entry.media_thumbnail[0].get("url", "")
+        elif "content" in entry:
+            html_content = entry.content[0].value
+            match = re.search(r'<img[^>]+src="([^">]+)"', html_content)
+            if match:
+                image = match.group(1)
+        elif "image" in entry:
+            image = entry.image.get("href", "")
 
         all_items.append({
             "source": source,
@@ -40,19 +48,19 @@ for source, url in feeds.items():
             "image": image
         })
 
-# Sort by date
+# Sort all articles by timestamp
 latest = sorted(all_items, key=lambda x: x["timestamp"], reverse=True)[:20]
 
 # Separate top story
 top_story = latest[0]
 remaining = latest[1:]
 
-# Organize by source
+# Group the rest by source
 sources = {}
 for item in remaining:
     sources.setdefault(item["source"], []).append(item)
 
-# Build HTML output
+# Build HTML for top story
 top_html = f'''
 <div class="top-story">
   <a href="{top_story["link"]}" target="_blank">
@@ -63,6 +71,7 @@ top_html = f'''
 </div>
 '''
 
+# Build HTML for rest by section
 sections = []
 for source, articles in sources.items():
     section_html = f'<div class="section"><h2>{source}</h2>'
@@ -71,7 +80,7 @@ for source, articles in sources.items():
     section_html += '</div>'
     sections.append(section_html)
 
-# Inject into HTML
+# Inject the new content into index.html
 with open("index.html", "r") as f:
     html = f.read()
 
