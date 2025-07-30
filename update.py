@@ -3,7 +3,7 @@ import re
 from datetime import datetime, timezone
 from time import mktime
 
-# Define homepage links for each source
+# Define homepage links for source headers
 source_links = {
     "NASA News Releases": "https://www.nasa.gov",
     "Air & Space Forces Magazine": "https://www.airandspaceforces.com",
@@ -45,7 +45,7 @@ columns = {
     }
 }
 
-# Fetch and structure articles
+# Collect and organize all articles
 now = datetime.now(timezone.utc)
 structured = {"media": {}, "gov": {}, "intl": {}}
 all_articles = []
@@ -74,7 +74,7 @@ for section, feeds in columns.items():
             structured[section].setdefault(source, []).append(article)
             all_articles.append(article)
 
-# Sort each source's entries and trim to most recent 5–6 per source
+# Sort and trim each source's headlines
 for section in structured:
     for source in structured[section]:
         structured[section][source] = sorted(structured[section][source], key=lambda x: x["timestamp"], reverse=True)[:6]
@@ -100,7 +100,7 @@ breaking_html = ""
 if breaking_article:
     breaking_html = f'<a href="{breaking_article["link"]}" target="_blank">{breaking_article["title"]}</a> · {breaking_article["source"]} · {breaking_article["age"]}'
 
-# Inject into HTML
+# Inject into index.html
 with open("index.html", "r") as f:
     html = f.read()
 
@@ -127,6 +127,7 @@ if start != -1 and end != -1 and breaking_start != -1 and breaking_end != -1:
   </div>
 <!-- END HEADLINES -->'''
 
+    # Replace breaking banner and columns
     html = html[:breaking_start] + f'<div class="breaking-banner" id="breaking-headline">{breaking_html}' + html[breaking_end:]
     html = html[:start] + new_main + html[end + len("<!-- END HEADLINES -->"):]
 
