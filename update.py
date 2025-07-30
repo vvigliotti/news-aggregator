@@ -1,7 +1,6 @@
 import feedparser
 import re
-from jinja2 import Template
-from datetime import datetime
+from datetime import datetime, timezone
 from time import mktime
 
 feeds = {
@@ -15,18 +14,26 @@ feeds = {
     "USSF – US Space Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml"
 }
 
+def get_age_string(timestamp):
+    now = datetime.now(timezone.utc)
+    delta = now - timestamp
+    minutes = int(delta.total_seconds() / 60)
+    if minutes < 60:
+        return f"{minutes}m ago"
+    else:
+        return f"{minutes // 60}h ago"
+
 all_items = []
 
-# Parse feeds and extract articles
 for source, url in feeds.items():
     parsed = feedparser.parse(url)
     for entry in parsed.entries:
-        published = entry.get("published_parsed") or entry.get("updated_parsed")
-        if not published:
+        pub = entry.get("published_parsed") or entry.get("updated_parsed")
+        if not pub:
             continue
-        timestamp = datetime.fromtimestamp(mktime(published))
+        timestamp = datetime.fromtimestamp(mktime(pub), tz=timezone.utc)
 
-        # ✅ Robust image scraping logic
+        # Try to extract image
         image = ""
         if "media_content" in entry and entry.media_content:
             image = entry.media_content[0].get("url", "")
@@ -45,43 +52,48 @@ for source, url in feeds.items():
             "title": entry.title,
             "link": entry.link,
             "timestamp": timestamp,
-            "image": image
+            "image": image,
+            "age": get_age_string(timestamp)
         })
 
-# Sort all articles by timestamp
+# Sort all articles by freshness
 latest = sorted(all_items, key=lambda x: x["timestamp"], reverse=True)[:20]
 
-# Separate top story
 top_story = latest[0]
 remaining = latest[1:]
 
-# Group the rest by source
+# Group rest by source
 sources = {}
 for item in remaining:
     sources.setdefault(item["source"], []).append(item)
 
-# Build HTML for top story
+# Build top story HTML
 top_html = f'''
-<div class="top-story">
-  <a href="{top_story["link"]}" target="_blank">
-    {'<img src="' + top_story["image"] + '" alt="top image"><br>' if top_story["image"] else ''}
+<div class="top-story" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">
+  <a href="{top_story["link"]}" target="_blank" style="color: red; text-decoration: none;">
+    {'<img src="' + top_story["image"] + '" alt="Top image" style="max-width: 100%;"><br>' if top_story["image"] else ''}
     {top_story["title"]}
   </a>
-  <div class="source">{top_story["source"]}</div>
+  <div style="font-size: 0.9rem; color: gray; font-weight: normal;">{top_story["source"]} – {top_story["age"]}</div>
 </div>
 '''
 
-# Build HTML for rest by section
+# Build all other sections
 sections = []
 for source, articles in sources.items():
     section_html = f'<div class="section"><h2>{source}</h2>'
     for a in articles[:5]:
-        section_html += f'<div class="headline"><a href="{a["link"]}" target="_blank">{a["title"]}</a></div>'
+        section_html += f'''
+        <div class="headline">
+          <a href="{a["link"]}" target="_blank">{a["title"]}</a>
+          <span style="font-size: 0.8rem; color: gray;">({a["age"]})</span>
+        </div>
+        '''
     section_html += '</div>'
     sections.append(section_html)
 
-# Inject the new content into index.html
-with open("index.html", "r") as f:
+# Inject into existing static index.html between markers
+with open("index.html", "r", encoding="utf-8") as f:
     html = f.read()
 
 start = html.find("<!-- START HEADLINES -->")
@@ -90,5 +102,5 @@ end = html.find("<!-- END HEADLINES -->")
 if start != -1 and end != -1:
     new_content = '<!-- START HEADLINES -->\n' + top_html + "\n".join(sections) + '\n<!-- END HEADLINES -->'
     updated_html = html[:start] + new_content + html[end + len("<!-- END HEADLINES -->"):]
-    with open("index.html", "w") as f:
+    with open("index.html", "w", encoding="utf-8") as f:
         f.write(updated_html)
