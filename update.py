@@ -1,9 +1,9 @@
 import feedparser
-import re
 from datetime import datetime, timezone
 from time import mktime
 from bs4 import BeautifulSoup
 import pytz
+from jinja2 import Environment, FileSystemLoader
 
 sources = {
     "media": {
@@ -55,14 +55,16 @@ sources = {
 }
 
 now = datetime.now(timezone.utc)
-structured = {"media": {}, "gov": {}, "intl": {}}
+max_articles = 8
+
+structured = {cat: {} for cat in sources}
 breaking_article = None
 most_recent_time = None
 
 for category, feeds in sources.items():
     for source, info in feeds.items():
         parsed = feedparser.parse(info["url"])
-        entries = parsed.entries[:10]
+        entries = parsed.entries[:max_articles]
         articles = []
 
         for entry in entries:
@@ -73,14 +75,14 @@ for category, feeds in sources.items():
             timestamp = datetime.fromtimestamp(mktime(pub), tz=timezone.utc)
             delta = now - timestamp
             minutes = int(delta.total_seconds() / 60)
-            age_str = f"{minutes}m ago" if minutes < 60 else f"{minutes//60}h ago"
+            age_str = f"{minutes}m ago" if minutes < 60 else f"{minutes // 60}h ago"
 
-            html_content = entry.get("content", [{}])[0].get("value", "")
-            soup = BeautifulSoup(html_content, "html.parser")
+            html = entry.get("content", [{}])[0].get("value", "") or entry.get("summary", "")
+            soup = BeautifulSoup(html, "html.parser")
             image = ""
-            img_tag = soup.find("img")
-            if img_tag and img_tag.has_attr("src"):
-                image = img_tag["src"]
+            img = soup.find("img")
+            if img and img.has_attr("src"):
+                image = img["src"]
 
             article = {
                 "title": entry.title,
@@ -100,4 +102,10 @@ for category, feeds in sources.items():
 
         structured[category][source] = articles
 
-# You'll now use `structured` and `breaking_article` in your HTML template rendering logic
+# Render HTML
+env = Environment(loader=FileSystemLoader("."))
+template = env.get_template("template.html")
+html = template.render(structured=structured, breaking=breaking_article, generated=now)
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html)
