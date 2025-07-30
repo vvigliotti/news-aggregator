@@ -19,7 +19,9 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install feedparser jinja2
+        run: |
+          pip install feedparser
+          pip install beautifulsoup4
 
       - name: Run updater script
         run: python update.py
