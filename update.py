@@ -4,7 +4,12 @@ from jinja2 import Template
 feeds = {
     "Breaking Defense": "https://breakingdefense.com/feed/",
     "SpaceNews": "https://spacenews.com/feed/",
-    "Air & Space Forces": "https://www.airandspaceforces.com/feed/"
+    "Air & Space Forces": "https://www.airandspaceforces.com/feed/",
+    "NASA News Releases": "https://www.nasa.gov/news-release/feed/",
+    "USSF – Headlines": "https://www.spaceforce.mil/RSS/headlines.xml",
+    "USSF – Lines of Effort": "https://www.spaceforce.mil/RSS/lines-of-effort.xml",
+    "USSF – Field News": "https://www.spaceforce.mil/RSS/field-news.xml",
+    "USSF – US Space Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml"
 }
 
 headlines = {}
