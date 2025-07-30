@@ -1,122 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Space Headlines</title>
-  <meta http-equiv="refresh" content="300">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background: white;
-      color: black;
       font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0 auto;
-      max-width: 1200px;
-      transition: background 0.2s, color 0.2s;
+      margin: 0;
+      padding: 1em;
+      background-color: white;
+      color: black;
+      transition: background 0.3s, color 0.3s;
     }
+
     .dark-mode {
-      background: #111;
+      background-color: #111;
       color: white;
     }
-    h1 {
-      font-size: 42px;
-      margin: 30px 0 10px;
-      text-transform: uppercase;
-      font-weight: bold;
+
+    h1, h2 {
+      text-align: center;
     }
-    h2, h3 {
-      margin: 20px 0 10px;
+
+    .breaking-headline {
+      text-align: center;
+      font-size: 1.25em;
       font-weight: bold;
+      margin: 20px auto;
+      max-width: 800px;
     }
+
+    .breaking {
+      color: red;
+    }
+
+    .dark-mode .breaking {
+      color: red;
+    }
+
     .columns {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      flex-direction: row;
       gap: 20px;
       margin-top: 20px;
-      border-top: 1px solid #ccc;
-      padding-top: 20px;
     }
+
     .column {
       flex: 1;
-      min-width: 280px;
-      padding: 0 10px;
-      text-align: left;
+      padding: 10px;
       border-left: 1px solid #ccc;
     }
+
     .column:first-child {
       border-left: none;
     }
-    .headline {
-      margin-bottom: 16px;
-      font-size: 16px;
+
+    .column h2 {
+      border-bottom: 2px solid #000;
     }
-    .headline a {
+
+    .dark-mode .column h2 {
+      border-bottom: 2px solid #fff;
+    }
+
+    h3 a {
+      color: inherit;
       text-decoration: none;
-      font-weight: bold;
-      color: black;
     }
-    .headline a.breaking {
-      color: red;
-    }
-    .meta {
-      font-size: 12px;
-      color: gray;
-    }
-    .headline a:hover {
+
+    h3 a:hover {
       text-decoration: underline;
     }
-    .toggle-btn {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      font-size: 12px;
-      cursor: pointer;
+
+    .headline {
+      margin: 12px 0;
+    }
+
+    .meta {
+      font-size: 0.9em;
       color: gray;
     }
-    .dark-mode .headline a {
-      color: white;
+
+    .dark-mode .meta {
+      color: #ccc;
     }
-    .dark-mode .headline a.breaking {
-      color: red;
-    }
-    .breaking-banner {
-      font-size: 20px;
-      font-weight: bold;
-      color: red;
-      margin-top: 20px;
-    }
+
     footer {
-      font-size: 12px;
-      margin-top: 40px;
-      color: gray;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #aaa;
       text-align: center;
+      font-size: 0.9em;
     }
-    .form-wrapper {
+
+    #question-form {
       max-width: 500px;
-      margin: 40px auto 20px;
+      margin: 30px auto;
       text-align: left;
     }
-    .form-wrapper textarea {
+
+    textarea {
       width: 100%;
       resize: vertical;
     }
-    .form-wrapper button {
-      margin-top: 10px;
+
+    button {
       padding: 8px 16px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 800px) {
+      .columns {
+        flex-direction: column;
+      }
+
+      .column {
+        border-left: none;
+        border-top: 1px solid #ccc;
+      }
+
+      .column:first-child {
+        border-top: none;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="toggle-btn" onclick="toggleDark()">🌓 Toggle Dark Mode</div>
-  <h1>Space Headlines</h1>
-  <div id="date"></div>
+  <button onclick="toggleDarkMode()" style="position: absolute; top: 10px; right: 10px;">Toggle Dark Mode</button>
 
-  <!-- Breaking Headline -->
-  <div class="breaking-banner" id="breaking-headline">Loading breaking headline...</div>
+  <h1>SPACE HEADLINES</h1>
+  <div style="text-align: center;" id="timestamp"></div>
 
-  <!-- Main Columns -->
+  <div class="breaking-headline" id="breaking">
+    Loading breaking headline...
+  </div>
+
   <div class="columns">
     <div class="column" id="media-column">
       <h2>Media</h2>
@@ -132,11 +151,10 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     Updated hourly · Auto-refresh every 5 minutes · Headlines from top space sources worldwide
 
-    <div class="form-wrapper">
+    <div id="question-form">
       <h2>Submit a Question</h2>
       <form action="https://formspree.io/f/xnnzzdjz" method="POST">
         <label for="question">Your Question:</label><br>
@@ -145,17 +163,19 @@
       </form>
     </div>
 
-    <div style="margin-top: 40px;">
+    <div style="margin-top: 30px;">
       <p>Daily Visitors:</p>
       <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1371441/t/0/s/1"></script>
     </div>
   </footer>
 
   <script>
-    function toggleDark() {
-      document.body.classList.toggle('dark-mode');
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
     }
-    document.getElementById("date").innerText = new Date().toLocaleString();
+
+    const now = new Date();
+    document.getElementById("timestamp").innerText = now.toLocaleString();
   </script>
 </body>
 </html>
