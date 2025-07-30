@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>SPACE REPORT</title>
+  <meta http-equiv="refresh" content="300"> <!-- Auto-refresh every 5 min -->
   <style>
     body {
       background: white;
@@ -17,9 +18,26 @@
       margin: 30px 0;
       text-transform: uppercase;
     }
+    .top-story {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 30px 0;
+      border-top: 2px solid black;
+      border-bottom: 2px solid black;
+      padding: 20px 0;
+    }
+    .top-story a {
+      color: black;
+      text-decoration: none;
+    }
+    .top-story img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
     .headline {
-      margin: 20px 0;
-      font-size: 18px;
+      margin: 10px 0;
+      font-size: 17px;
     }
     .headline a {
       color: black;
@@ -29,15 +47,19 @@
     .headline a:hover {
       text-decoration: underline;
     }
+    .section {
+      margin-top: 30px;
+    }
+    .section h2 {
+      font-size: 16px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
     .source {
       font-size: 12px;
       color: gray;
       margin-top: 4px;
-    }
-    .featured img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 10px;
     }
     footer {
       margin-top: 50px;
@@ -50,30 +72,11 @@
   <h1>SPACE REPORT</h1>
 
   <!-- START HEADLINES -->
-<div class="headline"><a href="https://breakingdefense.com/2025/07/its-more-than-fuel-why-the-space-force-needs-in-space-servicing-assembly-and-manufacturing/" target="_blank">It’s more than fuel: Why the Space Force needs in-space servicing, assembly, and manufacturing</a><div class="source">Breaking Defense</div></div>
-<div class="headline featured"><a href="https://www.nasa.gov/image-article/nasa-tests-epic-solution-for-supersonic-parachute-deliveries/" target="_blank"><img src="https://www.youtube.com/embed/Fb08ooo7MhI" alt="thumbnail"><br>NASA Tests Epic Solution for Supersonic Parachute Deliveries</a><div class="source">NASA News Releases</div></div>
-<div class="headline"><a href="https://breakingdefense.com/2025/07/eu-to-spend-hundreds-of-billions-on-us-arms-maybe-not-but-demand-is-real-analysts-say/" target="_blank">EU to spend ‘hundreds of billions’ on US arms? Maybe not but demand is real, analysts say</a><div class="source">Breaking Defense</div></div>
-<div class="headline"><a href="https://www.nasa.gov/news-release/nasa-isro-satellite-lifts-off-to-track-earths-changing-surfaces/" target="_blank">NASA-ISRO Satellite Lifts Off to Track Earth’s Changing Surfaces</a><div class="source">NASA News Releases</div></div>
-<div class="headline"><a href="https://spacenews.com/ksat-and-aws-expand-alliance-in-satellite-communications/" target="_blank">KSAT and AWS expand alliance in satellite communications</a><div class="source">SpaceNews</div></div>
-<div class="headline"><a href="https://science.nasa.gov/centers-and-facilities/goddard/nasas-webb-traces-details-of-complex-planetary-nebula/" target="_blank">NASA’s Webb Traces Details of Complex Planetary Nebula</a><div class="source">NASA News Releases</div></div>
-<div class="headline"><a href="https://www.nasa.gov/image-article/looking-forward-to-the-moon/" target="_blank">Looking Forward to the Moon</a><div class="source">NASA News Releases</div></div>
-<div class="headline"><a href="https://spacenews.com/china-launches-new-group-of-guowang-satellites-from-commercial-spaceport/" target="_blank">China launches new group of Guowang satellites from commercial spaceport</a><div class="source">SpaceNews</div></div>
-<div class="headline"><a href="https://breakingdefense.com/2025/07/northrop-grumman-unveils-first-phase-of-tech-partners-for-beacon-autonomy-program/" target="_blank">Northrop Grumman unveils first phase of tech partners for  Beacon autonomy program</a><div class="source">Breaking Defense</div></div>
-<div class="headline"><a href="https://spacenews.com/space-the-quiet-element-behind-midnight-hammer/" target="_blank">Space – the quiet element behind Midnight Hammer</a><div class="source">SpaceNews</div></div>
-<div class="headline"><a href="https://spacenews.com/gslv-launches-nasa-isro-radar-satellite/" target="_blank">GSLV launches NASA-ISRO radar satellite</a><div class="source">SpaceNews</div></div>
-<div class="headline"><a href="https://www.nasa.gov/learning-resources/internships/laine-havens-melding-science-and-storytelling/" target="_blank">Laine Havens: Melding Science and Storytelling</a><div class="source">NASA News Releases</div></div>
-<div class="headline"><a href="https://breakingdefense.com/2025/07/first-japanese-f-35bs-to-arrive-in-county-within-days/" target="_blank">First Japanese F-35Bs to arrive in-country within days</a><div class="source">Breaking Defense</div></div>
-<div class="headline"><a href="https://spacenews.com/first-eris-launch-fails-to-reach-orbit/" target="_blank">First Eris launch fails to reach orbit</a><div class="source">SpaceNews</div></div>
-<div class="headline"><a href="https://science.nasa.gov/blog/curiosity-blog-sols-4614-4615-driving-along-the-boxwork/" target="_blank">Curiosity Blog, Sols 4614-4615: Driving Along the Boxwork</a><div class="source">NASA News Releases</div></div>
-<div class="headline"><a href="https://science.nasa.gov/blog/spheres-in-the-sand/" target="_blank">Spheres in the Sand</a><div class="source">NASA News Releases</div></div>
-<div class="headline"><a href="https://spacenews.com/firefly-aerospace-wins-fourth-lunar-lander-award/" target="_blank">Firefly Aerospace wins fourth lunar lander award</a><div class="source">SpaceNews</div></div>
-<div class="headline"><a href="https://www.airandspaceforces.com/space-force-indo-pacific-new-commander/" target="_blank">Space Force Component in Pacific Gets New Commander</a><div class="source">Air & Space Forces</div></div>
-<div class="headline"><a href="https://www.airandspaceforces.com/air-force-c-17-21st-airlift-squadron/" target="_blank">C-17 ‘BEE Liners’ Push Their Limits in Sprawling Pacific Exercise</a><div class="source">Air & Space Forces</div></div>
-<div class="headline"><a href="https://spacenews.com/space-force-selects-five-firms-for-protected-tactical-satcom-design-contracts/" target="_blank">Space Force selects five firms for ‘Protected Tactical Satcom’ design contracts</a><div class="source">SpaceNews</div></div>
-<!-- END HEADLINES -->
+  <p>Loading headlines...</p>
+  <!-- END HEADLINES -->
 
   <footer>
-    Updated hourly from official and trusted space-related sources.
+    Updated hourly from trusted space sources · Auto-refreshes every 5 minutes
   </footer>
 </body>
 </html>
