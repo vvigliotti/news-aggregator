@@ -1,237 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Space Headlines</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="300">
+  <link rel="icon" href="🛰️" />
   <style>
     body {
-      background: white;
-      color: black;
       font-family: Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
       margin: 0;
-      padding: 0 15px;
-      max-width: 1300px;
-      margin: auto;
-      transition: background 0.2s, color 0.2s;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .dark-mode {
-      background: #111;
-      color: white;
+
+    :root {
+      --bg: white;
+      --text: black;
+      --link: black;
+      --highlight: red;
+      --secondary: gray;
     }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111;
+        --text: white;
+        --link: white;
+        --highlight: red;
+        --secondary: #666;
+      }
+    }
+
     h1 {
-      font-size: 42px;
-      margin: 30px 0 10px;
-      text-transform: uppercase;
-      font-weight: bold;
       text-align: center;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
-    .top-banner {
-      font-size: 20px;
+
+    .banner {
+      background-color: red;
+      color: white;
+      padding: 10px;
       font-weight: bold;
+      width: 100%;
       text-align: center;
-      border-top: 2px solid black;
-      border-bottom: 2px solid black;
-      padding: 20px 0;
-      margin: 20px 0;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
     }
-    .top-banner strong {
-      display: block;
-      margin-bottom: 5px;
-      color: red;
-    }
+
     .columns {
       display: flex;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: space-between;
       gap: 20px;
-      margin-top: 20px;
     }
+
     .column {
       flex: 1;
-      padding: 0 10px;
-      border-left: 1px solid #ccc;
+      border-left: 1px solid var(--secondary);
+      padding-left: 20px;
     }
+
     .column:first-child {
       border-left: none;
+      padding-left: 0;
     }
-    .column h2 {
-      font-size: 16px;
-      text-transform: uppercase;
-      border-bottom: 2px solid gray;
+
+    h2 {
+      border-bottom: 2px solid var(--secondary);
       padding-bottom: 5px;
-      margin-bottom: 15px;
-      text-align: center;
     }
-    .source-block {
-      margin-bottom: 25px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
-    }
-    .source-block h3 a {
-      font-size: 14px;
+
+    h2 a {
+      color: var(--secondary);
       text-decoration: none;
-      text-transform: uppercase;
-      color: gray;
     }
-    .headline {
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
       margin-bottom: 10px;
-      font-size: 16px;
     }
-    .headline a {
+
+    li a {
+      color: var(--link);
       text-decoration: none;
       font-weight: bold;
-      color: black;
     }
-    .headline.breaking a {
-      color: red;
+
+    .breaking {
+      color: var(--highlight);
     }
-    .headline.recent a {
-      color: blue;
-    }
-    .dark-mode .headline a {
-      color: white;
-    }
-    .dark-mode .headline.breaking a {
-      color: red;
-    }
-    .dark-mode .headline.recent a {
-      color: #4da6ff;
-    }
-    .meta {
-      font-size: 12px;
-      color: gray;
-    }
-    .toggle-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 12px;
-      cursor: pointer;
-      color: gray;
-    }
+
     footer {
-      font-size: 12px;
       margin-top: 40px;
-      color: gray;
-      text-align: center;
-      padding: 20px;
-    }
-    @media screen and (max-width: 768px) {
-      .columns {
-        flex-direction: column;
-      }
-      .column {
-        border-left: none;
-        border-top: 1px solid #ccc;
-        padding-top: 20px;
-      }
-      .column:first-child {
-        border-top: none;
-      }
+      font-size: 0.8rem;
+      color: var(--secondary);
     }
   </style>
 </head>
 <body>
-  <div class="toggle-btn" onclick="toggleDark()">🌓 Toggle Dark Mode</div>
+  <div class="banner" id="topStoryBanner">🚨 Loading top story...</div>
   <h1>Space Headlines</h1>
-  <div id="date"></div>
+  <div class="columns">
+    <!-- MEDIA COLUMN -->
+    <div class="column">
+      <h2><a href="https://www.airandspaceforces.com" target="_blank">Media</a></h2>
+      <ul id="media"></ul>
+    </div>
 
-  <!-- Top story banner -->
-  <div class="top-banner">
-    <!-- TOP BANNER START -->
-<strong>Breaking from Breaking Defense:</strong> <a href="https://breakingdefense.com/2025/07/space-force-makes-5-awards-for-jam-resistant-satcom/" target="_blank">Space Force makes 5 awards for jam-resistant SATCOM</a>
-<!-- TOP BANNER END -->
+    <!-- GOVERNMENT COLUMN -->
+    <div class="column">
+      <h2><a href="https://www.spaceforce.mil/" target="_blank">Gov</a></h2>
+      <ul id="gov"></ul>
+    </div>
+
+    <!-- INTERNATIONAL/SCIENCE COLUMN -->
+    <div class="column">
+      <h2><a href="https://www.esa.int/" target="_blank">International</a></h2>
+      <ul id="international"></ul>
+    </div>
   </div>
 
-  <!-- Main headline content -->
-  <!-- START HEADLINES -->
-<div class="columns">
-<div class="column">
-<h2>GOV</h2>
-<div class="source-block"><h3><a href="https://www.spaceforce.mil" target="_blank">US Space Force</a></h3>
-</div>
-<div class="source-block"><h3><a href="https://www.nasa.gov" target="_blank">NASA</a></h3>
-<div class="headline "><a href="https://www.nasa.gov/image-article/nasa-tests-epic-solution-for-supersonic-parachute-deliveries/" target="_blank">NASA Tests Epic Solution for Supersonic Parachute Deliveries</a></div>
-<div class="headline "><a href="https://www.nasa.gov/news-release/nasa-isro-satellite-lifts-off-to-track-earths-changing-surfaces/" target="_blank">NASA-ISRO Satellite Lifts Off to Track Earth’s Changing Surfaces</a></div>
-<div class="headline "><a href="https://science.nasa.gov/centers-and-facilities/goddard/nasas-webb-traces-details-of-complex-planetary-nebula/" target="_blank">NASA’s Webb Traces Details of Complex Planetary Nebula</a></div>
-<div class="headline "><a href="https://www.nasa.gov/image-article/looking-forward-to-the-moon/" target="_blank">Looking Forward to the Moon</a></div>
-<div class="headline "><a href="https://www.nasa.gov/learning-resources/internships/laine-havens-melding-science-and-storytelling/" target="_blank">Laine Havens: Melding Science and Storytelling</a></div>
-</div>
-<div class="source-block"><h3><a href="https://www.sda.mil" target="_blank">Space Development Agency</a></h3>
-<div class="headline "><a href="https://www.dvidshub.net/video/905153/usariem-army-navy-game-video" target="_blank">USARIEM Army Navy Game Video</a></div>
-<div class="headline "><a href="https://www.dvidshub.net/video/905144/usariem-go-army-beat-navy" target="_blank">USARIEM GO Army Beat Navy</a></div>
-<div class="headline "><a href="https://www.dvidshub.net/news/415322/usariem-marches-with-over-800-pounds-canned-goods-food-drive" target="_blank">USARIEM marches with over 800 pounds of canned goods for food drive</a></div>
-<div class="headline "><a href="https://www.dvidshub.net/image/7067621/usariem-marches-with-over-800-pounds-canned-goods-food-drive" target="_blank">USARIEM marches with over 800 pounds of canned goods for food drive [Image 3 of 3]</a></div>
-<div class="headline "><a href="https://www.dvidshub.net/image/7067619/usariem-marches-with-over-800-pounds-canned-goods-food-drive" target="_blank">USARIEM marches with over 800 pounds of canned goods for food drive [Image 2 of 3]</a></div>
-</div>
-</div>
-<div class="column">
-<h2>MEDIA</h2>
-<div class="source-block"><h3><a href="https://breakingdefense.com" target="_blank">Breaking Defense</a></h3>
-<div class="headline breaking"><a href="https://breakingdefense.com/2025/07/space-force-makes-5-awards-for-jam-resistant-satcom/" target="_blank">Space Force makes 5 awards for jam-resistant SATCOM</a></div>
-<div class="headline recent"><a href="https://breakingdefense.com/2025/07/navy-plans-to-find-second-shipbuilder-for-its-landing-craft-program-again/" target="_blank">Navy plans to find second shipbuilder for its landing craft program — again</a></div>
-<div class="headline recent"><a href="https://breakingdefense.com/2025/07/its-more-than-fuel-why-the-space-force-needs-in-space-servicing-assembly-and-manufacturing/" target="_blank">It’s more than fuel: Why the Space Force needs in-space servicing, assembly, and manufacturing</a></div>
-<div class="headline "><a href="https://breakingdefense.com/2025/07/eu-to-spend-hundreds-of-billions-on-us-arms-maybe-not-but-demand-is-real-analysts-say/" target="_blank">EU to spend ‘hundreds of billions’ on US arms? Maybe not but demand is real, analysts say</a></div>
-<div class="headline "><a href="https://breakingdefense.com/2025/07/northrop-grumman-unveils-first-phase-of-tech-partners-for-beacon-autonomy-program/" target="_blank">Northrop Grumman unveils first phase of tech partners for  Beacon autonomy program</a></div>
-</div>
-<div class="source-block"><h3><a href="https://www.airandspaceforces.com" target="_blank">Air & Space Forces Magazine</a></h3>
-<div class="headline "><a href="https://www.airandspaceforces.com/x-37-eighth-mission-laser-comms-gps-alternative/" target="_blank">X-37 Heading Back to Space to Test Laser Comms, GPS Alternative</a></div>
-<div class="headline "><a href="https://www.airandspaceforces.com/global-strike-command-end-strength-b-21/" target="_blank">Global Strike Command to Grow as B-21 and Other New Systems Come Online</a></div>
-<div class="headline "><a href="https://www.airandspaceforces.com/photos-reforpac-aircraft/" target="_blank">PHOTOS: From F-22s to CV-22s, the Aircraft of REFORPAC</a></div>
-<div class="headline recent"><a href="https://www.airandspaceforces.com/multi-orbit-satcom/" target="_blank">Multi-Orbit SATCOM Is More Resilient—But Not Without Challenges, Officials Say</a></div>
-<div class="headline "><a href="https://www.airandspaceforces.com/space-force-indo-pacific-new-commander/" target="_blank">Space Force Component in Pacific Gets New Commander</a></div>
-</div>
-<div class="source-block"><h3><a href="https://spacenews.com" target="_blank">SpaceNews</a></h3>
-<div class="headline recent"><a href="https://spacenews.com/mission-to-market-the-evolution-of-nasas-clps-program/" target="_blank">Mission to market – The evolution of NASA’s CLPS program</a></div>
-<div class="headline "><a href="https://spacenews.com/ksat-and-aws-expand-alliance-in-satellite-communications/" target="_blank">KSAT and AWS expand alliance in satellite communications</a></div>
-<div class="headline "><a href="https://spacenews.com/china-launches-new-group-of-guowang-satellites-from-commercial-spaceport/" target="_blank">China launches new group of Guowang satellites from commercial spaceport</a></div>
-<div class="headline "><a href="https://spacenews.com/space-the-quiet-element-behind-midnight-hammer/" target="_blank">Space – the quiet element behind Midnight Hammer</a></div>
-<div class="headline "><a href="https://spacenews.com/gslv-launches-nasa-isro-radar-satellite/" target="_blank">GSLV launches NASA-ISRO radar satellite</a></div>
-</div>
-<div class="source-block"><h3><a href="https://defensescoop.com" target="_blank">DefenseScoop</a></h3>
-<div class="headline "><a href="https://preprod.defensescoop.com/2024/07/25/tech-talent-keys-to-defense-modernization-michael-bloomberg/" target="_blank">Tech and talent are the keys to defense modernization</a></div>
-<div class="headline "><a href="https://preprod.defensescoop.com/2024/07/24/dashboard-allows-commanders-increased-ability-assess-readiness-cyber-teams/" target="_blank">Dashboard aims to give commanders increased ability to assess cyber team readiness</a></div>
-<div class="headline "><a href="https://preprod.defensescoop.com/2024/07/24/nga-buys-maritime-data-help-indo-pacific-command-cso/" target="_blank">NGA buys maritime data to help Indo-Pacific Command, via first-ever CSO</a></div>
-<div class="headline "><a href="https://preprod.defensescoop.com/2024/07/23/global-information-dominance-experiments-gide-inaugural-challenge/" target="_blank">Pentagon poised to launch inaugural ‘challenge’ for Global Information Dominance Experiments</a></div>
-<div class="headline "><a href="https://preprod.defensescoop.com/2024/07/22/dods-new-arctic-strategy-better-tech-monitor-respond/" target="_blank">DOD’s new Arctic strategy calls for better tech to ‘monitor and respond’</a></div>
-</div>
-<div class="source-block"><h3><a href="https://www.theverge.com/space" target="_blank">The Verge – Space</a></h3>
-</div>
-<div class="source-block"><h3><a href="https://arstechnica.com/science/space" target="_blank">Ars Technica – Space</a></h3>
-</div>
-<div class="source-block"><h3><a href="https://www.military.com" target="_blank">Military.com</a></h3>
-</div>
-</div>
-<div class="column">
-<h2>INTL</h2>
-<div class="source-block"><h3><a href="https://www.esa.int" target="_blank">European Space Agency</a></h3>
-<div class="headline "><a href="https://www.esa.int/About_Us/ESA_Strategy_2040" target="_blank">Read ESA's Strategy 2040</a></div>
-<div class="headline "><a href="https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_traces_details_of_complex_planetary_nebula" target="_blank">Webb traces details of complex planetary nebula</a></div>
-<div class="headline "><a href="https://www.esa.int/Applications/Observing_the_Earth/FutureEO/Greenland_subglacial_flood_bursts_through_ice_sheet_surface" target="_blank">Greenland subglacial flood bursts through ice sheet surface</a></div>
-<div class="headline "><a href="https://www.esa.int/ESA_Multimedia/Videos/2025/07/VV27_road_to_liftoff" target="_blank">VV27 road to liftoff</a></div>
-<div class="headline "><a href="https://www.esa.int/About_Us/Week_in_images/Week_in_images_21-25_July_2025" target="_blank">Week in images: 21-25 July 2025</a></div>
-</div>
-<div class="source-block"><h3><a href="https://phys.org" target="_blank">Phys.org – Space</a></h3>
-<div class="headline recent"><a href="https://phys.org/news/2025-07-nasa-isro-satellite-track-earth.html" target="_blank">NASA-ISRO satellite lifts off to track Earth's changing surfaces</a></div>
-<div class="headline recent"><a href="https://phys.org/news/2025-07-recycling-paramount-space-stations-duration.html" target="_blank">Water recycling is paramount for space stations and long-duration missions</a></div>
-<div class="headline recent"><a href="https://phys.org/news/2025-07-simulations-early-earth-liquid-core.html" target="_blank">Simulations prove early Earth's liquid core generated protective magnetic field</a></div>
-<div class="headline recent"><a href="https://phys.org/news/2025-07-tracking-deep-space-probes-geo.html" target="_blank">Tracking deep space probes with GEO satellites improves uptime</a></div>
-<div class="headline recent"><a href="https://phys.org/news/2025-07-radar-satellite-india-nasa-track.html" target="_blank">Radar satellite launched by India and NASA will track miniscule changes to Earth's land and ice</a></div>
-</div>
-</div>
-</div>
-
-<!-- END HEADLINES -->
-
-  <footer>
-    Updated hourly · Auto-refresh every 5 minutes · Powered by top global space news feeds
-  </footer>
+  <footer>Built with 💫 by SpaceHeadlines.com — Auto-updated via GitHub Actions</footer>
 
   <script>
-    function toggleDark() {
-      document.body.classList.toggle('dark-mode');
+    async function fetchHeadlines() {
+      const response = await fetch("headlines.json");
+      const data = await response.json();
+
+      const sections = {
+        media: document.getElementById("media"),
+        gov: document.getElementById("gov"),
+        international: document.getElementById("international"),
+      };
+
+      const categories = {
+        media: data.media || [],
+        gov: data.gov || [],
+        international: data.international || [],
+      };
+
+      for (const [key, articles] of Object.entries(categories)) {
+        const list = sections[key];
+        articles.forEach((article, i) => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = article.link;
+          a.target = "_blank";
+          a.textContent = article.title;
+          if (i < 3) a.classList.add("breaking"); // mark top 3 as breaking
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+      }
+
+      const top = data.media?.[0] || data.gov?.[0] || data.international?.[0];
+      if (top) {
+        const banner = document.getElementById("topStoryBanner");
+        banner.innerHTML = `🚨 <a href="${top.link}" style="color:white; text-decoration: underline;" target="_blank">${top.title}</a>`;
+      }
     }
-    document.getElementById("date").innerText = new Date().toLocaleString();
+
+    fetchHeadlines();
   </script>
 </body>
 </html>
