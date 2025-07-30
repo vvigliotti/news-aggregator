@@ -16,7 +16,7 @@ feeds = {
 
 all_items = []
 
-# Collect and time-stamp articles
+# Parse feeds
 for source, url in feeds.items():
     parsed = feedparser.parse(url)
     for entry in parsed.entries:
@@ -26,7 +26,7 @@ for source, url in feeds.items():
         timestamp = datetime.fromtimestamp(mktime(published))
         image = ""
 
-        # Try to grab thumbnail
+        # Try to grab image
         if "media_content" in entry:
             image = entry.media_content[0].get("url", "")
         elif "media_thumbnail" in entry:
@@ -40,21 +40,36 @@ for source, url in feeds.items():
             "image": image
         })
 
-# Sort and trim to most recent 20
+# Sort by date
 latest = sorted(all_items, key=lambda x: x["timestamp"], reverse=True)[:20]
 
-# Build HTML
-headline_blocks = []
-for i, item in enumerate(latest):
-    block = ""
-    if i < 5 and item["image"]:  # Show image for top 5 only
-        block += f'<div class="headline featured">'
-        block += f'<a href="{item["link"]}" target="_blank">'
-        block += f'<img src="{item["image"]}" alt="thumbnail"><br>'
-        block += f'{item["title"]}</a><div class="source">{item["source"]}</div></div>'
-    else:
-        block += f'<div class="headline"><a href="{item["link"]}" target="_blank">{item["title"]}</a><div class="source">{item["source"]}</div></div>'
-    headline_blocks.append(block)
+# Separate top story
+top_story = latest[0]
+remaining = latest[1:]
+
+# Organize by source
+sources = {}
+for item in remaining:
+    sources.setdefault(item["source"], []).append(item)
+
+# Build HTML output
+top_html = f'''
+<div class="top-story">
+  <a href="{top_story["link"]}" target="_blank">
+    {'<img src="' + top_story["image"] + '" alt="top image"><br>' if top_story["image"] else ''}
+    {top_story["title"]}
+  </a>
+  <div class="source">{top_story["source"]}</div>
+</div>
+'''
+
+sections = []
+for source, articles in sources.items():
+    section_html = f'<div class="section"><h2>{source}</h2>'
+    for a in articles[:5]:
+        section_html += f'<div class="headline"><a href="{a["link"]}" target="_blank">{a["title"]}</a></div>'
+    section_html += '</div>'
+    sections.append(section_html)
 
 # Inject into HTML
 with open("index.html", "r") as f:
@@ -64,7 +79,7 @@ start = html.find("<!-- START HEADLINES -->")
 end = html.find("<!-- END HEADLINES -->")
 
 if start != -1 and end != -1:
-    new_content = '<!-- START HEADLINES -->\n' + "\n".join(headline_blocks) + '\n<!-- END HEADLINES -->'
+    new_content = '<!-- START HEADLINES -->\n' + top_html + "\n".join(sections) + '\n<!-- END HEADLINES -->'
     updated_html = html[:start] + new_content + html[end + len("<!-- END HEADLINES -->"):]
     with open("index.html", "w") as f:
         f.write(updated_html)
