@@ -1,111 +1,94 @@
 import feedparser
-from datetime import datetime, timezone
+import re
+from jinja2 import Template
+from datetime import datetime
 from time import mktime
-from bs4 import BeautifulSoup
-import pytz
-from jinja2 import Environment, FileSystemLoader
 
-sources = {
-    "media": {
-        "Breaking Defense": {
-            "url": "https://breakingdefense.com/feed/",
-            "homepage": "https://breakingdefense.com/"
-        },
-        "SpaceNews": {
-            "url": "https://spacenews.com/feed/",
-            "homepage": "https://spacenews.com/"
-        },
-        "Air & Space Forces Magazine": {
-            "url": "https://www.airandspaceforces.com/feed/",
-            "homepage": "https://www.airandspaceforces.com/"
-        },
-        "The Verge – Space": {
-            "url": "https://www.theverge.com/rss/space/index.xml",
-            "homepage": "https://www.theverge.com/space"
-        },
-        "Ars Technica (Space)": {
-            "url": "https://feeds.arstechnica.com/arstechnica/space/",
-            "homepage": "https://arstechnica.com/space/"
-        },
-        "Military.com – Space": {
-            "url": "https://www.military.com/rss/subject/19456/feed.xml",
-            "homepage": "https://www.military.com/"
-        }
-    },
-    "gov": {
-        "Space Force – Headlines": {
-            "url": "https://www.spaceforce.mil/RSS/headlines.xml",
-            "homepage": "https://www.spaceforce.mil/"
-        },
-        "NASA News Releases": {
-            "url": "https://www.nasa.gov/news-release/feed/",
-            "homepage": "https://www.nasa.gov/"
-        }
-    },
-    "intl": {
-        "ESA – European Space Agency": {
-            "url": "https://www.esa.int/rssfeed/Our_Activities",
-            "homepage": "https://www.esa.int/"
-        },
-        "Phys.org – Space": {
-            "url": "https://phys.org/rss-feed/space-news/",
-            "homepage": "https://phys.org/space-news/"
-        }
-    }
+feeds = {
+    "Breaking Defense": "https://breakingdefense.com/feed/",
+    "SpaceNews": "https://spacenews.com/feed/",
+    "Air & Space Forces": "https://www.airandspaceforces.com/feed/",
+    "NASA News Releases": "https://www.nasa.gov/news-release/feed/",
+    "USSF – Headlines": "https://www.spaceforce.mil/RSS/headlines.xml",
+    "USSF – Lines of Effort": "https://www.spaceforce.mil/RSS/lines-of-effort.xml",
+    "USSF – Field News": "https://www.spaceforce.mil/RSS/field-news.xml",
+    "USSF – US Space Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml"
 }
 
-now = datetime.now(timezone.utc)
-max_articles = 8
+all_items = []
 
-structured = {cat: {} for cat in sources}
-breaking_article = None
-most_recent_time = None
+# Parse feeds and extract articles
+for source, url in feeds.items():
+    parsed = feedparser.parse(url)
+    for entry in parsed.entries:
+        published = entry.get("published_parsed") or entry.get("updated_parsed")
+        if not published:
+            continue
+        timestamp = datetime.fromtimestamp(mktime(published))
 
-for category, feeds in sources.items():
-    for source, info in feeds.items():
-        parsed = feedparser.parse(info["url"])
-        entries = parsed.entries[:max_articles]
-        articles = []
+        # ✅ Robust image scraping logic
+        image = ""
+        if "media_content" in entry and entry.media_content:
+            image = entry.media_content[0].get("url", "")
+        elif "media_thumbnail" in entry and entry.media_thumbnail:
+            image = entry.media_thumbnail[0].get("url", "")
+        elif "content" in entry:
+            html_content = entry.content[0].value
+            match = re.search(r'<img[^>]+src="([^">]+)"', html_content)
+            if match:
+                image = match.group(1)
+        elif "image" in entry:
+            image = entry.image.get("href", "")
 
-        for entry in entries:
-            pub = entry.get("published_parsed") or entry.get("updated_parsed")
-            if not pub:
-                continue
+        all_items.append({
+            "source": source,
+            "title": entry.title,
+            "link": entry.link,
+            "timestamp": timestamp,
+            "image": image
+        })
 
-            timestamp = datetime.fromtimestamp(mktime(pub), tz=timezone.utc)
-            delta = now - timestamp
-            minutes = int(delta.total_seconds() / 60)
-            age_str = f"{minutes}m ago" if minutes < 60 else f"{minutes // 60}h ago"
+# Sort all articles by timestamp
+latest = sorted(all_items, key=lambda x: x["timestamp"], reverse=True)[:20]
 
-            html = entry.get("content", [{}])[0].get("value", "") or entry.get("summary", "")
-            soup = BeautifulSoup(html, "html.parser")
-            image = ""
-            img = soup.find("img")
-            if img and img.has_attr("src"):
-                image = img["src"]
+# Separate top story
+top_story = latest[0]
+remaining = latest[1:]
 
-            article = {
-                "title": entry.title,
-                "link": entry.link,
-                "source": source,
-                "homepage": info["homepage"],
-                "timestamp": timestamp,
-                "age": age_str,
-                "is_new": delta.total_seconds() < 3600,
-                "image": image
-            }
-            articles.append(article)
+# Group the rest by source
+sources = {}
+for item in remaining:
+    sources.setdefault(item["source"], []).append(item)
 
-            if not most_recent_time or timestamp > most_recent_time:
-                most_recent_time = timestamp
-                breaking_article = article
+# Build HTML for top story
+top_html = f'''
+<div class="top-story">
+  <a href="{top_story["link"]}" target="_blank">
+    {'<img src="' + top_story["image"] + '" alt="top image"><br>' if top_story["image"] else ''}
+    {top_story["title"]}
+  </a>
+  <div class="source">{top_story["source"]}</div>
+</div>
+'''
 
-        structured[category][source] = articles
+# Build HTML for rest by section
+sections = []
+for source, articles in sources.items():
+    section_html = f'<div class="section"><h2>{source}</h2>'
+    for a in articles[:5]:
+        section_html += f'<div class="headline"><a href="{a["link"]}" target="_blank">{a["title"]}</a></div>'
+    section_html += '</div>'
+    sections.append(section_html)
 
-# Render HTML
-env = Environment(loader=FileSystemLoader("."))
-template = env.get_template("template.html")
-html = template.render(structured=structured, breaking=breaking_article, generated=now)
+# Inject the new content into index.html
+with open("index.html", "r") as f:
+    html = f.read()
 
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html)
+start = html.find("<!-- START HEADLINES -->")
+end = html.find("<!-- END HEADLINES -->")
+
+if start != -1 and end != -1:
+    new_content = '<!-- START HEADLINES -->\n' + top_html + "\n".join(sections) + '\n<!-- END HEADLINES -->'
+    updated_html = html[:start] + new_content + html[end + len("<!-- END HEADLINES -->"):]
+    with open("index.html", "w") as f:
+        f.write(updated_html)
