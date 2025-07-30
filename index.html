@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Space Headlines</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="refresh" content="300">
   <style>
     body {
       background: white;
       color: black;
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0 15px;
-      max-width: 1300px;
-      margin: auto;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 1200px;
       transition: background 0.2s, color 0.2s;
     }
     .dark-mode {
@@ -25,115 +23,45 @@
       margin: 30px 0 10px;
       text-transform: uppercase;
       font-weight: bold;
-      text-align: center;
-    }
-    .top-banner {
-      font-size: 20px;
-      font-weight: bold;
-      text-align: center;
-      border-top: 2px solid black;
-      border-bottom: 2px solid black;
-      padding: 20px 0;
-      margin: 20px 0;
     }
     .columns {
       display: flex;
+      justify-content: space-between;
       gap: 20px;
       margin-top: 20px;
     }
     .column {
       flex: 1;
       padding: 0 10px;
-      border-left: 1px solid #ccc;
-    }
-    .column:first-child {
-      border-left: none;
-    }
-    .column h2 {
-      font-size: 16px;
-      text-transform: uppercase;
-      border-bottom: 2px solid gray;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    .source-block {
-      margin-bottom: 25px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
-    }
-    .source-block h3 {
-      font-size: 14px;
-      margin-bottom: 5px;
-      text-transform: uppercase;
-    }
-    .source-block h3 a {
-      color: gray;
-      text-decoration: none;
-    }
-    .source-block h3 a:hover {
-      text-decoration: underline;
+      text-align: left;
     }
     .headline {
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       font-size: 16px;
     }
     .headline a {
       text-decoration: none;
       font-weight: bold;
-      color: black;
-    }
-    .headline.breaking a {
-      color: red;
-    }
-    .headline.recent a {
-      color: blue;
-    }
-    .dark-mode .headline a {
-      color: white;
-    }
-    .dark-mode .headline.breaking a {
-      color: red;
-    }
-    .dark-mode .headline.recent a {
-      color: #4da6ff;
     }
     .meta {
       font-size: 12px;
       color: gray;
     }
-    .headline img {
-      max-width: 100%;
-      margin-top: 5px;
-      border-radius: 5px;
-    }
-    .toggle-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 12px;
-      cursor: pointer;
-      color: gray;
+    .headline a:hover {
+      text-decoration: underline;
     }
     footer {
       font-size: 12px;
       margin-top: 40px;
       color: gray;
-      text-align: center;
-      padding: 20px;
     }
-    @media screen and (max-width: 768px) {
-      .columns {
-        flex-direction: column;
-      }
-      .column {
-        border-left: none;
-        border-top: 1px solid #ccc;
-        padding-top: 20px;
-      }
-      .column:first-child {
-        border-top: none;
-      }
+    .toggle-btn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      color: gray;
     }
   </style>
 </head>
@@ -142,18 +70,12 @@
   <h1>Space Headlines</h1>
   <div id="date"></div>
 
-  <div class="top-banner">
-    <!-- TOP BANNER START -->
-    Loading top story...
-    <!-- TOP BANNER END -->
-  </div>
-
   <!-- START HEADLINES -->
   <p>Loading headlines...</p>
   <!-- END HEADLINES -->
 
   <footer>
-    Updated hourly · Auto-refresh every 5 minutes · Powered by top global space news feeds
+    Updated hourly · Auto-refresh every 5 minutes · Headlines from top space sources worldwide
   </footer>
 
   <script>
