@@ -3,15 +3,26 @@ import re
 from datetime import datetime, timezone
 from time import mktime
 
-# Feeds grouped by category
+# Define homepage links for each source
+source_links = {
+    "NASA News Releases": "https://www.nasa.gov",
+    "Air & Space Forces Magazine": "https://www.airandspaceforces.com",
+    "Breaking Defense": "https://breakingdefense.com",
+    "SpaceNews": "https://spacenews.com",
+    "SpaceRef": "https://spaceref.com",
+    "Ars Technica (Space)": "https://arstechnica.com/space",
+    "The Verge – Space": "https://www.theverge.com/space",
+    "Military.com – Space": "https://www.military.com/space",
+    "ESA – European Space Agency": "https://www.esa.int",
+    "Phys.org – Space": "https://phys.org/space-news/",
+    "Space Force – Headlines": "https://www.spaceforce.mil",
+    "Space Force – Lines of Effort": "https://www.spaceforce.mil",
+    "Space Force – Field News": "https://www.spaceforce.mil",
+    "Space Force – US Forces": "https://www.spaceforce.mil"
+}
+
+# RSS feeds grouped by content section
 columns = {
-    "gov": {
-        "Space Force – Headlines": "https://www.spaceforce.mil/RSS/headlines.xml",
-        "Space Force – Lines of Effort": "https://www.spaceforce.mil/RSS/lines-of-effort.xml",
-        "Space Force – Field News": "https://www.spaceforce.mil/RSS/field-news.xml",
-        "Space Force – US Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml",
-        "NASA News Releases": "https://www.nasa.gov/news-release/feed/"
-    },
     "media": {
         "Air & Space Forces Magazine": "https://www.airandspaceforces.com/feed/",
         "Breaking Defense": "https://breakingdefense.com/feed/",
@@ -21,17 +32,25 @@ columns = {
         "The Verge – Space": "https://www.theverge.com/rss/space/index.xml",
         "Military.com – Space": "https://www.military.com/rss/subject/19456/feed.xml"
     },
+    "gov": {
+        "Space Force – Headlines": "https://www.spaceforce.mil/RSS/headlines.xml",
+        "Space Force – Lines of Effort": "https://www.spaceforce.mil/RSS/lines-of-effort.xml",
+        "Space Force – Field News": "https://www.spaceforce.mil/RSS/field-news.xml",
+        "Space Force – US Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml",
+        "NASA News Releases": "https://www.nasa.gov/news-release/feed/"
+    },
     "intl": {
         "ESA – European Space Agency": "https://www.esa.int/rssfeed/Our_Activities",
         "Phys.org – Space": "https://phys.org/rss-feed/space-news/"
     }
 }
 
-# Parse and collect articles
+# Fetch and structure articles
 now = datetime.now(timezone.utc)
-structured = {"gov": [], "media": [], "intl": []}
+structured = {"media": {}, "gov": {}, "intl": {}}
+all_articles = []
 
-for group, feeds in columns.items():
+for section, feeds in columns.items():
     for source, url in feeds.items():
         parsed = feedparser.parse(url)
         for entry in parsed.entries:
@@ -40,56 +59,58 @@ for group, feeds in columns.items():
                 continue
             timestamp = datetime.fromtimestamp(mktime(pub), tz=timezone.utc)
             delta = now - timestamp
-            minutes = int(delta.total_seconds() / 60)
-            age_str = f"{minutes}m ago" if minutes < 60 else f"{minutes//60}h ago"
+            age_str = f"{int(delta.total_seconds() / 60)}m ago" if delta.total_seconds() < 3600 else f"{int(delta.total_seconds() / 3600)}h ago"
+            is_new = delta.total_seconds() < 3600
 
-            # Try to extract an image
-            image = ""
-            if "media_content" in entry and entry.media_content:
-                image = entry.media_content[0].get("url", "")
-            elif "media_thumbnail" in entry and entry.media_thumbnail:
-                image = entry.media_thumbnail[0].get("url", "")
-            elif "content" in entry:
-                html_content = entry.content[0].value
-                match = re.search(r'<img[^>]+src="([^">]+)"', html_content)
-                if match:
-                    image = match.group(1)
-
-            structured[group].append({
+            article = {
                 "title": entry.title,
                 "link": entry.link,
                 "source": source,
-                "image": image,
                 "timestamp": timestamp,
                 "age": age_str,
-                "is_new": delta.total_seconds() < 3600  # mark breaking headlines
-            })
+                "is_new": is_new
+            }
 
-# Sort and trim
-for key in structured:
-    structured[key] = sorted(structured[key], key=lambda x: x["timestamp"], reverse=True)[:15]
+            structured[section].setdefault(source, []).append(article)
+            all_articles.append(article)
 
-# Build HTML
-def build_column(articles):
+# Sort each source's entries and trim to most recent 5–6 per source
+for section in structured:
+    for source in structured[section]:
+        structured[section][source] = sorted(structured[section][source], key=lambda x: x["timestamp"], reverse=True)[:6]
+
+# Pick most recent breaking article
+breaking_article = max([a for a in all_articles if a["is_new"]], key=lambda x: x["timestamp"], default=None)
+
+def build_column(section_dict):
     html = ""
-    for item in articles:
-        color = "red" if item["is_new"] else "black"
-        html += f'<div class="headline"><a href="{item["link"]}" target="_blank" style="color:{color}">{item["title"]}</a><div class="meta">{item["source"]} · {item["age"]}</div></div>\n'
+    for source, articles in section_dict.items():
+        link = source_links.get(source, "#")
+        html += f'<h3><a href="{link}" target="_blank">{source}</a></h3>\n'
+        for article in articles:
+            color = "red" if article["is_new"] else "black"
+            html += f'<div class="headline"><a href="{article["link"]}" target="_blank" style="color:{color}">{article["title"]}</a><div class="meta">{article["source"]} · {article["age"]}</div></div>\n'
     return html
 
-gov_html = build_column(structured["gov"])
 media_html = build_column(structured["media"])
+gov_html = build_column(structured["gov"])
 intl_html = build_column(structured["intl"])
 
-# Inject into index.html
+breaking_html = ""
+if breaking_article:
+    breaking_html = f'<a href="{breaking_article["link"]}" target="_blank">{breaking_article["title"]}</a> · {breaking_article["source"]} · {breaking_article["age"]}'
+
+# Inject into HTML
 with open("index.html", "r") as f:
     html = f.read()
 
 start = html.find("<!-- START HEADLINES -->")
 end = html.find("<!-- END HEADLINES -->")
+breaking_start = html.find('<div class="breaking-banner" id="breaking-headline">')
+breaking_end = html.find('</div>', breaking_start)
 
-if start != -1 and end != -1:
-    new_content = f'''<!-- START HEADLINES -->
+if start != -1 and end != -1 and breaking_start != -1 and breaking_end != -1:
+    new_main = f'''<!-- START HEADLINES -->
   <div class="columns">
     <div class="column">
       <h2>Media</h2>
@@ -104,7 +125,10 @@ if start != -1 and end != -1:
       {intl_html}
     </div>
   </div>
-  <!-- END HEADLINES -->'''
-    updated_html = html[:start] + new_content + html[end + len("<!-- END HEADLINES -->"):]
+<!-- END HEADLINES -->'''
+
+    html = html[:breaking_start] + f'<div class="breaking-banner" id="breaking-headline">{breaking_html}' + html[breaking_end:]
+    html = html[:start] + new_main + html[end + len("<!-- END HEADLINES -->"):]
+
     with open("index.html", "w") as f:
-        f.write(updated_html)
+        f.write(html)
