@@ -20,9 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install feedparser
-          pip install beautifulsoup4
-          pip install pytz
+          pip install feedparser jinja2 beautifulsoup4 pytz
 
       - name: Run updater script
         run: python update.py
@@ -32,5 +30,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add index.html
-          git commit -m "Update headlines" || echo "No changes"
+          git commit -m "Update headlines" || echo "No changes to commit"
           git push
