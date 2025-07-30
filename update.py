@@ -9,7 +9,6 @@ source_links = {
     "Air & Space Forces Magazine": "https://www.airandspaceforces.com",
     "Breaking Defense": "https://breakingdefense.com",
     "SpaceNews": "https://spacenews.com",
-    "SpaceRef": "https://spaceref.com",
     "Ars Technica (Space)": "https://arstechnica.com/space",
     "The Verge – Space": "https://www.theverge.com/space",
     "Military.com – Space": "https://www.military.com/space",
@@ -26,7 +25,6 @@ columns = {
         "Air & Space Forces Magazine": "https://www.airandspaceforces.com/feed/",
         "Breaking Defense": "https://breakingdefense.com/feed/",
         "SpaceNews": "https://spacenews.com/feed/",
-        "SpaceRef": "https://spaceref.com/rss/",
         "Ars Technica (Space)": "https://feeds.arstechnica.com/arstechnica/space/",
         "The Verge – Space": "https://www.theverge.com/rss/space/index.xml",
         "Military.com – Space": "https://www.military.com/rss/subject/19456/feed.xml"
