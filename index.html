@@ -5,49 +5,19 @@
   <title>Space Headlines</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    :root {
-      --bg: #111;
-      --text: #fff;
-      --link: #fff;
-      --hover: red;
-      --column-border: #555;
-      --banner-bg: red;
-      --banner-text: white;
-    }
-    body.light {
-      --bg: #fff;
-      --text: #000;
-      --link: #000;
-      --hover: blue;
-      --column-border: #ccc;
-      --banner-bg: #ffe5e5;
-      --banner-text: #a00;
-    }
-
     body {
-      background: var(--bg);
-      color: var(--text);
       font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
       margin: 0;
       padding: 20px;
-      transition: background 0.3s, color 0.3s;
     }
     h1 {
       text-align: center;
     }
-    .toggle-theme {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      background: none;
-      color: var(--text);
-      border: 1px solid var(--text);
-      padding: 5px 10px;
-      cursor: pointer;
-    }
     .banner {
-      background: var(--banner-bg);
-      color: var(--banner-text);
+      background: red;
+      color: white;
       padding: 10px;
       text-align: center;
       font-weight: bold;
@@ -61,7 +31,7 @@
     .column {
       flex: 1;
       min-width: 280px;
-      border-left: 1px solid var(--column-border);
+      border-left: 1px solid gray;
       padding-left: 15px;
     }
     .column:first-child {
@@ -76,58 +46,31 @@
       margin-bottom: 10px;
     }
     a {
-      color: var(--link);
+      color: white;
       text-decoration: none;
     }
     a:hover {
-      color: var(--hover);
+      color: red;
     }
     footer {
       margin-top: 40px;
       text-align: center;
       font-size: 0.8em;
-      color: var(--column-border);
+      color: gray;
     }
   </style>
 </head>
-<body class="dark">
-  <button class="toggle-theme" onclick="toggleTheme()">Toggle Theme</button>
-
-  <div class="banner">🚨 Breaking: <a href="#">Sample Breaking Headline from SpaceNews</a></div>
+<body>
+  <div class="banner">🚨 Breaking: <li><a href="https://www.nasa.gov/directorates/stmd/nasa-releases-opportunity-to-boost-commercial-space-tech-development/" target="_blank">NASA Releases Opportunity to Boost Commercial Space Tech Development</a></li></div>
   <h1>Space Headlines</h1>
   <div class="columns">
-    <div class="column">
-      <h2>Government & Military</h2>
-      <ul>
-        <li><a href="#">USSF: Guardians launch space superiority update</a></li>
-        <li><a href="#">NASA: Artemis mission plans next moon shot</a></li>
-      </ul>
-    </div>
-    <div class="column">
-      <h2>Media</h2>
-      <ul>
-        <li><a href="#">SpaceNews: Satellite contract awarded to startup</a></li>
-        <li><a href="#">Breaking Defense: SDA accelerates space layer rollout</a></li>
-      </ul>
-    </div>
-    <div class="column">
-      <h2>International & Science</h2>
-      <ul>
-        <li><a href="#">ESA: Solar Orbiter discovers massive sunspot</a></li>
-        <li><a href="#">Phys.org: AI navigation boosts deep space probes</a></li>
-      </ul>
-    </div>
+    <div class="column"><h2>Government & Military</h2><ul><li><a href="https://www.nasa.gov/directorates/stmd/nasa-releases-opportunity-to-boost-commercial-space-tech-development/" target="_blank">NASA Releases Opportunity to Boost Commercial Space Tech Development</a></li><li><a href="https://www.nasa.gov/image-article/nasa-tests-epic-solution-for-supersonic-parachute-deliveries/" target="_blank">NASA Tests Epic Solution for Supersonic Parachute Deliveries</a></li><li><a href="https://www.nasa.gov/news-release/nasa-isro-satellite-lifts-off-to-track-earths-changing-surfaces/" target="_blank">NASA-ISRO Satellite Lifts Off to Track Earth’s Changing Surfaces</a></li><li><a href="https://science.nasa.gov/centers-and-facilities/goddard/nasas-webb-traces-details-of-complex-planetary-nebula/" target="_blank">NASA’s Webb Traces Details of Complex Planetary Nebula</a></li><li><a href="https://www.nasa.gov/image-article/looking-forward-to-the-moon/" target="_blank">Looking Forward to the Moon</a></li></ul></div>
+    <div class="column"><h2>Media</h2><ul><li><a href="https://spacenews.com/nasa-acting-administrator-to-meet-with-head-of-roscosmos-at-ksc/" target="_blank">NASA acting administrator to meet with head of Roscosmos at KSC</a></li><li><a href="https://spacenews.com/mission-to-market-the-evolution-of-nasas-clps-program/" target="_blank">Mission to market – The evolution of NASA’s CLPS program</a></li><li><a href="https://spacenews.com/ksat-and-aws-expand-alliance-in-satellite-communications/" target="_blank">KSAT and AWS expand alliance in satellite communications</a></li><li><a href="https://spacenews.com/china-launches-new-group-of-guowang-satellites-from-commercial-spaceport/" target="_blank">China launches new group of Guowang satellites from commercial spaceport</a></li><li><a href="https://spacenews.com/space-the-quiet-element-behind-midnight-hammer/" target="_blank">Space – the quiet element behind Midnight Hammer</a></li><li><a href="https://breakingdefense.com/2025/07/space-force-makes-5-awards-for-jam-resistant-satcom/" target="_blank">Space Force makes 5 awards for jam-resistant SATCOM</a></li><li><a href="https://breakingdefense.com/2025/07/navy-plans-to-find-second-shipbuilder-for-its-landing-craft-program-again/" target="_blank">Navy plans to find second shipbuilder for its landing craft program — again</a></li><li><a href="https://breakingdefense.com/2025/07/its-more-than-fuel-why-the-space-force-needs-in-space-servicing-assembly-and-manufacturing/" target="_blank">It’s more than fuel: Why the Space Force needs in-space servicing, assembly, and manufacturing</a></li><li><a href="https://breakingdefense.com/2025/07/eu-to-spend-hundreds-of-billions-on-us-arms-maybe-not-but-demand-is-real-analysts-say/" target="_blank">EU to spend ‘hundreds of billions’ on US arms? Maybe not but demand is real, analysts say</a></li><li><a href="https://breakingdefense.com/2025/07/northrop-grumman-unveils-first-phase-of-tech-partners-for-beacon-autonomy-program/" target="_blank">Northrop Grumman unveils first phase of tech partners for  Beacon autonomy program</a></li><li><a href="https://www.airandspaceforces.com/x-37-eighth-mission-laser-comms-gps-alternative/" target="_blank">X-37 Heading Back to Space to Test Laser Comms, GPS Alternative</a></li><li><a href="https://www.airandspaceforces.com/global-strike-command-end-strength-b-21/" target="_blank">Global Strike Command to Grow as B-21 and Other New Systems Come Online</a></li><li><a href="https://www.airandspaceforces.com/photos-reforpac-aircraft/" target="_blank">PHOTOS: From F-22s to CV-22s, the Aircraft of REFORPAC</a></li><li><a href="https://www.airandspaceforces.com/multi-orbit-satcom/" target="_blank">Multi-Orbit SATCOM Is More Resilient—But Not Without Challenges, Officials Say</a></li><li><a href="https://www.airandspaceforces.com/space-force-indo-pacific-new-commander/" target="_blank">Space Force Component in Pacific Gets New Commander</a></li><li><a href="https://defensescoop.com/2025/07/30/the-new-frontline-winning-the-information-war-at-the-tactical-edge/" target="_blank">The new frontline: Winning the information war at the tactical edge</a></li><li><a href="https://defensescoop.com/2025/07/30/drone-protest-surveillance-bill-rep-jimmy-gomez/" target="_blank">California lawmaker looks to curb agencies from using military drones to surveil protestors</a></li><li><a href="https://defensescoop.com/2025/07/30/navy-new-software-policy-containerization-technology-usage/" target="_blank">Navy rolls out new software policy on containerization technology usage</a></li><li><a href="https://defensescoop.com/2025/07/29/uap-disclosure-advocates-call-for-expanded-reforms-fiscal-2026-ndaa/" target="_blank">UAP disclosure advocates call for expanded reforms in fiscal 2026 NDAA</a></li><li><a href="https://defensescoop.com/2025/07/29/socom-sof-ai-artificial-intelligence-advanced-technologies-baa/" target="_blank">SOCOM adds new advanced AI capabilities to tech wish list</a></li><li><a href="https://www.theverge.com/news/716191/microsoft-q4-2025-earnings-revenue-profits-windows-xbox-gaming-surface" target="_blank">Microsoft reports strong cloud earnings, with Windows and Xbox up too</a></li><li><a href="https://www.theverge.com/news/716292/8bitdo-64-wireless-controller-nintendo-analogue-3d" target="_blank">8BitDo’s wireless Nintendo 64 controller is now available</a></li><li><a href="https://www.theverge.com/news/715220/ziff-davis-creators-guild-cnet-layoffs" target="_blank">Layoffs hit CNET as its parent company goes on a buying spree</a></li><li><a href="https://www.theverge.com/news/716303/dropbox-passwords-manager-shut-down" target="_blank">Dropbox is shutting down its password manager</a></li><li><a href="https://www.theverge.com/games/716209/pubg-2-0-fortnite-roblox-platform-krafton-earnings" target="_blank">PUBG&#8217;s plan to beat Fortnite, Roblox, and every other game</a></li></ul></div>
+    <div class="column"><h2>International & Science</h2><ul><li><a href="https://www.esa.int/About_Us/ESA_Strategy_2040" target="_blank">Read ESA's Strategy 2040</a></li><li><a href="https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_traces_details_of_complex_planetary_nebula" target="_blank">Webb traces details of complex planetary nebula</a></li><li><a href="https://www.esa.int/Applications/Observing_the_Earth/FutureEO/Greenland_subglacial_flood_bursts_through_ice_sheet_surface" target="_blank">Greenland subglacial flood bursts through ice sheet surface</a></li><li><a href="https://www.esa.int/ESA_Multimedia/Videos/2025/07/VV27_road_to_liftoff" target="_blank">VV27 road to liftoff</a></li><li><a href="https://www.esa.int/About_Us/Week_in_images/Week_in_images_21-25_July_2025" target="_blank">Week in images: 21-25 July 2025</a></li><li><a href="https://phys.org/news/2025-07-nasa-isro-satellite-track-earth.html" target="_blank">NASA-ISRO satellite lifts off to track Earth's changing surfaces</a></li><li><a href="https://phys.org/news/2025-07-recycling-paramount-space-stations-duration.html" target="_blank">Water recycling is paramount for space stations and long-duration missions</a></li><li><a href="https://phys.org/news/2025-07-simulations-early-earth-liquid-core.html" target="_blank">Simulations prove early Earth's liquid core generated protective magnetic field</a></li><li><a href="https://phys.org/news/2025-07-tracking-deep-space-probes-geo.html" target="_blank">Tracking deep space probes with GEO satellites improves uptime</a></li><li><a href="https://phys.org/news/2025-07-radar-satellite-india-nasa-track.html" target="_blank">Radar satellite launched by India and NASA will track miniscule changes to Earth's land and ice</a></li></ul></div>
   </div>
   <footer>
-    Last updated: [manually restored version]<br>
+    Last updated: 2025-07-30 20:25 UTC<br>
     <a href="mailto:vigliottivictor@gmail.com">Contact</a>
   </footer>
-
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle('light');
-      document.body.classList.toggle('dark');
-    }
-  </script>
 </body>
 </html>
