@@ -1,117 +1,101 @@
 import feedparser
+import re
 from datetime import datetime, timezone
 from time import mktime
-import re
 
-# ---- FEED CONFIGURATION ----
-
+# Feeds grouped by category
 columns = {
     "gov": {
-        "US Space Force": "https://www.spaceforce.mil/RSS/headlines.xml",
-        "NASA": "https://www.nasa.gov/news-release/feed/",
-        "Space Development Agency": "https://www.dvidshub.net/rss/unit/7456",
+        "Space Force – Headlines": "https://www.spaceforce.mil/RSS/headlines.xml",
+        "Space Force – Lines of Effort": "https://www.spaceforce.mil/RSS/lines-of-effort.xml",
+        "Space Force – Field News": "https://www.spaceforce.mil/RSS/field-news.xml",
+        "Space Force – US Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml",
+        "NASA News Releases": "https://www.nasa.gov/news-release/feed/"
     },
     "media": {
-        "Breaking Defense": "https://breakingdefense.com/feed/",
         "Air & Space Forces Magazine": "https://www.airandspaceforces.com/feed/",
+        "Breaking Defense": "https://breakingdefense.com/feed/",
         "SpaceNews": "https://spacenews.com/feed/",
-        "DefenseScoop": "https://preprod.defensescoop.com/feed/",
-        "The Verge – Space": "https://www.theverge.com/space/rss/index.xml",
-        "Ars Technica – Space": "https://feeds.arstechnica.com/arstechnica/space",
-        "Military.com": "https://www.military.com/rss-feeds",
+        "SpaceRef": "https://spaceref.com/rss/",
+        "Ars Technica (Space)": "https://feeds.arstechnica.com/arstechnica/space/",
+        "The Verge – Space": "https://www.theverge.com/rss/space/index.xml",
+        "Military.com – Space": "https://www.military.com/rss/subject/19456/feed.xml"
     },
     "intl": {
-        "European Space Agency": "https://www.esa.int/rssfeed/Our_Activities",
-        "Phys.org – Space": "https://phys.org/rss-feed/space-news/",
+        "ESA – European Space Agency": "https://www.esa.int/rssfeed/Our_Activities",
+        "Phys.org – Space": "https://phys.org/rss-feed/space-news/"
     }
 }
 
-source_links = {
-    "US Space Force": "https://www.spaceforce.mil",
-    "NASA": "https://www.nasa.gov",
-    "Space Development Agency": "https://www.sda.mil",
-    "Breaking Defense": "https://breakingdefense.com",
-    "Air & Space Forces Magazine": "https://www.airandspaceforces.com",
-    "SpaceNews": "https://spacenews.com",
-    "DefenseScoop": "https://defensescoop.com",
-    "The Verge – Space": "https://www.theverge.com/space",
-    "Ars Technica – Space": "https://arstechnica.com/science/space",
-    "Military.com": "https://www.military.com",
-    "European Space Agency": "https://www.esa.int",
-    "Phys.org – Space": "https://phys.org"
-}
+# Parse and collect articles
+now = datetime.now(timezone.utc)
+structured = {"gov": [], "media": [], "intl": []}
 
-# ---- PARSE AND ORGANIZE FEEDS ----
+for group, feeds in columns.items():
+    for source, url in feeds.items():
+        parsed = feedparser.parse(url)
+        for entry in parsed.entries:
+            pub = entry.get("published_parsed") or entry.get("updated_parsed")
+            if not pub:
+                continue
+            timestamp = datetime.fromtimestamp(mktime(pub), tz=timezone.utc)
+            delta = now - timestamp
+            minutes = int(delta.total_seconds() / 60)
+            age_str = f"{minutes}m ago" if minutes < 60 else f"{minutes//60}h ago"
 
-def get_entries(feed_url, max_items=5):
-    feed = feedparser.parse(feed_url)
-    entries = []
-    for entry in feed.entries[:max_items]:
-        title = entry.title
-        link = entry.link
-        try:
-            published = datetime.fromtimestamp(mktime(entry.published_parsed), tz=timezone.utc)
-        except:
-            published = datetime.now(tz=timezone.utc)
-        entries.append({
-            "title": title,
-            "link": link,
-            "published": published
-        })
-    return entries
+            # Try to extract an image
+            image = ""
+            if "media_content" in entry and entry.media_content:
+                image = entry.media_content[0].get("url", "")
+            elif "media_thumbnail" in entry and entry.media_thumbnail:
+                image = entry.media_thumbnail[0].get("url", "")
+            elif "content" in entry:
+                html_content = entry.content[0].value
+                match = re.search(r'<img[^>]+src="([^">]+)"', html_content)
+                if match:
+                    image = match.group(1)
 
-data = {col: {} for col in columns}
-all_items = []
+            structured[group].append({
+                "title": entry.title,
+                "link": entry.link,
+                "source": source,
+                "image": image,
+                "timestamp": timestamp,
+                "age": age_str,
+                "is_new": delta.total_seconds() < 3600  # mark breaking headlines
+            })
 
-for col in columns:
-    for source, url in columns[col].items():
-        items = get_entries(url)
-        for i in items:
-            i["source"] = source
-        data[col][source] = items
-        all_items.extend(items)
+# Sort each group by time and trim
+for key in structured:
+    structured[key] = sorted(structured[key], key=lambda x: x["timestamp"], reverse=True)[:15]
 
-# ---- SORT + IDENTIFY TOP HEADLINE ----
-
-all_items.sort(key=lambda x: x["published"], reverse=True)
-top_story = all_items[0]
-
-banner_html = f'<strong>Breaking from {top_story["source"]}:</strong> <a href="{top_story["link"]}" target="_blank">{top_story["title"]}</a>'
-
-# ---- BUILD FINAL HTML BLOCK ----
-
-def build_column(col_data):
-    html = '<div class="columns">\n'
-    for col, feeds in col_data.items():
-        html += '<div class="column">\n'
-        html += f'<h2>{col.upper()}</h2>\n'
-        for source, items in feeds.items():
-            html += f'<div class="source-block"><h3><a href="{source_links.get(source, "#")}" target="_blank">{source}</a></h3>\n'
-            for item in items:
-                minutes_ago = int((datetime.now(timezone.utc) - item["published"]).total_seconds() / 60)
-                if minutes_ago < 60:
-                    cls = "breaking"
-                elif minutes_ago < 180:
-                    cls = "recent"
-                else:
-                    cls = ""
-                html += f'<div class="headline {cls}"><a href="{item["link"]}" target="_blank">{item["title"]}</a></div>\n'
-            html += '</div>\n'
-        html += '</div>\n'
-    html += '</div>\n'
+# Build HTML block
+def build_column(articles):
+    html = ""
+    for item in articles:
+        color = "red" if item["is_new"] else "black"
+        html += f'<div class="headline"><a href="{item["link"]}" target="_blank" style="color:{color}">{item["title"]}</a><div class="meta">{item["source"]} · {item["age"]}</div></div>\n'
     return html
 
-column_html = build_column(data)
+gov_html = build_column(structured["gov"])
+media_html = build_column(structured["media"])
+intl_html = build_column(structured["intl"])
 
-# ---- WRITE TO index.html ----
-
-with open("index.html", "r", encoding="utf-8") as f:
+# Inject into index.html
+with open("index.html", "r") as f:
     html = f.read()
 
-html = re.sub(r"<!-- TOP BANNER START -->(.*?)<!-- TOP BANNER END -->", f"<!-- TOP BANNER START -->\n{banner_html}\n<!-- TOP BANNER END -->", html, flags=re.DOTALL)
-html = re.sub(r"<!-- START HEADLINES -->(.*?)<!-- END HEADLINES -->", f"<!-- START HEADLINES -->\n{column_html}\n<!-- END HEADLINES -->", html, flags=re.DOTALL)
+start = html.find("<!-- START HEADLINES -->")
+end = html.find("<!-- END HEADLINES -->")
 
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html)
-
-print("✅ Update complete.")
+if start != -1 and end != -1:
+    new_content = f'''<!-- START HEADLINES -->
+<div class="columns">
+  <div class="column">{gov_html}</div>
+  <div class="column">{media_html}</div>
+  <div class="column">{intl_html}</div>
+</div>
+<!-- END HEADLINES -->'''
+    updated_html = html[:start] + new_content + html[end + len("<!-- END HEADLINES -->"):]
+    with open("index.html", "w") as f:
+        f.write(updated_html)
