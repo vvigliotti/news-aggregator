@@ -2,7 +2,7 @@ name: Update Headlines
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Every hour
+    - cron: '0 * * * *'  # every hour
   workflow_dispatch:
 
 jobs:
@@ -10,18 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install feedparser
+        run: pip install feedparser jinja2
 
-      - name: Run update.py
+      - name: Run updater script
         run: python update.py
 
       - name: Commit and push changes
@@ -29,5 +29,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add index.html
-          git commit -m "Update headlines [skip ci]" || echo "No changes to commit"
+          git commit -m "Update headlines" || echo "No changes"
           git push
