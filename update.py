@@ -65,11 +65,11 @@ for group, feeds in columns.items():
                 "is_new": delta.total_seconds() < 3600  # mark breaking headlines
             })
 
-# Sort each group by time and trim
+# Sort and trim
 for key in structured:
     structured[key] = sorted(structured[key], key=lambda x: x["timestamp"], reverse=True)[:15]
 
-# Build HTML block
+# Build HTML
 def build_column(articles):
     html = ""
     for item in articles:
@@ -90,12 +90,21 @@ end = html.find("<!-- END HEADLINES -->")
 
 if start != -1 and end != -1:
     new_content = f'''<!-- START HEADLINES -->
-<div class="columns">
-  <div class="column">{gov_html}</div>
-  <div class="column">{media_html}</div>
-  <div class="column">{intl_html}</div>
-</div>
-<!-- END HEADLINES -->'''
+  <div class="columns">
+    <div class="column">
+      <h2>Media</h2>
+      {media_html}
+    </div>
+    <div class="column">
+      <h2>Government & Military</h2>
+      {gov_html}
+    </div>
+    <div class="column">
+      <h2>International & Science</h2>
+      {intl_html}
+    </div>
+  </div>
+  <!-- END HEADLINES -->'''
     updated_html = html[:start] + new_content + html[end + len("<!-- END HEADLINES -->"):]
     with open("index.html", "w") as f:
         f.write(updated_html)
