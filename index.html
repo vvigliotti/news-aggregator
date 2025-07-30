@@ -18,14 +18,19 @@
     }
     h1 { text-align: center; margin-bottom: 0; }
     h2 { border-bottom: 2px solid #000; }
-    .section { display: flex; flex-direction: column; gap: 2rem; }
     .columns {
       display: flex;
       flex-direction: column;
+      gap: 2rem;
+    }
+    .column {
+      flex: 1;
+      padding: 0 1rem;
     }
     @media (min-width: 768px) {
-      .columns { flex-direction: row; gap: 1rem; }
-      .column { flex: 1; }
+      .columns {
+        flex-direction: row;
+      }
     }
     .source-block {
       border-bottom: 1px solid gray;
@@ -48,6 +53,11 @@
       color: red;
       text-decoration: none;
     }
+    .top-story img {
+      max-width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
     .top-story .source {
       font-size: 0.9rem;
       font-style: italic;
@@ -68,104 +78,12 @@
   <p style="text-align:center" id="datetime"></p>
 
   <!-- START HEADLINES -->
-
-<div class="top-story" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">
-  <a href="https://www.airandspaceforces.com/air-force-ramstein-c-130-hard-landing/" target="_blank" style="color: red; text-decoration: none;">
-    <img src="https://www.airandspaceforces.com/app/uploads/2025/07/c-130-1-900x600.jpeg" alt="Top image" style="max-width: 100%;"><br>
-    ‘No Aircraft Is Beyond Saving’: C-130 Flies Again 5 Years After Hard Landing
-  </a>
-  <div style="font-size: 0.9rem; color: gray; font-weight: normal;">Air & Space Forces – 38m ago</div>
-</div>
-<div class="section"><h2>Breaking Defense</h2>
-        <div class="headline">
-          <a href="https://breakingdefense.com/2025/07/heres-the-role-that-space-based-interceptors-will-play-in-golden-dome/" target="_blank">Here’s the role that space-based interceptors will play in Golden Dome</a>
-          <span style="font-size: 0.8rem; color: gray;">(1h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://breakingdefense.com/2025/07/space-force-makes-5-awards-for-jam-resistant-satcom/" target="_blank">Space Force makes 5 awards for jam-resistant SATCOM</a>
-          <span style="font-size: 0.8rem; color: gray;">(2h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://breakingdefense.com/2025/07/navy-plans-to-find-second-shipbuilder-for-its-landing-craft-program-again/" target="_blank">Navy plans to find second shipbuilder for its landing craft program — again</a>
-          <span style="font-size: 0.8rem; color: gray;">(4h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://breakingdefense.com/2025/07/its-more-than-fuel-why-the-space-force-needs-in-space-servicing-assembly-and-manufacturing/" target="_blank">It’s more than fuel: Why the Space Force needs in-space servicing, assembly, and manufacturing</a>
-          <span style="font-size: 0.8rem; color: gray;">(5h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://breakingdefense.com/2025/07/eu-to-spend-hundreds-of-billions-on-us-arms-maybe-not-but-demand-is-real-analysts-say/" target="_blank">EU to spend ‘hundreds of billions’ on US arms? Maybe not but demand is real, analysts say</a>
-          <span style="font-size: 0.8rem; color: gray;">(7h ago)</span>
-        </div>
-        </div>
-<div class="section"><h2>Air & Space Forces</h2>
-        <div class="headline">
-          <a href="https://www.airandspaceforces.com/space-force-commercial-designs-satcom-pts-g/" target="_blank">Space Force Looks to Commercial Tech for New Tactical SATCOM Solution</a>
-          <span style="font-size: 0.8rem; color: gray;">(1h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://www.airandspaceforces.com/multi-orbit-satcom/" target="_blank">Multi-Orbit SATCOM Is More Resilient—But Not Without Challenges, Officials Say</a>
-          <span style="font-size: 0.8rem; color: gray;">(4h ago)</span>
-        </div>
-        </div>
-<div class="section"><h2>SpaceNews</h2>
-        <div class="headline">
-          <a href="https://spacenews.com/nasa-acting-administrator-to-meet-with-head-of-roscosmos-at-ksc/" target="_blank">NASA acting administrator to meet with head of Roscosmos at KSC</a>
-          <span style="font-size: 0.8rem; color: gray;">(2h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://spacenews.com/mission-to-market-the-evolution-of-nasas-clps-program/" target="_blank">Mission to market – The evolution of NASA’s CLPS program</a>
-          <span style="font-size: 0.8rem; color: gray;">(4h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://spacenews.com/ksat-and-aws-expand-alliance-in-satellite-communications/" target="_blank">KSAT and AWS expand alliance in satellite communications</a>
-          <span style="font-size: 0.8rem; color: gray;">(8h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://spacenews.com/china-launches-new-group-of-guowang-satellites-from-commercial-spaceport/" target="_blank">China launches new group of Guowang satellites from commercial spaceport</a>
-          <span style="font-size: 0.8rem; color: gray;">(9h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://spacenews.com/space-the-quiet-element-behind-midnight-hammer/" target="_blank">Space – the quiet element behind Midnight Hammer</a>
-          <span style="font-size: 0.8rem; color: gray;">(9h ago)</span>
-        </div>
-        </div>
-<div class="section"><h2>NASA News Releases</h2>
-        <div class="headline">
-          <a href="https://www.nasa.gov/directorates/stmd/nasa-releases-opportunity-to-boost-commercial-space-tech-development/" target="_blank">NASA Releases Opportunity to Boost Commercial Space Tech Development</a>
-          <span style="font-size: 0.8rem; color: gray;">(2h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://www.nasa.gov/image-article/nasa-tests-epic-solution-for-supersonic-parachute-deliveries/" target="_blank">NASA Tests Epic Solution for Supersonic Parachute Deliveries</a>
-          <span style="font-size: 0.8rem; color: gray;">(6h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://www.nasa.gov/news-release/nasa-isro-satellite-lifts-off-to-track-earths-changing-surfaces/" target="_blank">NASA-ISRO Satellite Lifts Off to Track Earth’s Changing Surfaces</a>
-          <span style="font-size: 0.8rem; color: gray;">(8h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://science.nasa.gov/centers-and-facilities/goddard/nasas-webb-traces-details-of-complex-planetary-nebula/" target="_blank">NASA’s Webb Traces Details of Complex Planetary Nebula</a>
-          <span style="font-size: 0.8rem; color: gray;">(8h ago)</span>
-        </div>
-        
-        <div class="headline">
-          <a href="https://www.nasa.gov/image-article/looking-forward-to-the-moon/" target="_blank">Looking Forward to the Moon</a>
-          <span style="font-size: 0.8rem; color: gray;">(9h ago)</span>
-        </div>
-        </div>
-<!-- END HEADLINES -->
+  <div class="columns">
+    <div class="column" id="col-left"></div>
+    <div class="column" id="col-middle"></div>
+    <div class="column" id="col-right"></div>
+  </div>
+  <!-- END HEADLINES -->
 
   <div class="form-footer">
     <h3>Submit a Question</h3>
@@ -174,12 +92,9 @@
       <textarea name="question" required></textarea><br>
       <input type="submit" value="Submit">
     </form>
-    <h3>Daily Visitors</h3>
-    <iframe src="https://www.freevisitorcounters.com/en/home/counter/1371441/t/0" frameborder="0" scrolling="no" style="border:none; height:70px; width:150px;"></iframe>
   </div>
 
   <script>
-    // Display current UTC time
     const now = new Date();
     document.getElementById("datetime").textContent = now.toLocaleString();
   </script>
