@@ -62,9 +62,9 @@
       border-bottom: 1px solid #ccc;
       padding-bottom: 10px;
     }
-    .source-block h3 {
+    .source-block h3 a {
       font-size: 14px;
-      margin-bottom: 5px;
+      text-decoration: none;
       text-transform: uppercase;
       color: gray;
     }
@@ -104,6 +104,26 @@
       cursor: pointer;
       color: gray;
     }
+    .thumbnails {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .thumb {
+      width: 200px;
+      text-align: center;
+    }
+    .thumb img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .thumb .caption {
+      font-size: 14px;
+      margin-top: 5px;
+    }
     footer {
       font-size: 12px;
       margin-top: 40px;
@@ -131,76 +151,24 @@
   <h1>Space Headlines</h1>
   <div id="date"></div>
 
-  <!-- Top banner breaking story -->
-<div class="top-banner">
-  <!-- TOP BANNER START -->
-  Loading top story...
-  <!-- TOP BANNER END -->
-</div>
+  <!-- Top story banner -->
+  <div class="top-banner">
+    <!-- TOP BANNER START -->
+    Loading top story...
+    <!-- TOP BANNER END -->
+  </div>
 
+  <!-- Thumbnail image block -->
+  <div class="thumbnails">
+    <!-- IMAGES START -->
+    <!-- Thumbnails will be injected here -->
+    <!-- IMAGES END -->
+  </div>
+
+  <!-- Main headline content -->
   <!-- START HEADLINES -->
-    <div class="columns">
-      <div class="column"><h2>🚀 GOVERNMENT</h2><div class="source-block"><h3>NASA News Releases</h3>
-<div class="headline"><a class="recent" href="https://www.nasa.gov/image-article/nasa-tests-epic-solution-for-supersonic-parachute-deliveries/" target="_blank">NASA Tests Epic Solution for Supersonic Parachute Deliveries</a><div class="meta">2h ago</div></div>
-<div class="headline"><a  href="https://www.nasa.gov/news-release/nasa-isro-satellite-lifts-off-to-track-earths-changing-surfaces/" target="_blank">NASA-ISRO Satellite Lifts Off to Track Earth’s Changing Surfaces</a><div class="meta">4h ago</div></div>
-<div class="headline"><a  href="https://science.nasa.gov/centers-and-facilities/goddard/nasas-webb-traces-details-of-complex-planetary-nebula/" target="_blank">NASA’s Webb Traces Details of Complex Planetary Nebula</a><div class="meta">4h ago</div></div>
-<div class="headline"><a  href="https://www.nasa.gov/image-article/looking-forward-to-the-moon/" target="_blank">Looking Forward to the Moon</a><div class="meta">4h ago</div></div>
-<div class="headline"><a  href="https://www.nasa.gov/learning-resources/internships/laine-havens-melding-science-and-storytelling/" target="_blank">Laine Havens: Melding Science and Storytelling</a><div class="meta">5h ago</div></div>
-<hr></div>
-</div>
-      <div class="column"><h2>📰 MEDIA</h2><div class="source-block"><h3>Air & Space Forces Magazine</h3>
-<div class="headline"><a class="breaking" href="https://www.airandspaceforces.com/multi-orbit-satcom/" target="_blank">Multi-Orbit SATCOM Is More Resilient—But Not Without Challenges, Officials Say</a><div class="meta">24m ago</div></div>
-<div class="headline"><a  href="https://www.airandspaceforces.com/space-force-indo-pacific-new-commander/" target="_blank">Space Force Component in Pacific Gets New Commander</a><div class="meta">19h ago</div></div>
-<div class="headline"><a  href="https://www.airandspaceforces.com/air-force-c-17-21st-airlift-squadron/" target="_blank">C-17 ‘BEE Liners’ Push Their Limits in Sprawling Pacific Exercise</a><div class="meta">20h ago</div></div>
-<div class="headline"><a  href="https://www.airandspaceforces.com/mc-130j-tests-aerodynamic-finlets/" target="_blank">MC-130J Tests Aerodynamic ‘Finlets’ to Reduce Drag, Fuel Costs</a><div class="meta">21h ago</div></div>
-<div class="headline"><a  href="https://www.airandspaceforces.com/nato-space-force-front-door-industry/" target="_blank">NATO Will Follow Space Force Lead with a Single Front Door for Industry</a><div class="meta">24h ago</div></div>
-<hr></div>
-<div class="source-block"><h3>Breaking Defense</h3>
-<div class="headline"><a class="breaking" href="https://breakingdefense.com/2025/07/navy-plans-to-find-second-shipbuilder-for-its-landing-craft-program-again/" target="_blank">Navy plans to find second shipbuilder for its landing craft program — again</a><div class="meta">5m ago</div></div>
-<div class="headline"><a class="recent" href="https://breakingdefense.com/2025/07/its-more-than-fuel-why-the-space-force-needs-in-space-servicing-assembly-and-manufacturing/" target="_blank">It’s more than fuel: Why the Space Force needs in-space servicing, assembly, and manufacturing</a><div class="meta">1h ago</div></div>
-<div class="headline"><a  href="https://breakingdefense.com/2025/07/eu-to-spend-hundreds-of-billions-on-us-arms-maybe-not-but-demand-is-real-analysts-say/" target="_blank">EU to spend ‘hundreds of billions’ on US arms? Maybe not but demand is real, analysts say</a><div class="meta">3h ago</div></div>
-<div class="headline"><a  href="https://breakingdefense.com/2025/07/northrop-grumman-unveils-first-phase-of-tech-partners-for-beacon-autonomy-program/" target="_blank">Northrop Grumman unveils first phase of tech partners for  Beacon autonomy program</a><div class="meta">5h ago</div></div>
-<div class="headline"><a  href="https://breakingdefense.com/2025/07/first-japanese-f-35bs-to-arrive-in-county-within-days/" target="_blank">First Japanese F-35Bs to arrive in-country within days</a><div class="meta">6h ago</div></div>
-<hr></div>
-<div class="source-block"><h3>SpaceNews</h3>
-<div class="headline"><a  href="https://spacenews.com/ksat-and-aws-expand-alliance-in-satellite-communications/" target="_blank">KSAT and AWS expand alliance in satellite communications</a><div class="meta">4h ago</div></div>
-<div class="headline"><a  href="https://spacenews.com/china-launches-new-group-of-guowang-satellites-from-commercial-spaceport/" target="_blank">China launches new group of Guowang satellites from commercial spaceport</a><div class="meta">5h ago</div></div>
-<div class="headline"><a  href="https://spacenews.com/space-the-quiet-element-behind-midnight-hammer/" target="_blank">Space – the quiet element behind Midnight Hammer</a><div class="meta">5h ago</div></div>
-<div class="headline"><a  href="https://spacenews.com/gslv-launches-nasa-isro-radar-satellite/" target="_blank">GSLV launches NASA-ISRO radar satellite</a><div class="meta">5h ago</div></div>
-<div class="headline"><a  href="https://spacenews.com/first-eris-launch-fails-to-reach-orbit/" target="_blank">First Eris launch fails to reach orbit</a><div class="meta">13h ago</div></div>
-<hr></div>
-<div class="source-block"><h3>SpaceRef</h3>
-<div class="headline"><a  href="https://spaceref.com/space-commerce/the-rising-space-sector-in-chinas-silicon-valley/" target="_blank">The Rising Space Sector in China’s Silicon Valley</a><div class="meta">14569h ago</div></div>
-<div class="headline"><a  href="https://spaceref.com/space-commerce/pittsburgh-how-steel-city-transforming-space-city/" target="_blank">Pittsburgh – How a Steel City is Transforming Into a Space City</a><div class="meta">14615h ago</div></div>
-<div class="headline"><a  href="https://spaceref.com/opinion/space-philosophy-podcast-episode-interview-sara-sabry-2/" target="_blank">New Space Philosophy Podcast Episode – An Interview With Sara Sabry, Part 2</a><div class="meta">14618h ago</div></div>
-<div class="headline"><a  href="https://spaceref.com/newspace-and-tech/nasa-plan-to-shoot-and-ship-samples-of-the-red-planet-on-hold/" target="_blank">NASA Plan to Shoot and Ship Samples of the Red Planet on Hold</a><div class="meta">14642h ago</div></div>
-<div class="headline"><a  href="https://spaceref.com/science-and-exploration/space2-tackles-in-space-and-off-world-farming/" target="_blank">SPACE2 Tackles In-Space and Off-World Farming</a><div class="meta">14662h ago</div></div>
-<hr></div>
-<div class="source-block"><h3>The Verge – Space</h3>
-<div class="headline"><a  href="https://www.theverge.com/news/713359/starlink-down-outage-global-network-offline" target="_blank">Starlink’s satellite internet is back online after a massive outage</a><div class="meta">139h ago</div></div>
-<div class="headline"><a  href="https://www.theverge.com/news/712546/starlink-powered-t-satellite-service-is-now-live-on-t-mobile" target="_blank">Starlink-powered &#8216;T-Satellite&#8217; service is now live on T-Mobile</a><div class="meta">168h ago</div></div>
-<div class="headline"><a  href="https://www.theverge.com/news/706635/texas-governor-greg-abbott-elon-musk-emails-refusal" target="_blank">Texas governor says his emails with Elon Musk are too ‘intimate or embarrassing’ to release</a><div class="meta">387h ago</div></div>
-<div class="headline"><a  href="https://www.theverge.com/news/703091/methane-satellite-methanesat-lost-bezos-edf" target="_blank">The Bezos-funded climate satellite is lost in space</a><div class="meta">504h ago</div></div>
-<div class="headline"><a  href="https://www.theverge.com/news/695703/trump-elon-musk-deport-threat-doge-subsidies-spending-bill" target="_blank">Trump says he’ll look into deporting Musk as fight over bill escalates</a><div class="meta">698h ago</div></div>
-<hr></div>
-</div>
-      <div class="column"><h2>🌍 INTERNATIONAL</h2><div class="source-block"><h3>ESA – European Space Agency</h3>
-<div class="headline"><a  href="https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_traces_details_of_complex_planetary_nebula" target="_blank">Webb traces details of complex planetary nebula</a><div class="meta">4h ago</div></div>
-<div class="headline"><a  href="https://www.esa.int/Applications/Observing_the_Earth/FutureEO/Greenland_subglacial_flood_bursts_through_ice_sheet_surface" target="_blank">Greenland subglacial flood bursts through ice sheet surface</a><div class="meta">9h ago</div></div>
-<div class="headline"><a  href="https://www.esa.int/ESA_Multimedia/Videos/2025/07/VV27_road_to_liftoff" target="_blank">VV27 road to liftoff</a><div class="meta">33h ago</div></div>
-<div class="headline"><a  href="https://www.esa.int/About_Us/Week_in_images/Week_in_images_21-25_July_2025" target="_blank">Week in images: 21-25 July 2025</a><div class="meta">125h ago</div></div>
-<div class="headline"><a  href="https://www.esa.int/ESA_Multimedia/Images/2025/07/Earth_from_Space_Kuwaiti_waters" target="_blank">Earth from Space: Kuwaiti waters</a><div class="meta">130h ago</div></div>
-<hr></div>
-<div class="source-block"><h3>Phys.org – Space</h3>
-<div class="headline"><a class="breaking" href="https://phys.org/news/2025-07-nasa-isro-satellite-track-earth.html" target="_blank">NASA-ISRO satellite lifts off to track Earth's changing surfaces</a><div class="meta">31m ago</div></div>
-<div class="headline"><a class="breaking" href="https://phys.org/news/2025-07-recycling-paramount-space-stations-duration.html" target="_blank">Water recycling is paramount for space stations and long-duration missions</a><div class="meta">32m ago</div></div>
-<div class="headline"><a class="breaking" href="https://phys.org/news/2025-07-simulations-early-earth-liquid-core.html" target="_blank">Simulations prove early Earth's liquid core generated protective magnetic field</a><div class="meta">37m ago</div></div>
-<div class="headline"><a class="breaking" href="https://phys.org/news/2025-07-tracking-deep-space-probes-geo.html" target="_blank">Tracking deep space probes with GEO satellites improves uptime</a><div class="meta">41m ago</div></div>
-<div class="headline"><a class="recent" href="https://phys.org/news/2025-07-radar-satellite-india-nasa-track.html" target="_blank">Radar satellite launched by India and NASA will track miniscule changes to Earth's land and ice</a><div class="meta">1h ago</div></div>
-<hr></div>
-</div>
-    </div>
-    <!-- END HEADLINES -->
+  <p>Loading headlines...</p>
+  <!-- END HEADLINES -->
 
   <footer>
     Updated hourly · Auto-refresh every 5 minutes · Powered by top global space news feeds
