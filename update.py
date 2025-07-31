@@ -171,7 +171,7 @@ for source in feeds.keys():  # 🔄 This guarantees order from the feeds diction
     if source in sources:
         source_url = source_links.get(source, "#")
         section_html = f'<div class="column"><div class="section"><h2><a href="{source_url}" target="_blank">{source}</a></h2>'
-        for a in sources[source][:5]:  # Still limited to 5 articles per source
+        for a in sources[source][:8]:  # Still limited to 5 articles per source
             is_recent = (datetime.now(timezone.utc) - a["timestamp"]).total_seconds() < 7200
             recent_class = "recent" if is_recent else ""
             section_html += f'''
