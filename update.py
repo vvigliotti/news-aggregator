@@ -135,20 +135,21 @@ top_html = f'''
 
 # 📚 Section Columns
 sections = ['<div class="columns">']
-for source, articles in sources.items():
-    source_url = source_links.get(source, "#")
-    section_html = f'<div class="column"><div class="section"><h2><a href="{source_url}" target="_blank">{source}</a></h2>'
-    for a in articles[:10]:
-        is_recent = (datetime.now(timezone.utc) - a["timestamp"]).total_seconds() < 7200
-        recent_class = "recent" if is_recent else ""
-        section_html += f'''
-        <div class="headline {recent_class}">
-          <a href="{a["link"]}" target="_blank">{a["title"]}</a>
-          <span>({a["age"]})</span>
-        </div>
-        '''
-    section_html += '</div></div>'
-    sections.append(section_html)
+for source in feeds.keys():  # 🔄 This guarantees order from the feeds dictionary
+    if source in sources:
+        source_url = source_links.get(source, "#")
+        section_html = f'<div class="column"><div class="section"><h2><a href="{source_url}" target="_blank">{source}</a></h2>'
+        for a in sources[source][:5]:  # Still limited to 5 articles per source
+            is_recent = (datetime.now(timezone.utc) - a["timestamp"]).total_seconds() < 7200
+            recent_class = "recent" if is_recent else ""
+            section_html += f'''
+            <div class="headline {recent_class}">
+              <a href="{a["link"]}" target="_blank">{a["title"]}</a>
+              <span>({a["age"]})</span>
+            </div>
+            '''
+        section_html += '</div></div>'
+        sections.append(section_html)
 sections.append('</div>')
 
 # 🔧 Inject into index.html
