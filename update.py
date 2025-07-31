@@ -14,6 +14,17 @@ feeds = {
     "USSF – US Space Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml"
 }
 
+source_links = {
+    "Breaking Defense": "https://breakingdefense.com",
+    "SpaceNews": "https://spacenews.com",
+    "Air & Space Forces": "https://www.airandspaceforces.com",
+    "NASA News Releases": "https://www.nasa.gov/news-release/",
+    "USSF – Headlines": "https://www.spaceforce.mil/News",
+    "USSF – Lines of Effort": "https://www.spaceforce.mil/About-Us/Lines-of-Effort",
+    "USSF – Field News": "https://www.spaceforce.mil/News/Field-News",
+    "USSF – US Space Forces": "https://www.spaceforce.mil/News/Space-Force-Units"
+}
+
 def get_age_string(timestamp):
     now = datetime.now(timezone.utc)
     delta = now - timestamp
@@ -66,7 +77,7 @@ for item in remaining:
 
 top_html = ""
 if top_story:
-    is_recent = (datetime.now(timezone.utc) - top_story["timestamp"]).total_seconds() < 3600
+    is_recent = (datetime.now(timezone.utc) - top_story["timestamp"]).total_seconds() < 7200
     top_class = "recent" if is_recent else ""
     top_html = f'''
 <div class="top-story {top_class}">
@@ -80,9 +91,10 @@ if top_story:
 
 sections = ['<div class="columns">']
 for source, articles in sources.items():
-    section_html = f'<div class="column"><div class="section"><h2>{source}</h2>'
+    source_url = source_links.get(source, "#")
+    section_html = f'<div class="column"><div class="section"><h2><a href="{source_url}" target="_blank">{source}</a></h2>'
     for a in articles[:5]:
-        is_recent = (datetime.now(timezone.utc) - a["timestamp"]).total_seconds() < 3600
+        is_recent = (datetime.now(timezone.utc) - a["timestamp"]).total_seconds() < 7200
         recent_class = "recent" if is_recent else ""
         section_html += f'''
         <div class="headline {recent_class}">
