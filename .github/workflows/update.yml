@@ -2,7 +2,7 @@ name: Update Headlines
 
 on:
   schedule:
-    - cron: '0 * * * *'  # every hour
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
