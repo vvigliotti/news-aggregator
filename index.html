@@ -94,6 +94,31 @@
       padding: 5px 15px;
       font-size: 1rem;
     }
+    
+    /* 🔴 Red for recent headlines (light + dark) */
+    .recent a {
+      color: red !important;
+    }
+    .dark-mode .recent a {
+      color: red !important;
+    }
+    
+    /* ⚫ Default: Black text in light mode */
+    .headline a {
+      color: black;
+    }
+    
+    /* ⚪ White text in dark mode */
+    .dark-mode .headline a {
+      color: white;
+    }
+    
+    /* 🔗 Clickable source headers inherit theme color */
+    h2 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
   </style>
 </head>
 <body>
