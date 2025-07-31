@@ -110,7 +110,7 @@ sections = ['<div class="columns">']
 for source, articles in sources.items():
     source_url = source_links.get(source, "#")
     section_html = f'<div class="column"><div class="section"><h2><a href="{source_url}" target="_blank">{source}</a></h2>'
-    for a in articles[:5]:
+    for a in articles[:10]:
         is_recent = (datetime.now(timezone.utc) - a["timestamp"]).total_seconds() < 7200
         recent_class = "recent" if is_recent else ""
         section_html += f'''
