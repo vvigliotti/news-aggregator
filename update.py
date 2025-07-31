@@ -1,8 +1,10 @@
 import feedparser
 import re
+import random
 from datetime import datetime, timezone, timedelta
 from time import mktime
 
+# FEED SOURCES
 feeds = {
     "Breaking Defense": "https://breakingdefense.com/feed/",
     "SpaceNews": "https://spacenews.com/feed/",
@@ -11,9 +13,11 @@ feeds = {
     "USSF – Headlines": "https://www.spaceforce.mil/RSS/headlines.xml",
     "USSF – Lines of Effort": "https://www.spaceforce.mil/RSS/lines-of-effort.xml",
     "USSF – Field News": "https://www.spaceforce.mil/RSS/field-news.xml",
-    "USSF – US Space Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml"
+    "USSF – US Space Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml",
+    "Defense News – Space": "https://www.defensenews.com/arc/outboundfeeds/rss/category/space/?outputType=xml"
 }
 
+# HOMEPAGE LINKS FOR SOURCES
 source_links = {
     "Breaking Defense": "https://breakingdefense.com",
     "SpaceNews": "https://spacenews.com",
@@ -22,9 +26,11 @@ source_links = {
     "USSF – Headlines": "https://www.spaceforce.mil/News",
     "USSF – Lines of Effort": "https://www.spaceforce.mil/About-Us/Lines-of-Effort",
     "USSF – Field News": "https://www.spaceforce.mil/News/Field-News",
-    "USSF – US Space Forces": "https://www.spaceforce.mil/News/Space-Force-Units"
+    "USSF – US Space Forces": "https://www.spaceforce.mil/News/Space-Force-Units",
+    "Defense News – Space": "https://www.defensenews.com/space/"
 }
 
+# CONVERT TIMESTAMP TO "Xh ago" or "Xm ago"
 def get_age_string(timestamp):
     now = datetime.now(timezone.utc)
     delta = now - timestamp
@@ -34,9 +40,11 @@ def get_age_string(timestamp):
     else:
         return f"{minutes // 60}h ago"
 
-cutoff = datetime.now(timezone.utc) - timedelta(hours=36)
+# ⏱️ Allow articles from the past 48 hours
+cutoff = datetime.now(timezone.utc) - timedelta(hours=48)
 all_items = []
 
+# PARSE EACH FEED
 for source, url in feeds.items():
     parsed = feedparser.parse(url)
     for entry in parsed.entries:
@@ -47,6 +55,7 @@ for source, url in feeds.items():
         if timestamp < cutoff:
             continue
 
+        # IMAGE SCRAPING LOGIC
         image = ""
         if "media_content" in entry and entry.media_content:
             image = entry.media_content[0].get("url", "")
@@ -67,28 +76,36 @@ for source, url in feeds.items():
             "age": get_age_string(timestamp)
         })
 
+# SORT + SELECT
 latest = sorted(all_items, key=lambda x: x["timestamp"], reverse=True)
 top_story = latest[0] if latest else None
 remaining = latest[1:] if len(latest) > 1 else []
 
+# ORGANIZE BY SOURCE
 sources = {}
 for item in remaining:
     sources.setdefault(item["source"], []).append(item)
 
-top_html = ""
-if top_story:
-    is_recent = (datetime.now(timezone.utc) - top_story["timestamp"]).total_seconds() < 7200
-    top_class = "recent" if is_recent else ""
-    top_html = f'''
+# 🔁 Fallback if no top image
+fallback_image = "images/HeadlineLogo.png"
+image_url = top_story["image"].strip() if top_story["image"] else fallback_image
+
+# ⏱️ Recent class = < 2 hours
+is_recent = (datetime.now(timezone.utc) - top_story["timestamp"]).total_seconds() < 7200
+top_class = "recent" if is_recent else ""
+
+# 📌 Top Story Block
+top_html = f'''
 <div class="top-story {top_class}">
   <a href="{top_story["link"]}" target="_blank" style="text-decoration:none;">
-    {'<img src="' + top_story["image"] + '" alt="Top image"><br>' if top_story["image"] else ''}
+    <img src="{image_url}" alt="Top image" style="max-width: 100%; height: auto;"><br>
     {top_story["title"]}
   </a>
   <div class="source">{top_story["source"]} – {top_story["age"]}</div>
 </div>
 '''
 
+# 📚 Section Columns
 sections = ['<div class="columns">']
 for source, articles in sources.items():
     source_url = source_links.get(source, "#")
@@ -106,7 +123,7 @@ for source, articles in sources.items():
     sections.append(section_html)
 sections.append('</div>')
 
-# Inject into HTML file
+# 🔧 Inject into index.html
 with open("index.html", "r", encoding="utf-8") as f:
     html = f.read()
 
