@@ -43,18 +43,15 @@
     }
 
     .columns {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 2rem;
+      margin-bottom: 2rem;
     }
-    .column {
-      flex: 1;
-      padding: 0 1rem;
-    }
+
     @media (min-width: 768px) {
       .columns {
-        flex-direction: row;
-        align-items: flex-start;
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
