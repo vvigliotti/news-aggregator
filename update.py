@@ -6,6 +6,12 @@ from time import mktime
 
 # FEED SOURCES
 feeds = {
+    # 📰 Media (existing)
+    "Breaking Defense": "https://breakingdefense.com/feed/",
+    "SpaceNews": "https://spacenews.com/feed/",
+    "Air & Space Forces": "https://www.airandspaceforces.com/feed/",
+    "Defense News – Space": "https://www.defensenews.com/arc/outboundfeeds/rss/category/space/?outputType=xml"
+    
     # 🛰️ Government & Military
     "USSF – Headlines": "https://www.spaceforce.mil/RSS/headlines.xml",
     "USSF – Lines of Effort": "https://www.spaceforce.mil/RSS/lines-of-effort.xml",
@@ -20,20 +26,17 @@ feeds = {
     "Phys.org – Space": "https://phys.org/rss-feed/space-news/",
     "Space.com": "https://www.space.com/feeds/all",
     "Ars Technica – Space": "https://feeds.arstechnica.com/arstechnica/space",
-    "NASA Tech Briefs": "https://www.techbriefs.com/rss-feeds",
-
-    # 🌏 International
-    "SCMP – Space": "https://www.scmp.com/rss/91/feed",
-
-    # 📰 Media (existing)
-    "Breaking Defense": "https://breakingdefense.com/feed/",
-    "SpaceNews": "https://spacenews.com/feed/",
-    "Air & Space Forces": "https://www.airandspaceforces.com/feed/",
-    "Defense News – Space": "https://www.defensenews.com/arc/outboundfeeds/rss/category/space/?outputType=xml"
+    "NASA Tech Briefs": "https://www.techbriefs.com/rss-feeds"
 }
 
 # HOMEPAGE LINKS FOR SOURCES
 source_links = {
+    # 📰 Media
+    "Breaking Defense": "https://breakingdefense.com",
+    "SpaceNews": "https://spacenews.com",
+    "Air & Space Forces": "https://www.airandspaceforces.com",
+    "Defense News – Space": "https://www.defensenews.com/space/",
+    
     # 🛰️ Government & Military
     "USSF – Headlines": "https://www.spaceforce.mil/News",
     "USSF – Lines of Effort": "https://www.spaceforce.mil/About-Us/Lines-of-Effort",
@@ -48,16 +51,7 @@ source_links = {
     "Phys.org – Space": "https://phys.org/space-news/",
     "Space.com": "https://www.space.com/news",
     "Ars Technica – Space": "https://arstechnica.com/science/space/",
-    "NASA Tech Briefs": "https://www.techbriefs.com/component/content/category/34-ntb/news/space",
-
-    # 🌏 International
-    "SCMP – Space": "https://www.scmp.com/topics/space-exploration",
-
-    # 📰 Media
-    "Breaking Defense": "https://breakingdefense.com",
-    "SpaceNews": "https://spacenews.com",
-    "Air & Space Forces": "https://www.airandspaceforces.com",
-    "Defense News – Space": "https://www.defensenews.com/space/"
+    "NASA Tech Briefs": "https://www.techbriefs.com/component/content/category/34-ntb/news/space"
 }
 
 # CONVERT TIMESTAMP TO "Xh ago" or "Xm ago"
