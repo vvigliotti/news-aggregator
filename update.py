@@ -1,8 +1,9 @@
 import feedparser
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from time import mktime
 
+# RSS feed sources
 feeds = {
     "Breaking Defense": "https://breakingdefense.com/feed/",
     "SpaceNews": "https://spacenews.com/feed/",
@@ -14,6 +15,7 @@ feeds = {
     "USSF – US Space Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml"
 }
 
+# Helper to get time delta string (e.g., 2h ago)
 def get_age_string(timestamp):
     now = datetime.now(timezone.utc)
     delta = now - timestamp
@@ -23,6 +25,8 @@ def get_age_string(timestamp):
     else:
         return f"{minutes // 60}h ago"
 
+# Time threshold: last 36 hours only
+cutoff = datetime.now(timezone.utc) - timedelta(hours=36)
 all_items = []
 
 for source, url in feeds.items():
@@ -32,6 +36,8 @@ for source, url in feeds.items():
         if not pub:
             continue
         timestamp = datetime.fromtimestamp(mktime(pub), tz=timezone.utc)
+        if timestamp < cutoff:
+            continue  # Skip old articles
 
         # Try to extract image
         image = ""
@@ -56,19 +62,22 @@ for source, url in feeds.items():
             "age": get_age_string(timestamp)
         })
 
-# Sort all articles by freshness
-latest = sorted(all_items, key=lambda x: x["timestamp"], reverse=True)[:20]
+# Sort by freshness
+latest = sorted(all_items, key=lambda x: x["timestamp"], reverse=True)
 
-top_story = latest[0]
-remaining = latest[1:]
+# Top story: freshest single article
+top_story = latest[0] if latest else None
+remaining = latest[1:] if len(latest) > 1 else []
 
-# Group rest by source
+# Group remaining by source
 sources = {}
 for item in remaining:
     sources.setdefault(item["source"], []).append(item)
 
-# Build top story HTML
-top_html = f'''
+# Build top story block
+top_html = ""
+if top_story:
+    top_html = f'''
 <div class="top-story" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">
   <a href="{top_story["link"]}" target="_blank" style="color: red; text-decoration: none;">
     {'<img src="' + top_story["image"] + '" alt="Top image" style="max-width: 100%;"><br>' if top_story["image"] else ''}
@@ -78,11 +87,11 @@ top_html = f'''
 </div>
 '''
 
-# Build all other sections
+# Build all sections by source
 sections = []
 for source, articles in sources.items():
     section_html = f'<div class="section"><h2>{source}</h2>'
-    for a in articles[:5]:
+    for a in articles[:5]:  # Max 5 per source
         section_html += f'''
         <div class="headline">
           <a href="{a["link"]}" target="_blank">{a["title"]}</a>
@@ -92,7 +101,7 @@ for source, articles in sources.items():
     section_html += '</div>'
     sections.append(section_html)
 
-# Inject into existing static index.html between markers
+# Inject new content between markers
 with open("index.html", "r", encoding="utf-8") as f:
     html = f.read()
 
