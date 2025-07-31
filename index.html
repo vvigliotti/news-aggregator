@@ -26,20 +26,47 @@
       font-size: 1.4rem;
       color: red;
       margin-bottom: 1rem;
-    }
-    .top-story.recent {
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.8rem;
-      color: red;
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 30%, transparent 90%);
-      border-radius: 0.75rem;
-      box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.4);
-      text-shadow: 0 0 4px gold;
-      transition: all 0.3s ease-in-out;
-    }
+.top-story.recent {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: red;
+  margin-bottom: 1.5rem;
+  padding: 1rem 0;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.top-story.recent a {
+  color: red;
+  text-shadow: 0 0 6px gold;
+}
+
+.top-story.recent img {
+  max-width: 700px;
+  width: 90%;
+  height: auto;
+  max-height: 250px;
+  margin: 0 auto 0.5rem auto;
+  display: block;
+  border-radius: 6px;
+}
+
+.top-story.recent a {
+  color: red;
+  text-shadow: 0 0 4px gold;
+}
+
+.top-story.recent img {
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 8px;
+}
+
     .top-story a {
       color: red;
       text-decoration: none;
@@ -140,7 +167,7 @@
 
 <div class="top-story recent">
   <a href="https://breakingdefense.com/2025/07/leonardo-purchases-italian-ground-vehicle-maker-iveco-defense-for-almost-2b/" target="_blank" style="text-decoration:none;">
-    <img src="images/HeadlineLogo.png" alt="Top image" style="width: 100%; max-height: 300px; object-fit: cover;"><br>
+  <img src="images/HeadlineLogo.png" alt="Top image"><br>
     Leonardo purchases Italian ground vehicle maker Iveco Defense for almost $2B
   </a>
   <div class="source">Breaking Defense – about 20m ago</div>
