@@ -92,8 +92,12 @@ sections = []
 for source, articles in sources.items():
     section_html = f'<div class="section"><h2>{source}</h2>'
     for a in articles[:5]:  # Max 5 per source
+        # Highlight articles under 1 hour old
+        is_recent = (datetime.now(timezone.utc) - a["timestamp"]).total_seconds() < 3600
+        recent_class = "recent" if is_recent else ""
+        
         section_html += f'''
-        <div class="headline">
+        <div class="headline {recent_class}">
           <a href="{a["link"]}" target="_blank">{a["title"]}</a>
           <span style="font-size: 0.8rem; color: gray;">({a["age"]})</span>
         </div>
