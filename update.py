@@ -151,10 +151,14 @@ top_class = "recent" if is_recent else ""
 # 📌 Top Story Block
 top_html = f'''
 <div class="top-story {top_class}">
-  <a href="{top_story["link"]}" target="_blank" style="text-decoration:none;">
-    <img src="{image_url}" alt="Top image" style="width: 100%; max-height: 300px; object-fit: cover;"><br>
-    {top_story["title"]}
+  <a href="{top_story["link"]}" target="_blank">
+    <img src="{image_url}" alt="Top image" style="width: 100%; max-height: 300px; object-fit: cover;">
   </a>
+  <div style="margin-top: 0.5rem;">
+    <a href="{top_story["link"]}" target="_blank" style="text-decoration: none;">
+      {top_story["title"]}
+    </a>
+  </div>
   <div class="source">{top_story["source"]} – {top_story["age"]}</div>
 </div>
 '''
