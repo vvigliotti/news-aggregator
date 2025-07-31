@@ -153,7 +153,7 @@ top_html = f'''
 <div class="top-story {top_class}">
   <div style="display: inline-block;">
     <a href="{top_story["link"]}" target="_blank" style="display: inline-block;">
-      <img src="{image_url}" alt="Top image" style="display: block; max-width: 700px; width: 100%; height: auto; max-height: 300px; object-fit: cover; margin: 0 auto; border-radius: 8px;">
+      <img src="{image_url}" alt="Top image" style="display: block; width: 100%; max-height: 300px; object-fit: cover;">
     </a>
   </div>
   <div style="margin-top: 0.5rem;">
