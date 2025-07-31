@@ -64,9 +64,13 @@ def get_age_string(timestamp):
     delta = now - timestamp
     minutes = int(delta.total_seconds() / 60)
     if minutes < 60:
-        return f"{minutes}m ago"
+        return f"about {minutes}m ago"
+    elif minutes < 1440:
+        hours = minutes // 60
+        return f"about {hours}h ago"
     else:
-        return f"{minutes // 60}h ago"
+        days = minutes // 1440
+        return f"about {days}d ago"
 
 # ⏱️ Allow articles from the past 48 hours
 cutoff = datetime.now(timezone.utc) - timedelta(hours=48)
