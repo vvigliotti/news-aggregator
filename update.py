@@ -63,7 +63,9 @@ def get_age_string(timestamp):
     now = datetime.now(timezone.utc)
     delta = now - timestamp
     minutes = int(delta.total_seconds() / 60)
-    if minutes < 60:
+    if minutes < 1:
+        return "just now"
+    elif minutes < 60:
         return f"about {minutes}m ago"
     elif minutes < 1440:
         hours = minutes // 60
