@@ -89,17 +89,37 @@ for source, url in feeds.items():
         if timestamp < cutoff:
             continue
 
-        # IMAGE SCRAPING LOGIC
+        # IMAGE SCRAPING LOGIC (IMPROVED)
         image = ""
+
+        # 1. Try media_content
         if "media_content" in entry and entry.media_content:
             image = entry.media_content[0].get("url", "")
+
+        # 2. Try media_thumbnail
         elif "media_thumbnail" in entry and entry.media_thumbnail:
             image = entry.media_thumbnail[0].get("url", "")
-        elif "content" in entry:
+
+        # 3. Try parsing first <img> from content
+        elif "content" in entry and entry.content:
             html_content = entry.content[0].value
             match = re.search(r'<img[^>]+src="([^">]+)"', html_content)
             if match:
                 image = match.group(1)
+
+        # 4. Try parsing first <img> from description
+        elif "description" in entry:
+            match = re.search(r'<img[^>]+src="([^">]+)"', entry.description)
+            if match:
+                image = match.group(1)
+
+        # 5. Try enclosure (used by some RSS feeds)
+        elif "enclosures" in entry and entry.enclosures:
+            image = entry.enclosures[0].get("url", "")
+
+        # 6. Optionally filter out non-image files
+        if image and not image.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp')):
+            image = ""
 
         all_items.append({
             "source": source,
