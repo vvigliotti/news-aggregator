@@ -152,7 +152,8 @@ top_class = "recent" if is_recent else ""
 top_html = f'''
 <div class="top-story {top_class}" style="text-align: center;">
   <a href="{top_story["link"]}" target="_blank" style="display: inline-block;">
-    <img src="{image_url}" alt="Top image" style="display: block; max-width: 100%; max-height: 300px; object-fit: cover; border-radius: 6px;">
+    <img src="{image_url}" alt="Top image"
+         style="display: block; max-width: 720px; width: 100%; height: auto; max-height: 300px; object-fit: cover; border-radius: 6px;">
   </a>
   <div style="margin-top: 0.5rem;">
     <a href="{top_story["link"]}" target="_blank" style="text-decoration: none;">
