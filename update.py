@@ -6,27 +6,57 @@ from time import mktime
 
 # FEED SOURCES
 feeds = {
-    "Breaking Defense": "https://breakingdefense.com/feed/",
-    "SpaceNews": "https://spacenews.com/feed/",
-    "Air & Space Forces": "https://www.airandspaceforces.com/feed/",
-    "NASA News Releases": "https://www.nasa.gov/news-release/feed/",
+    # 🛰️ Government & Military
     "USSF – Headlines": "https://www.spaceforce.mil/RSS/headlines.xml",
     "USSF – Lines of Effort": "https://www.spaceforce.mil/RSS/lines-of-effort.xml",
     "USSF – Field News": "https://www.spaceforce.mil/RSS/field-news.xml",
     "USSF – US Space Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml",
+    "NASA News Releases": "https://www.nasa.gov/news-release/feed/",
+    "NASA Breaking News": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
+    "DARPA News": "https://www.darpa.mil/rss",
+    "NOAA Space Weather": "https://www.swpc.noaa.gov/news/rss.xml",
+
+    # 🔬 Scientific & Commercial
+    "Phys.org – Space": "https://phys.org/rss-feed/space-news/",
+    "Space.com": "https://www.space.com/feeds/all",
+    "Ars Technica – Space": "https://feeds.arstechnica.com/arstechnica/space",
+    "NASA Tech Briefs": "https://www.techbriefs.com/rss-feeds",
+
+    # 🌏 International
+    "SCMP – Space": "https://www.scmp.com/rss/91/feed",
+
+    # 📰 Media (existing)
+    "Breaking Defense": "https://breakingdefense.com/feed/",
+    "SpaceNews": "https://spacenews.com/feed/",
+    "Air & Space Forces": "https://www.airandspaceforces.com/feed/",
     "Defense News – Space": "https://www.defensenews.com/arc/outboundfeeds/rss/category/space/?outputType=xml"
 }
 
 # HOMEPAGE LINKS FOR SOURCES
 source_links = {
-    "Breaking Defense": "https://breakingdefense.com",
-    "SpaceNews": "https://spacenews.com",
-    "Air & Space Forces": "https://www.airandspaceforces.com",
-    "NASA News Releases": "https://www.nasa.gov/news-release/",
+    # 🛰️ Government & Military
     "USSF – Headlines": "https://www.spaceforce.mil/News",
     "USSF – Lines of Effort": "https://www.spaceforce.mil/About-Us/Lines-of-Effort",
     "USSF – Field News": "https://www.spaceforce.mil/News/Field-News",
     "USSF – US Space Forces": "https://www.spaceforce.mil/News/Space-Force-Units",
+    "NASA News Releases": "https://www.nasa.gov/news-release/",
+    "NASA Breaking News": "https://www.nasa.gov/news/releases/latest/index.html",
+    "DARPA News": "https://www.darpa.mil/news",
+    "NOAA Space Weather": "https://www.swpc.noaa.gov/news",
+
+    # 🔬 Scientific & Commercial
+    "Phys.org – Space": "https://phys.org/space-news/",
+    "Space.com": "https://www.space.com/news",
+    "Ars Technica – Space": "https://arstechnica.com/science/space/",
+    "NASA Tech Briefs": "https://www.techbriefs.com/component/content/category/34-ntb/news/space",
+
+    # 🌏 International
+    "SCMP – Space": "https://www.scmp.com/topics/space-exploration",
+
+    # 📰 Media
+    "Breaking Defense": "https://breakingdefense.com",
+    "SpaceNews": "https://spacenews.com",
+    "Air & Space Forces": "https://www.airandspaceforces.com",
     "Defense News – Space": "https://www.defensenews.com/space/"
 }
 
