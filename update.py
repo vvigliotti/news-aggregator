@@ -196,5 +196,11 @@ if start != -1 and end != -1:
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(updated_html)
     print("✅ Headlines updated successfully.")
+      
+    # ✅ Force a minor change to always trigger a commit
+    from random import randint
+    with open("index.html", "a", encoding="utf-8") as f:
+        f.write(f"\n<!-- build-id: {randint(10000, 99999)} -->\n")
+
 else:
     print("❌ Injection markers not found in index.html.")
