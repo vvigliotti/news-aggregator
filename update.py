@@ -1,8 +1,8 @@
 import feedparser
 import re
-import random
 from datetime import datetime, timezone, timedelta
 from time import mktime
+from random import randint
 
 # FEED SOURCES
 feeds = {
@@ -58,6 +58,50 @@ source_links = {
     "Defense News - Space": "https://www.defensenews.com/space/"
 }
 
+# ---------- TEMPLATED IMAGE SELECTION (NO SCRAPING) ----------
+IMAGE_DIR = "images/"
+IMAGE_MAP = {
+    "default": IMAGE_DIR + "HeadlineLogo.png",
+    "breaking": IMAGE_DIR + "breaking.png",
+    "government": IMAGE_DIR + "government.png",
+    "launch": IMAGE_DIR + "launch.png",
+    "satellite": IMAGE_DIR + "satellite.png",
+    "science": IMAGE_DIR + "science.png",
+}
+
+# keyword sets (case-insensitive). order = priority
+PATTERNS = {
+    "breaking": re.compile(r"\b(breaking|urgent|alert)\b", re.I),
+    "government": re.compile(
+        r"\b(ussf|space\s*force|air\s*force|secretary\s+of|dod|department\s+of\s+defense|government|military|guardian[s]?)\b",
+        re.I,
+    ),
+    "launch": re.compile(r"\b(launch|launched|rocket|spacex|blue\s*origin|booster|falcon|starship)\b", re.I),
+    "satellite": re.compile(r"\b(satellite|payload|constellation|satcom|earth\s*observation)\b", re.I),
+    "science": re.compile(r"\b(science|scientist|discovered|discovery|nasa|research|telescope|observatory)\b", re.I),
+}
+
+# source “hints” if the title is ambiguous
+SOURCE_HINTS = {
+    "government": re.compile(r"(USSF|Space Force|Air & Space Forces|Defense News|Breaking Defense|DARPA)", re.I),
+    "science": re.compile(r"(NASA|Phys\.org|Tech Briefs|Ars Technica)", re.I),
+}
+
+def pick_image_for(title: str, source: str) -> str:
+    t = title or ""
+    s = source or ""
+    # 1) keyword priority
+    for key in ["breaking", "government", "launch", "satellite", "science"]:
+        if PATTERNS[key].search(t):
+            return IMAGE_MAP[key]
+    # 2) source hints
+    for key in ["government", "science"]:
+        if SOURCE_HINTS[key].search(source):
+            return IMAGE_MAP[key]
+    # 3) default
+    return IMAGE_MAP["default"]
+# -------------------------------------------------------------
+
 # CONVERT TIMESTAMP TO "Xh ago" or "Xm ago"
 def get_age_string(timestamp):
     now = datetime.now(timezone.utc)
@@ -89,44 +133,13 @@ for source, url in feeds.items():
         if timestamp < cutoff:
             continue
 
-        # IMAGE SCRAPING LOGIC (IMPROVED)
-        image = ""
-
-        # 1. Try media_content
-        if "media_content" in entry and entry.media_content:
-            image = entry.media_content[0].get("url", "")
-
-        # 2. Try media_thumbnail
-        elif "media_thumbnail" in entry and entry.media_thumbnail:
-            image = entry.media_thumbnail[0].get("url", "")
-
-        # 3. Try parsing first <img> from content
-        elif "content" in entry and entry.content:
-            html_content = entry.content[0].value
-            match = re.search(r'<img[^>]+src="([^">]+)"', html_content)
-            if match:
-                image = match.group(1)
-
-        # 4. Try parsing first <img> from description
-        elif "description" in entry:
-            match = re.search(r'<img[^>]+src="([^">]+)"', entry.description)
-            if match:
-                image = match.group(1)
-
-        # 5. Try enclosure (used by some RSS feeds)
-        elif "enclosures" in entry and entry.enclosures:
-            image = entry.enclosures[0].get("url", "")
-
-        # 6. Optionally filter out non-image files
-        if image and not image.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp')):
-            image = ""
-
         all_items.append({
             "source": source,
             "title": entry.title,
             "link": entry.link,
             "timestamp": timestamp,
-            "image": image,
+            # 👇 image chosen purely from keywords/source (no scraping)
+            "image": pick_image_for(entry.title, source),
             "age": get_age_string(timestamp)
         })
 
@@ -140,16 +153,18 @@ sources = {}
 for item in remaining:
     sources.setdefault(item["source"], []).append(item)
 
-# 🔁 Fallback if no top image
-fallback_image = "images/HeadlineLogo.png"
-image_url = top_story["image"].strip() if top_story["image"] else fallback_image
+# 🔁 Top image (already selected by picker)
+fallback_image = IMAGE_MAP["default"]
+image_url = top_story["image"] if (top_story and top_story["image"]) else fallback_image
 
 # ⏱️ Recent class = < 2 hours
-is_recent = (datetime.now(timezone.utc) - top_story["timestamp"]).total_seconds() < 7200
+is_recent = (datetime.now(timezone.utc) - top_story["timestamp"]).total_seconds() < 7200 if top_story else False
 top_class = "recent" if is_recent else ""
 
 # 📌 Top Story Block
-top_html = f'''
+top_html = ""
+if top_story:
+    top_html = f'''
 <div class="top-story {top_class}" style="text-align: center;">
   <a href="{top_story["link"]}" target="_blank" style="display: inline-block;">
     <img src="{image_url}" alt="Top image"
@@ -166,11 +181,11 @@ top_html = f'''
 
 # 📚 Section Columns
 sections = ['<div class="columns">']
-for source in feeds.keys():  # 🔄 This guarantees order from the feeds dictionary
+for source in feeds.keys():
     if source in sources:
         source_url = source_links.get(source, "#")
         section_html = f'<div class="column"><div class="section"><h2><a href="{source_url}" target="_blank">{source}</a></h2>'
-        for a in sources[source][:8]:  # Still limited to 5 articles per source
+        for a in sources[source][:8]:
             is_recent = (datetime.now(timezone.utc) - a["timestamp"]).total_seconds() < 7200
             recent_class = "recent" if is_recent else ""
             section_html += f'''
@@ -196,11 +211,8 @@ if start != -1 and end != -1:
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(updated_html)
     print("✅ Headlines updated successfully.")
-      
-    # ✅ Force a minor change to always trigger a commit
-    from random import randint
+    # always trigger commit
     with open("index.html", "a", encoding="utf-8") as f:
         f.write(f"\n<!-- build-id: {randint(10000, 99999)} -->\n")
-
 else:
     print("❌ Injection markers not found in index.html.")
