@@ -12,10 +12,9 @@ feeds = {
     "Air & Space Forces": "https://www.airandspaceforces.com/feed/",
 
     # 🛰️ Government & Military
-    "USSF - Headlines": "https://www.spaceforce.mil/RSS/headlines.xml",
-    "USSF - Lines of Effort": "https://www.spaceforce.mil/RSS/lines-of-effort.xml",
-    "USSF - Field News": "https://www.spaceforce.mil/RSS/field-news.xml",
-    "USSF - US Space Forces": "https://www.spaceforce.mil/RSS/us-space-forces-space.xml",
+    "USSF – Headlines": "https://www.spaceforce.mil/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1060&Category=23812&isdashboardselected=0&max=20",
+    "USSF – Field News": "https://www.spaceforce.mil/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1060&Category=23813&isdashboardselected=0&max=20",
+    "USSF – Units":     "https://www.spaceforce.mil/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1060&Category=23814&isdashboardselected=0&max=20",
     "NASA News Releases": "https://www.nasa.gov/news-release/feed/",
     "NASA Breaking News": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
     "DARPA News": "https://www.darpa.mil/rss",
