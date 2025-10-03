@@ -4,6 +4,11 @@ from datetime import datetime, timezone, timedelta
 from time import mktime
 from random import randint
 
+# NEW: stdlib for API call (no YAML changes needed)
+import json
+from urllib.request import urlopen, Request
+from urllib.parse import urlencode
+
 # FEED SOURCES
 feeds = {
     # 📰 Top 3 Media
@@ -101,6 +106,50 @@ def pick_image_for(title: str, source: str) -> str:
     return IMAGE_MAP["default"]
 # -------------------------------------------------------------
 
+# NEW: Upcoming Launches fetcher (Launch Library 2 – The Space Devs)
+def fetch_upcoming_launches(limit=8, days_ahead=7):
+    base = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/"
+    params = {
+        "limit": limit,
+        "hide_recent_previous": "true",
+        "ordering": "window_start",
+    }
+    url = base + "?" + urlencode(params)
+    req = Request(url, headers={"User-Agent": "SpaceHeadlinesBot/1.0"})
+    with urlopen(req, timeout=20) as resp:
+        data = json.loads(resp.read().decode("utf-8"))
+
+    now = datetime.now(timezone.utc)
+    cutoff = now + timedelta(days=days_ahead)
+
+    launches = []
+    for L in data.get("results", []):
+        start = L.get("window_start")
+        dt = None
+        if start:
+            try:
+                dt = datetime.fromisoformat(start.replace("Z", "+00:00"))
+            except Exception:
+                dt = None
+        if not dt or dt > cutoff:
+            continue
+
+        name = L.get("name") or "TBD"
+        when = dt.strftime("%b %d, %Y %H:%M UTC") if dt else "TBD"
+        provider = (L.get("launch_service_provider") or {}).get("name") or "—"
+        pad = ((L.get("pad") or {}).get("name") or "—")
+        loc = ((L.get("pad") or {}).get("location") or {}).get("name") or ""
+
+        launches.append({
+            "name": name,
+            "when": when,
+            "provider": provider,
+            "pad": pad,
+            "loc": loc
+        })
+
+    return launches[:limit]
+
 # CONVERT TIMESTAMP TO "Xh ago" or "Xm ago"
 def get_age_string(timestamp):
     now = datetime.now(timezone.utc)
@@ -178,6 +227,12 @@ if top_story:
 </div>
 '''
 
+# NEW: fetch upcoming launches (safe fail)
+try:
+    upcoming_launches = fetch_upcoming_launches(limit=8, days_ahead=7)
+except Exception:
+    upcoming_launches = []
+
 # 📚 Section Columns
 sections = ['<div class="columns">']
 for source in feeds.keys():
@@ -195,6 +250,29 @@ for source in feeds.keys():
             '''
         section_html += '</div></div>'
         sections.append(section_html)
+
+# NEW: Append right-most column for Upcoming Launches
+if upcoming_launches:
+    rows = []
+    for l in upcoming_launches:
+        rows.append(f'''
+        <div class="headline">
+          <strong>{l["when"]}</strong> — {l["name"]}
+          <div class="source" style="margin-top:2px;">{l["provider"]} • {l["pad"]}{(" — " + l["loc"]) if l["loc"] else ""}</div>
+        </div>
+        ''')
+    credit = '<div class="source" style="margin-top:6px;">Data: <a href="https://thespacedevs.com/" target="_blank">Launch Library 2 (The Space Devs)</a></div>'
+    launches_column_html = f'''
+    <div class="column">
+      <div class="section">
+        <h2><a href="https://thespacedevs.com/" target="_blank">Upcoming Launches (next 7 days)</a></h2>
+        {''.join(rows)}
+        {credit}
+      </div>
+    </div>
+    '''
+    sections.append(launches_column_html)
+
 sections.append('</div>')
 
 # 🔧 Inject into index.html
