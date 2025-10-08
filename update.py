@@ -28,7 +28,7 @@ feeds = {
     # 🔬 Scientific & Commercial
     "Phys.org - Space": "https://phys.org/rss-feed/space-news/",
     "Space.com": "https://www.space.com/feeds/all",
-    "Ars Technica - Space": "https://feeds.arstechnica.com/arstechnica/space",
+    "Ars Technica – Space": "https://feeds.arstechnica.com/arstechnica/space",
     "NASA Tech Briefs": "https://www.techbriefs.com/rss-feeds",
 
     # 📰 Other Media
@@ -43,10 +43,9 @@ source_links = {
     "Air & Space Forces": "https://www.airandspaceforces.com",
 
     # 🛰️ Government & Military
-    "USSF - Headlines": "https://www.spaceforce.mil/News",
-    "USSF - Lines of Effort": "https://www.spaceforce.mil/About-Us/Lines-of-Effort",
-    "USSF - Field News": "https://www.spaceforce.mil/News/Field-News",
-    "USSF - US Space Forces": "https://www.spaceforce.mil/News/Space-Force-Units",
+    "USSF – Headlines": "https://www.spaceforce.mil/News",
+    "USSF – Field News": "https://www.spaceforce.mil/News/Field-News",
+    "USSF – Units": "https://www.spaceforce.mil/News/Space-Force-Units",
     "NASA News Releases": "https://www.nasa.gov/news-release/",
     "NASA Breaking News": "https://www.nasa.gov/news/releases/latest/index.html",
     "DARPA News": "https://www.darpa.mil/news",
@@ -55,7 +54,7 @@ source_links = {
     # 🔬 Scientific & Commercial
     "Phys.org - Space": "https://phys.org/space-news/",
     "Space.com": "https://www.space.com/news",
-    "Ars Technica - Space": "https://arstechnica.com/science/space/",
+    "Ars Technica – Space": "https://arstechnica.com/science/space/",
     "NASA Tech Briefs": "https://www.techbriefs.com/component/content/category/34-ntb/news/space",
 
     # 📰 Other Media
@@ -278,6 +277,29 @@ sections.append('</div>')
 # 🔧 Inject into index.html
 with open("index.html", "r", encoding="utf-8") as f:
     html = f.read()
+    
+# --- Ensure Google Analytics tag exists in index.html (outside headline block) ---
+GA_ID = "G-F0ZJXSLFMH"
+ga_snippet = f"""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', '{GA_ID}');
+</script>
+"""
+
+# Only add it once
+if GA_ID not in html:
+    if "</head>" in html:
+        # Insert right before </head> so it sits safely in the head section
+        html = html.replace("</head>", ga_snippet + "\n</head>")
+    else:
+        # Fallback: if no <head> tag exists, add it at the very top
+        html = ga_snippet + "\n" + html
+# --- end GA ensure ---
 
 start = html.find("<!-- START HEADLINES -->")
 end = html.find("<!-- END HEADLINES -->")
