@@ -277,22 +277,8 @@ sections.append('</div>')
 # 🔧 Inject into index.html
 with open("index.html", "r", encoding="utf-8") as f:
     html = f.read()
-
-# ---------- HEAD SAFETY & GA ----------
-def _ensure_head_wrapped(doc: str) -> str:
-    """Guarantee a <head>...</head> exists so meta stays hidden."""
-    if "</head>" in doc:
-        return doc
-    if "<head" in doc and "</head>" not in doc:
-        body_i = doc.find("<body")
-        return (doc[:body_i] + "</head>\n" + doc[body_i:]) if body_i != -1 else (doc + "\n</head>")
-    body_i = doc.find("<body")
-    head_block = "<head>\n</head>\n"
-    return (doc[:body_i] + head_block + doc[body_i:]) if body_i != -1 else (head_block + doc)
-
-html = _ensure_head_wrapped(html)
-
-# --- Ensure Google Analytics tag exists in index.html (inside <head>) ---
+    
+# --- Ensure Google Analytics tag exists in index.html (outside headline block) ---
 GA_ID = "G-F0ZJXSLFMH"
 ga_snippet = f"""
 <!-- Google tag (gtag.js) -->
@@ -304,81 +290,16 @@ ga_snippet = f"""
   gtag('config', '{GA_ID}');
 </script>
 """
+
+# Only add it once
 if GA_ID not in html:
-    html = html.replace("</head>", ga_snippet + "\n</head>", 1)
+    if "</head>" in html:
+        # Insert right before </head> so it sits safely in the head section
+        html = html.replace("</head>", ga_snippet + "\n</head>")
+    else:
+        # Fallback: if no <head> tag exists, add it at the very top
+        html = ga_snippet + "\n" + html
 # --- end GA ensure ---
-
-# --- Ensure SEO <head> essentials (title, description, canonical, OG/Twitter, JSON-LD) ---
-def _upsert_head_block(html_src: str, needle_start: str, replacement_block: str):
-    """
-    If a tag starting with `needle_start` exists, replace it.
-    Else, insert `replacement_block` right before </head>.
-    """
-    import re
-    html_src = _ensure_head_wrapped(html_src)
-    pattern = re.compile(rf"{re.escape(needle_start)}[^>]*>", re.IGNORECASE | re.DOTALL)
-    if pattern.search(html_src):
-        return pattern.sub(replacement_block, html_src, count=1)
-    return html_src.replace("</head>", replacement_block + "\n</head>", 1)
-
-def _ensure_seo_head(html_src: str):
-    site_url = "https://spaceheadlines.com/"
-
-    # Title used by Google/browser tab (hidden in <head>)
-    title_text = "NEW Space Headlines — all in one place, updated every 5 minutes"
-
-    # Keyword-rich, natural (<= ~160 chars)
-    description = (
-        "Space news aggregator with upcoming launches, Space Force & NASA updates, "
-        "rockets, satellites, astronomy, commercial space—refreshed every 5 minutes."
-    )[:158]
-
-    # Use your existing image for social cards (absolute URL)
-    og_image = site_url.rstrip("/") + "/images/HeadlineLogo.png"
-
-    title_tag = f"<title>{title_text}</title>"
-    desc_tag = f'<meta name="description" content="{description}" />'
-    canonical_tag = f'<link rel="canonical" href="{site_url}" />'
-    robots_tag = '<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />'
-
-    og_tw_block = "\n".join([
-        '<meta property="og:type" content="website" />',
-        '<meta property="og:site_name" content="SpaceHeadlines" />',
-        f'<meta property="og:title" content="{title_text}" />',
-        f'<meta property="og:description" content="{description}" />',
-        f'<meta property="og:url" content="{site_url}" />',
-        f'<meta property="og:image" content="{og_image}" />',
-        '<meta name="twitter:card" content="summary_large_image" />',
-        f'<meta name="twitter:title" content="{title_text}" />',
-        f'<meta name="twitter:description" content="{description}" />',
-        f'<meta name="twitter:image" content="{og_image}" />',
-    ])
-
-    json_ld = {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "SpaceHeadlines",
-        "url": site_url,
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": site_url + "?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    jsonld_tag = '<script type="application/ld+json">' + json.dumps(json_ld, ensure_ascii=False) + "</script>"
-
-    out = html_src
-    out = _upsert_head_block(out, "<title", title_tag)
-    out = _upsert_head_block(out, '<meta name="description"', desc_tag)
-    out = _upsert_head_block(out, '<link rel="canonical"', canonical_tag)
-    out = _upsert_head_block(out, '<meta name="robots"', robots_tag)
-    out = _upsert_head_block(out, '<meta property="og:type"', og_tw_block)
-    out = _upsert_head_block(out, '<script type="application/ld+json"', jsonld_tag)
-    return out
-
-# Apply SEO head updates (no visible page changes)
-html = _ensure_seo_head(html)
-# --- end SEO ensure ---
 
 start = html.find("<!-- START HEADLINES -->")
 end = html.find("<!-- END HEADLINES -->")
