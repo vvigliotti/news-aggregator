@@ -277,8 +277,22 @@ sections.append('</div>')
 # 🔧 Inject into index.html
 with open("index.html", "r", encoding="utf-8") as f:
     html = f.read()
-    
-# --- Ensure Google Analytics tag exists in index.html (outside headline block) ---
+
+# ---------- HEAD SAFETY & GA ----------
+def _ensure_head_wrapped(doc: str) -> str:
+    """Guarantee a <head>...</head> exists so meta stays hidden."""
+    if "</head>" in doc:
+        return doc
+    if "<head" in doc and "</head>" not in doc:
+        body_i = doc.find("<body")
+        return (doc[:body_i] + "</head>\n" + doc[body_i:]) if body_i != -1 else (doc + "\n</head>")
+    body_i = doc.find("<body")
+    head_block = "<head>\n</head>\n"
+    return (doc[:body_i] + head_block + doc[body_i:]) if body_i != -1 else (head_block + doc)
+
+html = _ensure_head_wrapped(html)
+
+# --- Ensure Google Analytics tag exists in index.html (inside <head>) ---
 GA_ID = "G-F0ZJXSLFMH"
 ga_snippet = f"""
 <!-- Google tag (gtag.js) -->
@@ -290,51 +304,36 @@ ga_snippet = f"""
   gtag('config', '{GA_ID}');
 </script>
 """
-
-# Only add it once
 if GA_ID not in html:
-    if "</head>" in html:
-        # Insert right before </head> so it sits safely in the head section
-        html = html.replace("</head>", ga_snippet + "\n</head>")
-    else:
-        # Fallback: if no <head> tag exists, add it at the very top
-        html = ga_snippet + "\n" + html
+    html = html.replace("</head>", ga_snippet + "\n</head>", 1)
 # --- end GA ensure ---
 
 # --- Ensure SEO <head> essentials (title, description, canonical, OG/Twitter, JSON-LD) ---
-
 def _upsert_head_block(html_src: str, needle_start: str, replacement_block: str):
     """
-    Replace the first tag starting with `needle_start` (e.g., '<title', '<meta name="description"')
-    with `replacement_block`. If not found, insert the block just before </head>.
-    Leaves the rest of the document untouched.
+    If a tag starting with `needle_start` exists, replace it.
+    Else, insert `replacement_block` right before </head>.
     """
     import re
-    head_close = "</head>"
-    # Match a single tag starting with the needle up to the closing '>'
+    html_src = _ensure_head_wrapped(html_src)
     pattern = re.compile(rf"{re.escape(needle_start)}[^>]*>", re.IGNORECASE | re.DOTALL)
     if pattern.search(html_src):
         return pattern.sub(replacement_block, html_src, count=1)
-    elif head_close in html_src:
-        return html_src.replace(head_close, replacement_block + "\n" + head_close, 1)
-    else:
-        # If there is no </head>, prepend (rare on your site, but safe)
-        return replacement_block + "\n" + html_src
+    return html_src.replace("</head>", replacement_block + "\n</head>", 1)
 
 def _ensure_seo_head(html_src: str):
-    import json, re
     site_url = "https://spaceheadlines.com/"
 
-    # Your preferred headline for Google/browser tab
+    # Title used by Google/browser tab (hidden in <head>)
     title_text = "NEW Space Headlines — all in one place, updated every 5 minutes"
 
-    # Keyword-rich but natural meta description (≤ ~160 chars)
+    # Keyword-rich, natural (<= ~160 chars)
     description = (
         "Space news aggregator with upcoming launches, Space Force & NASA updates, "
         "rockets, satellites, astronomy, commercial space—refreshed every 5 minutes."
     )[:158]
 
-    # Use an existing uploaded image for social cards (absolute URL preferred)
+    # Use your existing image for social cards (absolute URL)
     og_image = site_url.rstrip("/") + "/images/HeadlineLogo.png"
 
     title_tag = f"<title>{title_text}</title>"
@@ -342,7 +341,6 @@ def _ensure_seo_head(html_src: str):
     canonical_tag = f'<link rel="canonical" href="{site_url}" />'
     robots_tag = '<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />'
 
-    # Open Graph + Twitter (insert as a single block)
     og_tw_block = "\n".join([
         '<meta property="og:type" content="website" />',
         '<meta property="og:site_name" content="SpaceHeadlines" />',
@@ -356,7 +354,6 @@ def _ensure_seo_head(html_src: str):
         f'<meta name="twitter:image" content="{og_image}" />',
     ])
 
-    # JSON-LD WebSite
     json_ld = {
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -381,7 +378,6 @@ def _ensure_seo_head(html_src: str):
 
 # Apply SEO head updates (no visible page changes)
 html = _ensure_seo_head(html)
-
 # --- end SEO ensure ---
 
 start = html.find("<!-- START HEADLINES -->")
