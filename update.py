@@ -303,8 +303,8 @@ else:
 
 # 2️⃣ Add meta description if missing
 meta_desc = (
-    "Space news aggregator with upcoming launches, Space Force & NASA updates, "
-    "rockets, satellites, astronomy, and commercial space—refreshed every 5 minutes."
+    "Space Headlines delivers real-time space news, NASA and Space Force updates, rocket launches, satellites, "
+    "astronomy, and commercial space stories — refreshed every 5 minutes."
 )
 if '<meta name="description"' not in html:
     html = html.replace(
