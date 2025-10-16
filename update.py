@@ -278,19 +278,43 @@ sections.append('</div>')
 with open("index.html", "r", encoding="utf-8") as f:
     html = f.read()
 
-# Force the tab title safely (no visual changes to page)
+# --- Safe SEO title + description insert (invisible to visitors) ---
+
+import re
+
+# 1️⃣ Set tab title
 title_text = "NEW Space Headlines — all in one place, updated every 5 minutes"
 
-# make sure <head> exists
+# Ensure <head> exists
 if "</head>" not in html:
     html = "<head>\n</head>\n" + html
 
-# replace existing <title> if present, otherwise insert new one
-import re
+# Replace existing <title> or insert new one before </head>
 if re.search(r"<title\b[^>]*>.*?</title>", html, flags=re.I | re.S):
-    html = re.sub(r"<title\b[^>]*>.*?</title>", f"<title>{title_text}</title>", html, count=1, flags=re.I | re.S)
+    html = re.sub(
+        r"<title\b[^>]*>.*?</title>",
+        f"<title>{title_text}</title>",
+        html,
+        count=1,
+        flags=re.I | re.S
+    )
 else:
     html = html.replace("</head>", f"<title>{title_text}</title>\n</head>", 1)
+
+# 2️⃣ Add meta description if missing
+meta_desc = (
+    "Space news aggregator with upcoming launches, Space Force & NASA updates, "
+    "rockets, satellites, astronomy, and commercial space—refreshed every 5 minutes."
+)
+if '<meta name="description"' not in html:
+    html = html.replace(
+        "</head>",
+        f'<meta name="description" content="{meta_desc}">\n</head>',
+        1
+    )
+
+# --- end SEO insert ---
+
 
 # ---------------- SAFE HEAD + GA + SEO (NON-DESTRUCTIVE) ----------------
 def _ensure_head(doc: str) -> str:
