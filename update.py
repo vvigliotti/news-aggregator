@@ -301,6 +301,89 @@ if GA_ID not in html:
         html = ga_snippet + "\n" + html
 # --- end GA ensure ---
 
+# --- Ensure SEO <head> essentials (title, description, canonical, OG/Twitter, JSON-LD) ---
+
+def _upsert_head_block(html_src: str, needle_start: str, replacement_block: str):
+    """
+    Replace the first tag starting with `needle_start` (e.g., '<title', '<meta name="description"')
+    with `replacement_block`. If not found, insert the block just before </head>.
+    Leaves the rest of the document untouched.
+    """
+    import re
+    head_close = "</head>"
+    # Match a single tag starting with the needle up to the closing '>'
+    pattern = re.compile(rf"{re.escape(needle_start)}[^>]*>", re.IGNORECASE | re.DOTALL)
+    if pattern.search(html_src):
+        return pattern.sub(replacement_block, html_src, count=1)
+    elif head_close in html_src:
+        return html_src.replace(head_close, replacement_block + "\n" + head_close, 1)
+    else:
+        # If there is no </head>, prepend (rare on your site, but safe)
+        return replacement_block + "\n" + html_src
+
+def _ensure_seo_head(html_src: str):
+    import json, re
+    site_url = "https://spaceheadlines.com/"
+
+    # Your preferred headline for Google/browser tab
+    title_text = "NEW Space Headlines — all in one place, updated every 5 minutes"
+
+    # Keyword-rich but natural meta description (≤ ~160 chars)
+    description = (
+        "Space news aggregator with upcoming launches, Space Force & NASA updates, "
+        "rockets, satellites, astronomy, commercial space—refreshed every 5 minutes."
+    )[:158]
+
+    # Use an existing uploaded image for social cards (absolute URL preferred)
+    og_image = site_url.rstrip("/") + "/images/HeadlineLogo.png"
+
+    title_tag = f"<title>{title_text}</title>"
+    desc_tag = f'<meta name="description" content="{description}" />'
+    canonical_tag = f'<link rel="canonical" href="{site_url}" />'
+    robots_tag = '<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />'
+
+    # Open Graph + Twitter (insert as a single block)
+    og_tw_block = "\n".join([
+        '<meta property="og:type" content="website" />',
+        '<meta property="og:site_name" content="SpaceHeadlines" />',
+        f'<meta property="og:title" content="{title_text}" />',
+        f'<meta property="og:description" content="{description}" />',
+        f'<meta property="og:url" content="{site_url}" />',
+        f'<meta property="og:image" content="{og_image}" />',
+        '<meta name="twitter:card" content="summary_large_image" />',
+        f'<meta name="twitter:title" content="{title_text}" />',
+        f'<meta name="twitter:description" content="{description}" />',
+        f'<meta name="twitter:image" content="{og_image}" />',
+    ])
+
+    # JSON-LD WebSite
+    json_ld = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "SpaceHeadlines",
+        "url": site_url,
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": site_url + "?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    jsonld_tag = '<script type="application/ld+json">' + json.dumps(json_ld, ensure_ascii=False) + "</script>"
+
+    out = html_src
+    out = _upsert_head_block(out, "<title", title_tag)
+    out = _upsert_head_block(out, '<meta name="description"', desc_tag)
+    out = _upsert_head_block(out, '<link rel="canonical"', canonical_tag)
+    out = _upsert_head_block(out, '<meta name="robots"', robots_tag)
+    out = _upsert_head_block(out, '<meta property="og:type"', og_tw_block)
+    out = _upsert_head_block(out, '<script type="application/ld+json"', jsonld_tag)
+    return out
+
+# Apply SEO head updates (no visible page changes)
+html = _ensure_seo_head(html)
+
+# --- end SEO ensure ---
+
 start = html.find("<!-- START HEADLINES -->")
 end = html.find("<!-- END HEADLINES -->")
 
