@@ -277,8 +277,30 @@ sections.append('</div>')
 # 🔧 Inject into index.html
 with open("index.html", "r", encoding="utf-8") as f:
     html = f.read()
-    
-# --- Ensure Google Analytics tag exists in index.html (outside headline block) ---
+
+# ---------------- SAFE HEAD + GA + SEO (NON-DESTRUCTIVE) ----------------
+def _ensure_head(doc: str) -> str:
+    """Guarantee a <head>...</head> exists so inserts never leak into visible body."""
+    if "</head>" in doc:
+        return doc
+    # If a <head ...> exists but not closed, close it before <body> or at end
+    if "<head" in doc and "</head>" not in doc:
+        body_i = doc.find("<body")
+        return (doc[:body_i] + "</head>\n" + doc[body_i:]) if body_i != -1 else (doc + "\n</head>")
+    # No head at all: create it before <body> or prepend
+    body_i = doc.find("<body")
+    head_block = "<head>\n</head>\n"
+    return (doc[:body_i] + head_block + doc[body_i:]) if body_i != -1 else (head_block + doc)
+
+def _has_tag(doc: str, pattern: str) -> bool:
+    return re.search(pattern, doc, flags=re.I | re.S) is not None
+
+def _insert_before_head_close(doc: str, block: str) -> str:
+    return doc.replace("</head>", block + "\n</head>", 1)
+
+html = _ensure_head(html)
+
+# --- GA (add once, head-only) ---
 GA_ID = "G-F0ZJXSLFMH"
 ga_snippet = f"""
 <!-- Google tag (gtag.js) -->
@@ -290,16 +312,72 @@ ga_snippet = f"""
   gtag('config', '{GA_ID}');
 </script>
 """
-
-# Only add it once
 if GA_ID not in html:
-    if "</head>" in html:
-        # Insert right before </head> so it sits safely in the head section
-        html = html.replace("</head>", ga_snippet + "\n</head>")
-    else:
-        # Fallback: if no <head> tag exists, add it at the very top
-        html = ga_snippet + "\n" + html
-# --- end GA ensure ---
+    html = _insert_before_head_close(html, ga_snippet)
+# --- end GA ---
+
+# --- SEO (non-destructive: only add if missing; never duplicates) ---
+def ensure_seo_non_destructive(doc: str) -> str:
+    site_url = "https://spaceheadlines.com/"
+    title_text = "NEW Space Headlines — all in one place, updated every 5 minutes"
+    description = ("Space news aggregator with upcoming launches, Space Force & NASA updates, "
+                   "rockets, satellites, astronomy, commercial space—refreshed every 5 minutes.")[:158]
+    og_image = site_url.rstrip("/") + "/images/HeadlineLogo.png"
+
+    # 1) title
+    if not _has_tag(doc, r"<title\b[^>]*>.*?</title>"):
+        doc = _insert_before_head_close(doc, f"<title>{title_text}</title>")
+
+    # 2) meta description
+    if not _has_tag(doc, r'<meta\s+name=["\']description["\']'):
+        doc = _insert_before_head_close(doc, f'<meta name="description" content="{description}" />')
+
+    # 3) canonical
+    if not _has_tag(doc, r'<link\s+rel=["\']canonical["\']'):
+        doc = _insert_before_head_close(doc, f'<link rel="canonical" href="{site_url}" />')
+
+    # 4) robots
+    if not _has_tag(doc, r'<meta\s+name=["\']robots["\']'):
+        doc = _insert_before_head_close(doc, '<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />')
+
+    # 5) OG/Twitter (add block once if neither present)
+    has_og = _has_tag(doc, r'<meta\s+property=["\']og:')
+    has_tw = _has_tag(doc, r'<meta\s+name=["\']twitter:')
+    if not (has_og or has_tw):
+        og_tw_block = "\n".join([
+            '<meta property="og:type" content="website" />',
+            '<meta property="og:site_name" content="SpaceHeadlines" />',
+            f'<meta property="og:title" content="{title_text}" />',
+            f'<meta property="og:description" content="{description}" />',
+            f'<meta property="og:url" content="{site_url}" />',
+            f'<meta property="og:image" content="{og_image}" />',
+            '<meta name="twitter:card" content="summary_large_image" />',
+            f'<meta name="twitter:title" content="{title_text}" />',
+            f'<meta name="twitter:description" content="{description}" />',
+            f'<meta name="twitter:image" content="{og_image}" />',
+        ])
+        doc = _insert_before_head_close(doc, og_tw_block)
+
+    # 6) JSON-LD (add once)
+    if not _has_tag(doc, r'<script\s+type=["\']application/ld\+json["\']'):
+        json_ld = {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "SpaceHeadlines",
+            "url": site_url,
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": site_url + "?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+        jsonld_tag = '<script type="application/ld+json">' + json.dumps(json_ld, ensure_ascii=False) + "</script>"
+        doc = _insert_before_head_close(doc, jsonld_tag)
+
+    return doc
+
+html = ensure_seo_non_destructive(html)
+# ---------------- END SAFE HEAD + GA + SEO --------------------
 
 start = html.find("<!-- START HEADLINES -->")
 end = html.find("<!-- END HEADLINES -->")
@@ -314,4 +392,7 @@ if start != -1 and end != -1:
     with open("index.html", "a", encoding="utf-8") as f:
         f.write(f"\n<!-- build-id: {randint(10000, 99999)} -->\n")
 else:
-    print("❌ Injection markers not found in index.html.")
+    # At least persist head updates so SEO/GA are kept even if markers are missing
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print("❗ Injection markers not found. Wrote head (SEO/GA) updates only.")
