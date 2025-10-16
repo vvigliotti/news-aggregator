@@ -278,6 +278,20 @@ sections.append('</div>')
 with open("index.html", "r", encoding="utf-8") as f:
     html = f.read()
 
+# Force the tab title safely (no visual changes to page)
+title_text = "NEW Space Headlines — all in one place, updated every 5 minutes"
+
+# make sure <head> exists
+if "</head>" not in html:
+    html = "<head>\n</head>\n" + html
+
+# replace existing <title> if present, otherwise insert new one
+import re
+if re.search(r"<title\b[^>]*>.*?</title>", html, flags=re.I | re.S):
+    html = re.sub(r"<title\b[^>]*>.*?</title>", f"<title>{title_text}</title>", html, count=1, flags=re.I | re.S)
+else:
+    html = html.replace("</head>", f"<title>{title_text}</title>\n</head>", 1)
+
 # ---------------- SAFE HEAD + GA + SEO (NON-DESTRUCTIVE) ----------------
 def _ensure_head(doc: str) -> str:
     """Guarantee a <head>...</head> exists so inserts never leak into visible body."""
