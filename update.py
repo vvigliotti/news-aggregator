@@ -370,6 +370,13 @@ def ensure_seo_non_destructive(doc: str) -> str:
     if not _has_tag(doc, r'<meta\s+name=["\']description["\']'):
         doc = _insert_before_head_close(doc, f'<meta name="description" content="{description}" />')
 
+    # 2.5) google site verification
+    if not _has_tag(doc, r'<meta\s+name=["\']google-site-verification["\']'):
+        doc = _insert_before_head_close(
+            doc,
+            '<meta name="google-site-verification" content="p8rg-XOJM-gk3dIX2qP7DyD_ouNpPLKp933vq11RdME" />'
+        )
+    
     # 3) canonical
     if not _has_tag(doc, r'<link\s+rel=["\']canonical["\']'):
         doc = _insert_before_head_close(doc, f'<link rel="canonical" href="{site_url}" />')
