@@ -207,8 +207,7 @@ remaining = latest[1:] if len(latest) > 1 else []
 # ============================================================
 
 SUMMARY_CACHE_FILE = "daily_summary.json"
-SUMMARY_MODEL = "gemini-2.5-flash"
-
+SUMMARY_MODEL = "gemini-3.6-flash"
 
 def load_summary_cache():
     """Load the most recently saved daily summary."""
