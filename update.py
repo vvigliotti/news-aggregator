@@ -435,9 +435,6 @@ if start != -1 and end != -1:
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(updated_html)
     print("✅ Headlines updated successfully.")
-    # always trigger commit
-    with open("index.html", "a", encoding="utf-8") as f:
-        f.write(f"\n<!-- build-id: {randint(10000, 99999)} -->\n")
 else:
     # At least persist head updates so SEO/GA are kept even if markers are missing
     with open("index.html", "w", encoding="utf-8") as f:
