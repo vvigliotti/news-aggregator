@@ -508,7 +508,7 @@ with open("index.html", "r", encoding="utf-8") as f:
 import re
 
 # 1️⃣ Set tab title
-title_text = "NEW Space Headlines — all in one place, updated every 5 minutes"
+title_text = "Space Headlines: Breaking Space News, NASA, Space Force & Launches"
 
 # Ensure <head> exists
 if "</head>" not in html:
@@ -582,9 +582,11 @@ if GA_ID not in html:
 # --- SEO (non-destructive: only add if missing; never duplicates) ---
 def ensure_seo_non_destructive(doc: str) -> str:
     site_url = "https://spaceheadlines.com/"
-    title_text = "NEW Space Headlines — all in one place, updated every 5 minutes"
-    description = ("Space news aggregator with upcoming launches, Space Force & NASA updates, "
-                   "rockets, satellites, astronomy, commercial space—refreshed every 5 minutes.")[:158]
+    title_text = "Space Headlines: Breaking Space News, NASA, Space Force & Launches"
+    description = (
+        "Space news aggregator with upcoming launches, Space Force & NASA updates, "
+        "rockets, satellites, astronomy, commercial space—refreshed every 5 minutes."
+    )[:158]
     og_image = site_url.rstrip("/") + "/images/HeadlineLogo.png"
 
     # 1) title
@@ -616,7 +618,7 @@ def ensure_seo_non_destructive(doc: str) -> str:
     if not (has_og or has_tw):
         og_tw_block = "\n".join([
             '<meta property="og:type" content="website" />',
-            '<meta property="og:site_name" content="SpaceHeadlines" />',
+            '<meta property="og:site_name" content="Space Headlines" />',
             f'<meta property="og:title" content="{title_text}" />',
             f'<meta property="og:description" content="{description}" />',
             f'<meta property="og:url" content="{site_url}" />',
@@ -633,7 +635,8 @@ def ensure_seo_non_destructive(doc: str) -> str:
         json_ld = {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "SpaceHeadlines",
+            "name": "Space Headlines",
+            "alternateName": ["SpaceHeadlines", "spaceheadlines.com"],
             "url": site_url,
             "potentialAction": {
                 "@type": "SearchAction",
