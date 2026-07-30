@@ -3,6 +3,9 @@ import re
 from datetime import datetime, timezone, timedelta
 from time import mktime
 from random import randint
+import os
+import html as html_lib
+from google import genai
 
 # NEW: stdlib for API call (no YAML changes needed)
 import json
@@ -196,6 +199,227 @@ for source, url in feeds.items():
 latest = sorted(all_items, key=lambda x: x["timestamp"], reverse=True)
 top_story = latest[0] if latest else None
 remaining = latest[1:] if len(latest) > 1 else []
+
+# ============================================================
+# AI DAILY SUMMARY — GEMINI
+# Generates at most one new summary per UTC calendar day.
+# If Gemini fails, headlines continue updating normally.
+# ============================================================
+
+SUMMARY_CACHE_FILE = "daily_summary.json"
+SUMMARY_MODEL = "gemini-2.5-flash"
+
+
+def load_summary_cache():
+    """Load the most recently saved daily summary."""
+    try:
+        with open(SUMMARY_CACHE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        if isinstance(data, dict):
+            return data
+
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        pass
+
+    return {}
+
+
+def save_summary_cache(summary_date, summary_text, article_count):
+    """Overwrite the same cache file instead of creating daily files."""
+    data = {
+        "date": summary_date,
+        "summary": summary_text,
+        "article_count": article_count
+    }
+
+    temporary_file = SUMMARY_CACHE_FILE + ".tmp"
+
+    with open(temporary_file, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+    os.replace(temporary_file, SUMMARY_CACHE_FILE)
+
+
+def generate_daily_summary(items):
+    """Generate a briefing using the most recent collected headlines."""
+    api_key = os.environ.get("GEMINI_API_KEY")
+
+    if not api_key:
+        raise RuntimeError("GEMINI_API_KEY is missing.")
+
+    # Limit the request so it stays small, fast, and inexpensive.
+    selected_items = items[:80]
+
+    headline_lines = []
+
+    for number, item in enumerate(selected_items, start=1):
+        headline_lines.append(
+            f'{number}. [{item["source"]}] {item["title"]}'
+        )
+
+    headline_text = "\n".join(headline_lines)
+
+    prompt = f"""
+You are the editor of SpaceHeadlines.com.
+
+Using only the supplied headlines, write a concise daily space-news
+briefing for a general but informed audience.
+
+Requirements:
+
+- Write 1 paragraph.
+- Begin with the most consequential development.
+- Cover military, civil government, commercial, launch, science,
+  and international developments when the headlines support them.
+- Combine duplicate or closely related stories.
+- Do not invent facts or details beyond the headlines.
+- Do not include URLs.
+- Do not use bullet points.
+- Do not use markdown headings.
+- Do not mention being an AI.
+- Use neutral, professional news language.
+- End with one short sentence about what readers should watch next.
+- Keep the entire briefing below 500 words.
+
+Collected headlines:
+
+{headline_text}
+""".strip()
+
+    client = genai.Client(api_key=api_key)
+
+    response = client.models.generate_content(
+        model=SUMMARY_MODEL,
+        contents=prompt
+    )
+
+    summary_text = (response.text or "").strip()
+
+    if not summary_text:
+        raise RuntimeError("Gemini returned an empty summary.")
+
+    return summary_text, len(selected_items)
+
+
+def build_summary_html(summary_text, summary_date):
+    """Safely turn the summary text into an HTML section."""
+    paragraphs = [
+        paragraph.strip()
+        for paragraph in re.split(r"\n\s*\n", summary_text)
+        if paragraph.strip()
+    ]
+
+    paragraphs_html = "\n".join(
+        f"<p>{html_lib.escape(paragraph)}</p>"
+        for paragraph in paragraphs
+    )
+
+    try:
+        displayed_date = datetime.strptime(
+            summary_date,
+            "%Y-%m-%d"
+        ).strftime("%B %d, %Y")
+    except ValueError:
+        displayed_date = summary_date
+
+    return f'''
+<section style="
+    max-width:900px;
+    margin:30px auto;
+    padding:24px;
+    background:#f8f9fb;
+    border:1px solid #d9e2ec;
+    border-left:6px solid #1f4e79;
+    border-radius:8px;
+    text-align:center;
+">
+
+<div style="
+    font-size:12px;
+    font-weight:bold;
+    color:#666;
+    letter-spacing:2px;
+">
+AI DAILY BRIEFING
+</div>
+
+<h2 style="margin:8px 0 5px 0;">
+Today in Space
+</h2>
+
+<div style="
+    color:#777;
+    margin-bottom:18px;
+">
+{displayed_date}
+</div>
+
+<div style="
+    text-align:left;
+    line-height:1.7;
+    font-size:17px;
+">
+{paragraphs_html}
+</div>
+
+<hr style="margin:20px 0;">
+
+<div style="
+    font-size:12px;
+    color:#777;
+">
+AI-generated summary of today's collected headlines. Read the original articles below for complete reporting.
+</div>
+
+</section>
+'''
+
+
+today_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+summary_cache = load_summary_cache()
+
+cached_date = summary_cache.get("date")
+cached_summary = summary_cache.get("summary", "").strip()
+
+# Gemini is called only when today's summary is not already cached.
+if cached_date != today_utc and latest:
+    try:
+        new_summary, summarized_article_count = generate_daily_summary(latest)
+
+        save_summary_cache(
+            today_utc,
+            new_summary,
+            summarized_article_count
+        )
+
+        cached_date = today_utc
+        cached_summary = new_summary
+
+        print(
+            f"✅ Gemini summary generated from "
+            f"{summarized_article_count} headlines."
+        )
+
+    except Exception as error:
+        # This does not stop the normal headline update.
+        print(f"⚠️ Gemini summary skipped: {error}")
+
+elif cached_date == today_utc:
+    print("ℹ️ Today's Gemini summary already exists. Reusing it.")
+
+
+daily_summary_html = ""
+
+if cached_summary:
+    daily_summary_html = build_summary_html(
+        cached_summary,
+        cached_date
+    )
+
+# ============================================================
+# END AI DAILY SUMMARY
+# ============================================================
 
 # ORGANIZE BY SOURCE
 sources = {}
@@ -422,7 +646,6 @@ def ensure_seo_non_destructive(doc: str) -> str:
         doc = _insert_before_head_close(doc, jsonld_tag)
 
     return doc
-
 html = ensure_seo_non_destructive(html)
 # ---------------- END SAFE HEAD + GA + SEO --------------------
 
@@ -430,7 +653,7 @@ start = html.find("<!-- START HEADLINES -->")
 end = html.find("<!-- END HEADLINES -->")
 
 if start != -1 and end != -1:
-    new_content = '<!-- START HEADLINES -->\n' + top_html + "\n".join(sections) + '\n<!-- END HEADLINES -->'
+    new_content = '<!-- START HEADLINES -->\n' + daily_summary_html + '\n' + top_html + "\n".join(sections) + '\n<!-- END HEADLINES -->'    
     updated_html = html[:start] + new_content + html[end + len("<!-- END HEADLINES -->"):]
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(updated_html)
