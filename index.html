@@ -129,7 +129,14 @@
     max-width: 600px;
     height: 100px;
   }
-
+    
+.form-footer input[type="text"],
+.form-footer input[type="email"] {
+    width: 80%;
+    max-width: 600px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
   .form-footer input[type="submit"] {
     margin-top: 10px;
     padding: 5px 15px;
@@ -552,14 +559,45 @@
 </div>
 <!-- END HEADLINES -->
 
-  <div class="form-footer">
-    <h3>Submit a Question</h3>
-    <form action="https://formspree.io/f/xnnzzdjz" method="POST">
-      <label for="question">Your Question:</label><br>
-      <textarea name="question" required></textarea><br>
-      <input type="submit" value="Submit">
-    </form>
-  </div>
+<div class="form-footer">
+  <h3>Submit a Question</h3>
+
+  <form action="https://formspree.io/f/xnnzzdjz" method="POST">
+
+    <label for="name">Your Name:</label><br>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Your name"
+      required
+    ><br><br>
+
+    <label for="email">Your Email Address:</label><br>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="you@example.com"
+      required
+    ><br><br>
+
+    <label for="question">Your Question:</label><br>
+    <textarea
+      id="question"
+      name="question"
+      placeholder="Enter your question"
+      required
+    ></textarea><br>
+
+    <p style="font-size: 0.85rem; color: gray;">
+      Your email is required so I can respond to your question.
+    </p>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
 
   <!-- Visitor Counter with credit -->
   <div style="text-align: center; margin-top: 1rem;">
