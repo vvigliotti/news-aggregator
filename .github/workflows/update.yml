@@ -5,6 +5,10 @@ on:
     - cron: '*/5 * * * *'  # Runs every 5 minutes (UTC)
   workflow_dispatch:
 
+concurrency:
+  group: update-headlines
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
