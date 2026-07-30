@@ -32,7 +32,8 @@ feeds = {
     "NASA Tech Briefs": "https://www.techbriefs.com/rss-feeds",
 
     # 📰 Other Media
-    "Defense News - Space": "https://www.defensenews.com/arc/outboundfeeds/rss/category/space/?outputType=xml"
+    "Defense News - Space": "https://www.defensenews.com/arc/outboundfeeds/rss/category/space/?outputType=xml",
+    "NASA Watch": "https://nasawatch.com/feed/",
 }
 
 # HOMEPAGE LINKS FOR SOURCES
@@ -58,7 +59,8 @@ source_links = {
     "NASA Tech Briefs": "https://www.techbriefs.com/component/content/category/34-ntb/news/space",
 
     # 📰 Other Media
-    "Defense News - Space": "https://www.defensenews.com/space/"
+    "Defense News - Space": "https://www.defensenews.com/space/",
+    "NASA Watch": "https://nasawatch.com/",
 }
 
 # ---------- TEMPLATED IMAGE SELECTION (NO SCRAPING) ----------
