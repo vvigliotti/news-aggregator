@@ -310,9 +310,9 @@ def build_summary_html(summary_text, summary_date):
         for paragraph in re.split(r"\n\s*\n", summary_text)
         if paragraph.strip()
     ]
-
+    
     paragraphs_html = "\n".join(
-        f"<p>{html_lib.escape(paragraph)}</p>"
+        f'<p style="margin:0;">{html_lib.escape(paragraph)}</p>'
         for paragraph in paragraphs
     )
 
