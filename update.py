@@ -267,19 +267,21 @@ briefing for a general but informed audience.
 
 Requirements:
 
-- Write 1 paragraph.
-- Begin with the most consequential development.
-- Cover military, civil government, commercial, launch, science,
-  and international developments when the headlines support them.
-- Combine duplicate or closely related stories.
-- Do not invent facts or details beyond the headlines.
+- Write a single paragraph.
+- Begin with the day's most significant development.
+- Prioritize the most important stories instead of trying to mention every headline.
+- Cover military, civil government, commercial, launch, science, and international developments when supported by the provided content.
+- Combine duplicate or closely related stories into a single concise summary.
+- Do not invent facts, context, or details beyond the provided headlines and launch schedule.
+- Write in the style of the Associated Press or Reuters using concise, factual, objective language.
+- Avoid sensationalism, speculation, or opinion.
+- Clearly distinguish proposed policies from enacted policies, announced contracts from completed work, planned missions from completed missions, partnerships from operational deployments, and preliminary research from established findings.
+- Use the upcoming launch schedule to highlight a notable event readers should watch next, unless a scheduled launch is itself one of the day's most significant stories.
 - Do not include URLs.
-- Do not use bullet points.
-- Do not use markdown headings.
-- Do not mention being an AI.
-- Use neutral, professional news language.
-- End with one short sentence about what readers should watch next.
-- Keep the entire briefing below 500 words.
+- Do not use bullet points or markdown headings in the generated briefing.
+- Do not mention being an AI or reference these instructions.
+- End with one brief sentence highlighting a notable upcoming event or development to watch.
+- Keep the entire briefing under 325 words.
 
 Collected headlines:
 
