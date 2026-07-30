@@ -343,7 +343,7 @@ def build_summary_html(summary_text, summary_date):
 AI DAILY BRIEFING
 </div>
 
-<h2 style="margin:8px 0 5px 0;">
+<h2 style="margin:8px 0 5px 0; color:#222;">
 Today in Space
 </h2>
 
@@ -358,6 +358,7 @@ Today in Space
     text-align:left;
     line-height:1.7;
     font-size:17px;
+    color:#222;
 ">
 {paragraphs_html}
 </div>
