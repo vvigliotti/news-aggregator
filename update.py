@@ -532,6 +532,47 @@ def format_sam_date(value):
 
     return str(value)
 
+def format_sam_agency(value):
+    """Shorten SAM.gov's long agency hierarchy for display."""
+
+    if not value:
+        return "Federal agency"
+
+    parts = [
+        part.strip()
+        for part in str(value).split(".")
+        if part.strip()
+    ]
+
+    # Usually the final part is the most specific office.
+    agency = parts[-1] if parts else str(value).strip()
+
+    # Convert all-caps SAM.gov text into readable title case.
+    if agency.isupper():
+        agency = agency.title()
+
+    # Restore common acronyms that title case changes incorrectly.
+    replacements = {
+        "Nasa": "NASA",
+        "Noaa": "NOAA",
+        "Darpa": "DARPA",
+        "Ussf": "USSF",
+        "Usaf": "USAF",
+        "Afrl": "AFRL",
+        "Dod": "DoD",
+        "Ssc": "SSC",
+        "Sda": "SDA",
+    }
+
+    for old, new in replacements.items():
+        agency = re.sub(
+            rf"\b{re.escape(old)}\b",
+            new,
+            agency,
+            flags=re.I,
+        )
+
+    return agency
 
 # ============================================================
 # END SAM.GOV — SPACE ACQUISITION WATCH
@@ -923,9 +964,11 @@ if sam_opportunities:
             opportunity.get("title") or "Untitled opportunity"
         )
 
-        safe_agency = html_lib.escape(
-            opportunity.get("agency") or "Federal agency"
+        short_agency = format_sam_agency(
+            opportunity.get("agency")
         )
+
+        safe_agency = html_lib.escape(short_agency)
 
         safe_notice_type = html_lib.escape(
             opportunity.get("notice_type") or "Opportunity"
@@ -943,19 +986,25 @@ if sam_opportunities:
             )
         )
 
-        solicitation_number = (
-            opportunity.get("solicitation_number")
+        solicitation_number = opportunity.get(
+            "solicitation_number"
         )
 
-        solicitation_html = ""
+        metadata_parts = [
+            safe_agency,
+            safe_notice_type,
+            f"Due: {safe_deadline}",
+        ]
 
         if solicitation_number:
-            solicitation_html = (
-                "<br>Solicitation: "
+            metadata_parts.append(
+                "Solicitation: "
                 + html_lib.escape(
                     str(solicitation_number)
                 )
             )
+
+        metadata_html = " • ".join(metadata_parts)
 
         sam_rows.append(f'''
         <div class="headline">
@@ -964,12 +1013,7 @@ if sam_opportunities:
              rel="noopener noreferrer">
             {safe_title}
           </a>
-
-          <div class="source" style="margin-top:3px;">
-            {safe_agency}<br>
-            {safe_notice_type} • Response due: {safe_deadline}
-            {solicitation_html}
-          </div>
+          <span>({metadata_html})</span>
         </div>
         ''')
 
