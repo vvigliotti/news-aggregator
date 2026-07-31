@@ -400,7 +400,7 @@ def fetch_sam_opportunities(limit=8):
         raise RuntimeError("SAM_API_KEY is missing.")
 
     today = datetime.now(timezone.utc).date()
-    posted_from = today - timedelta(days=14)
+    posted_from = today - timedelta(days=30)
 
     params = {
         "api_key": api_key,
