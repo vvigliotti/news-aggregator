@@ -154,6 +154,390 @@ def fetch_upcoming_launches(limit=8, days_ahead=7):
 
     return launches[:limit]
 
+
+# ============================================================
+# SAM.GOV — SPACE ACQUISITION WATCH
+# Pulls and filters recent federal contracting opportunities.
+# Results are cached so SAM.gov is not called every 5 minutes.
+# ============================================================
+
+SAM_CACHE_FILE = "sam_opportunities.json"
+SAM_CACHE_HOURS = 12
+
+SAM_INCLUDE_TERMS = [
+    "space",
+    "space force",
+    "space systems command",
+    "satellite",
+    "spacecraft",
+    "orbital",
+    "orbit",
+    "launch vehicle",
+    "rocket",
+    "payload",
+    "missile warning",
+    "missile tracking",
+    "space domain awareness",
+    "cislunar",
+    "lunar",
+    "remote sensing",
+    "electro-optical",
+    "eo/ir",
+    "radio frequency",
+    "satcom",
+    "satellite communications",
+    "positioning navigation timing",
+    "positioning, navigation and timing",
+    "gps",
+    "ground segment",
+    "ground system",
+    "constellation",
+    "propulsion",
+    "space vehicle",
+]
+
+SAM_AGENCY_TERMS = [
+    "department of the air force",
+    "united states space force",
+    "space systems command",
+    "space development agency",
+    "national aeronautics and space administration",
+    "nasa",
+    "air force research laboratory",
+    "space rapid capabilities office",
+    "missile defense agency",
+    "national reconnaissance office",
+    "darpa",
+    "noaa",
+]
+
+SAM_EXCLUDE_TERMS = [
+    "janitorial",
+    "custodial",
+    "grounds maintenance",
+    "landscaping",
+    "lawn care",
+    "snow removal",
+    "plumbing",
+    "office furniture",
+    "food service",
+    "pest control",
+    "roof repair",
+    "flooring",
+    "parking lot",
+    "security guard services",
+    "trash removal",
+    "waste removal",
+    "building maintenance",
+    "hvac maintenance",
+]
+
+
+def load_sam_cache():
+    """Load previously saved SAM.gov opportunities."""
+
+    try:
+        with open(SAM_CACHE_FILE, "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        if isinstance(data, dict):
+            return data
+
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        pass
+
+    return {}
+
+
+def sam_cache_is_fresh(cache):
+    """Return True when the SAM.gov cache is less than 12 hours old."""
+
+    fetched_at = cache.get("fetched_at")
+
+    if not fetched_at:
+        return False
+
+    try:
+        fetched_time = datetime.fromisoformat(
+            fetched_at.replace("Z", "+00:00")
+        )
+
+        age = datetime.now(timezone.utc) - fetched_time
+
+        return age < timedelta(hours=SAM_CACHE_HOURS)
+
+    except (TypeError, ValueError):
+        return False
+
+
+def save_sam_cache(opportunities):
+    """Save normalized SAM.gov opportunities for later workflow runs."""
+
+    data = {
+        "fetched_at": datetime.now(timezone.utc).isoformat(),
+        "opportunities": opportunities,
+    }
+
+    temporary_file = SAM_CACHE_FILE + ".tmp"
+
+    with open(temporary_file, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=2, ensure_ascii=False)
+
+    os.replace(temporary_file, SAM_CACHE_FILE)
+
+
+def get_sam_searchable_text(opportunity):
+    """Combine available SAM.gov fields for relevance scoring."""
+
+    fields = [
+        opportunity.get("title"),
+        opportunity.get("fullParentPathName"),
+        opportunity.get("department"),
+        opportunity.get("subtier"),
+        opportunity.get("office"),
+        opportunity.get("description"),
+        opportunity.get("solicitationNumber"),
+    ]
+
+    return " ".join(
+        str(value)
+        for value in fields
+        if value
+    ).lower()
+
+
+def score_sam_opportunity(opportunity):
+    """Score an opportunity based on space relevance."""
+
+    searchable_text = get_sam_searchable_text(opportunity)
+
+    if any(term in searchable_text for term in SAM_EXCLUDE_TERMS):
+        return -100
+
+    score = 0
+
+    for term in SAM_INCLUDE_TERMS:
+        if term in searchable_text:
+            score += 3
+
+    for term in SAM_AGENCY_TERMS:
+        if term in searchable_text:
+            score += 4
+
+    # Strong signals
+    if "space force" in searchable_text:
+        score += 6
+
+    if "space systems command" in searchable_text:
+        score += 6
+
+    if "space development agency" in searchable_text:
+        score += 6
+
+    if "satellite" in searchable_text:
+        score += 3
+
+    if "spacecraft" in searchable_text:
+        score += 3
+
+    return score
+
+
+def normalize_sam_opportunity(opportunity):
+    """Convert the SAM.gov response into fields used by the webpage."""
+
+    title = opportunity.get("title") or "Untitled opportunity"
+
+    agency = (
+        opportunity.get("fullParentPathName")
+        or opportunity.get("department")
+        or opportunity.get("subtier")
+        or "Federal agency"
+    )
+
+    response_deadline = (
+        opportunity.get("responseDeadLine")
+        or opportunity.get("reponseDeadLine")
+    )
+
+    link = (
+        opportunity.get("uiLink")
+        or opportunity.get("additionalInfoLink")
+    )
+
+    notice_id = opportunity.get("noticeId")
+
+    if not link and notice_id:
+        link = (
+            "https://sam.gov/opp/"
+            + str(notice_id)
+            + "/view"
+        )
+
+    if not link:
+        link = "https://sam.gov/search/?index=opp"
+
+    return {
+        "notice_id": notice_id,
+        "title": title,
+        "agency": agency,
+        "posted_date": opportunity.get("postedDate"),
+        "response_deadline": response_deadline,
+        "notice_type": opportunity.get("type") or "Opportunity",
+        "solicitation_number": opportunity.get("solicitationNumber"),
+        "naics_code": opportunity.get("naicsCode"),
+        "link": link,
+        "relevance_score": score_sam_opportunity(opportunity),
+    }
+
+
+def fetch_sam_opportunities(limit=8):
+    """Fetch recent space-related opportunities from SAM.gov."""
+
+    api_key = os.environ.get("SAM_API_KEY")
+
+    if not api_key:
+        raise RuntimeError("SAM_API_KEY is missing.")
+
+    today = datetime.now(timezone.utc).date()
+    posted_from = today - timedelta(days=14)
+
+    params = {
+        "api_key": api_key,
+        "postedFrom": posted_from.strftime("%m/%d/%Y"),
+        "postedTo": today.strftime("%m/%d/%Y"),
+        "limit": 100,
+        "offset": 0,
+    }
+
+    url = (
+        "https://api.sam.gov/opportunities/v2/search?"
+        + urlencode(params)
+    )
+
+    request = Request(
+        url,
+        headers={
+            "User-Agent": "SpaceHeadlinesBot/1.0",
+            "Accept": "application/json",
+        },
+    )
+
+    with urlopen(request, timeout=30) as response:
+        data = json.loads(
+            response.read().decode("utf-8")
+        )
+
+    raw_opportunities = data.get("opportunitiesData", [])
+
+    scored_opportunities = []
+
+    for opportunity in raw_opportunities:
+        score = score_sam_opportunity(opportunity)
+
+        # Require at least one meaningful space or agency match.
+        if score < 4:
+            continue
+
+        normalized = normalize_sam_opportunity(opportunity)
+        scored_opportunities.append(normalized)
+
+    # Highest relevance first, then newest posted date.
+    scored_opportunities.sort(
+        key=lambda item: (
+            item.get("relevance_score", 0),
+            item.get("posted_date") or "",
+        ),
+        reverse=True,
+    )
+
+    # Remove duplicates by notice ID or title.
+    unique_opportunities = []
+    seen = set()
+
+    for opportunity in scored_opportunities:
+        unique_key = (
+            opportunity.get("notice_id")
+            or opportunity.get("title")
+        )
+
+        if unique_key in seen:
+            continue
+
+        seen.add(unique_key)
+        unique_opportunities.append(opportunity)
+
+    print(
+        f"✅ SAM.gov returned {len(raw_opportunities)} records; "
+        f"{len(unique_opportunities)} passed the space filter."
+    )
+
+    return unique_opportunities[:limit]
+
+
+def get_sam_opportunities(limit=8):
+    """
+    Use cached opportunities when fresh. If a new API request fails,
+    continue using the previous cache.
+    """
+
+    cache = load_sam_cache()
+    cached_opportunities = cache.get("opportunities", [])
+
+    if sam_cache_is_fresh(cache) and cached_opportunities:
+        print("ℹ️ Reusing cached SAM.gov opportunities.")
+        return cached_opportunities[:limit]
+
+    try:
+        opportunities = fetch_sam_opportunities(limit=limit)
+        save_sam_cache(opportunities)
+        return opportunities
+
+    except Exception as error:
+        print(f"⚠️ SAM.gov update failed: {error}")
+
+        if cached_opportunities:
+            print("ℹ️ Using the previous SAM.gov cache.")
+            return cached_opportunities[:limit]
+
+        return []
+
+
+def format_sam_date(value):
+    """Convert SAM.gov date values into readable dates."""
+
+    if not value:
+        return "Not listed"
+
+    date_formats = [
+        "%Y-%m-%dT%H:%M:%S.%f%z",
+        "%Y-%m-%dT%H:%M:%S%z",
+        "%Y-%m-%d",
+        "%m/%d/%Y",
+    ]
+
+    normalized_value = str(value).replace("Z", "+0000")
+    normalized_value = normalized_value.replace("+00:00", "+0000")
+
+    for date_format in date_formats:
+        try:
+            parsed_date = datetime.strptime(
+                normalized_value,
+                date_format,
+            )
+            return parsed_date.strftime("%b %d, %Y")
+
+        except ValueError:
+            continue
+
+    return str(value)
+
+
+# ============================================================
+# END SAM.GOV — SPACE ACQUISITION WATCH
+# ============================================================
+
+
 # CONVERT TIMESTAMP TO "Xh ago" or "Xm ago"
 def get_age_string(timestamp):
     now = datetime.now(timezone.utc)
@@ -456,9 +840,17 @@ if top_story:
 
 # NEW: fetch upcoming launches (safe fail)
 try:
-    upcoming_launches = fetch_upcoming_launches(limit=8, days_ahead=7)
-except Exception:
+    upcoming_launches = fetch_upcoming_launches(
+        limit=8,
+        days_ahead=7
+    )
+except Exception as error:
+    print(f"⚠️ Upcoming launches skipped: {error}")
     upcoming_launches = []
+
+
+# NEW: fetch SAM.gov space opportunities
+sam_opportunities = get_sam_opportunities(limit=8)
 
 # 📚 Section Columns
 sections = ['<div class="columns">']
@@ -481,24 +873,136 @@ for source in feeds.keys():
 # NEW: Append right-most column for Upcoming Launches
 if upcoming_launches:
     rows = []
+
     for l in upcoming_launches:
         rows.append(f'''
         <div class="headline">
           <strong>{l["when"]}</strong> — {l["name"]}
-          <div class="source" style="margin-top:2px;">{l["provider"]} • {l["pad"]}{(" — " + l["loc"]) if l["loc"] else ""}</div>
+          <div class="source" style="margin-top:2px;">
+            {l["provider"]} • {l["pad"]}{(" — " + l["loc"]) if l["loc"] else ""}
+          </div>
         </div>
         ''')
-    credit = '<div class="source" style="margin-top:6px;">Data: <a href="https://thespacedevs.com/" target="_blank">Launch Library 2 (The Space Devs)</a></div>'
+
+    credit = '''
+    <div class="source" style="margin-top:6px;">
+      Data:
+      <a href="https://thespacedevs.com/"
+         target="_blank"
+         rel="noopener noreferrer">
+        Launch Library 2 (The Space Devs)
+      </a>
+    </div>
+    '''
+
     launches_column_html = f'''
     <div class="column">
       <div class="section">
-        <h2><a href="https://thespacedevs.com/" target="_blank">Upcoming Launches (next 7 days)</a></h2>
+        <h2>
+          <a href="https://thespacedevs.com/"
+             target="_blank"
+             rel="noopener noreferrer">
+            Upcoming Launches (next 7 days)
+          </a>
+        </h2>
+
         {''.join(rows)}
         {credit}
       </div>
     </div>
     '''
+
     sections.append(launches_column_html)
+
+# NEW: Append Space Acquisition Watch column
+if sam_opportunities:
+    sam_rows = []
+
+    for opportunity in sam_opportunities:
+        safe_title = html_lib.escape(
+            opportunity.get("title") or "Untitled opportunity"
+        )
+
+        safe_agency = html_lib.escape(
+            opportunity.get("agency") or "Federal agency"
+        )
+
+        safe_notice_type = html_lib.escape(
+            opportunity.get("notice_type") or "Opportunity"
+        )
+
+        safe_link = html_lib.escape(
+            opportunity.get("link")
+            or "https://sam.gov/search/?index=opp",
+            quote=True,
+        )
+
+        safe_deadline = html_lib.escape(
+            format_sam_date(
+                opportunity.get("response_deadline")
+            )
+        )
+
+        solicitation_number = (
+            opportunity.get("solicitation_number")
+        )
+
+        solicitation_html = ""
+
+        if solicitation_number:
+            solicitation_html = (
+                "<br>Solicitation: "
+                + html_lib.escape(
+                    str(solicitation_number)
+                )
+            )
+
+        sam_rows.append(f'''
+        <div class="headline">
+          <a href="{safe_link}"
+             target="_blank"
+             rel="noopener noreferrer">
+            {safe_title}
+          </a>
+
+          <div class="source" style="margin-top:3px;">
+            {safe_agency}<br>
+            {safe_notice_type} • Response due: {safe_deadline}
+            {solicitation_html}
+          </div>
+        </div>
+        ''')
+
+    sam_credit = '''
+    <div class="source" style="margin-top:8px;">
+      Source:
+      <a href="https://sam.gov/search/?index=opp"
+         target="_blank"
+         rel="noopener noreferrer">
+        SAM.gov
+      </a>.
+      Verify all requirements and deadlines in the official notice.
+    </div>
+    '''
+
+    sam_column_html = f'''
+    <div class="column">
+      <div class="section">
+        <h2>
+          <a href="https://sam.gov/search/?index=opp"
+             target="_blank"
+             rel="noopener noreferrer">
+            Space Acquisition Watch
+          </a>
+        </h2>
+
+        {''.join(sam_rows)}
+        {sam_credit}
+      </div>
+    </div>
+    '''
+
+    sections.append(sam_column_html)
 
 sections.append('</div>')
 
