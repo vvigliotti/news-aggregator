@@ -14,10 +14,11 @@ from urllib.parse import urlencode
 
 # FEED SOURCES
 feeds = {
-    # 📰 Top 3 Media
+    # 📰 Top Media
     "SpaceNews": "https://spacenews.com/feed/",
     "Breaking Defense": "https://breakingdefense.com/feed/",
     "Air & Space Forces": "https://www.airandspaceforces.com/feed/",
+    "Payload": "https://payloadspace.com/feed",
 
     # 🛰️ Government & Military
     "USSF – Headlines": "https://www.spaceforce.mil/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1060&Category=23812&isdashboardselected=0&max=20",
@@ -41,10 +42,11 @@ feeds = {
 
 # HOMEPAGE LINKS FOR SOURCES
 source_links = {
-    # 📰 Top 3 Media
+    # 📰 Top Media
     "SpaceNews": "https://spacenews.com",
     "Breaking Defense": "https://breakingdefense.com",
     "Air & Space Forces": "https://www.airandspaceforces.com",
+    "Payload": "https://payloadspace.com",
 
     # 🛰️ Government & Military
     "USSF – Headlines": "https://www.spaceforce.mil/News",
