@@ -157,158 +157,195 @@ def fetch_upcoming_launches(limit=8, days_ahead=7):
 
 # ============================================================
 # SAM.GOV — SPACE ACQUISITION WATCH
-# Pulls and filters recent federal contracting opportunities.
-# Results are cached so SAM.gov is not called every 5 minutes.
+# Pulls targeted agency/title searches, then applies a broad
+# space relevance filter. Results are cached between API pulls.
 # ============================================================
 
 SAM_CACHE_FILE = "sam_opportunities.json"
-SAM_CACHE_HOURS = 12
+SAM_CACHE_HOURS = 24
+SAM_API_PAGE_LIMIT = 1000
+
+# Narrow SAM.gov before local keyword scoring. Each dictionary becomes one
+# API request. Targeted organization searches prevent space opportunities
+# from being crowded out by the newest government-wide notices.
+SAM_TARGETED_SEARCHES = [
+    {"organizationName": "Department of the Air Force"},
+    {"organizationName": "National Aeronautics and Space Administration"},
+    {"organizationName": "Missile Defense Agency"},
+    {"organizationName": "National Oceanic and Atmospheric Administration"},
+    {"organizationName": "Defense Advanced Research Projects Agency"},
+    # Broad safety-net search for space notices posted by other agencies.
+    {"title": "space"},
+]
 
 SAM_INCLUDE_TERMS = [
-    "space",
-    "space force",
-    "space systems command",
-    "satellite",
-    "spacecraft",
-    "orbital",
-    "orbit",
-    "launch vehicle",
-    "rocket",
-    "payload",
-    "missile warning",
-    "missile tracking",
-    "space domain awareness",
-    "cislunar",
-    "lunar",
-    "remote sensing",
-    "electro-optical",
-    "eo/ir",
-    "radio frequency",
-    "satcom",
-    "satellite communications",
-    "positioning navigation timing",
-    "positioning, navigation and timing",
-    "gps",
-    "ground segment",
-    "ground system",
-    "constellation",
-    "propulsion",
-    "space vehicle",
+    # Core space terms
+    "space", "space force", "united states space force", "ussf",
+    "space systems command", "ssc", "space development agency", "sda",
+    "space rapid capabilities office", "space rco", "spoc", "starcom",
+    "space training and readiness command", "space operations command",
+    "space systems integration office", "commercial space office",
+    "spacewerx", "afwerx", "space safari", "national space defense center",
+    "combined space operations center", "cspoc", "nsdc",
+
+    # Vehicles, launch, ranges, and on-orbit systems
+    "satellite", "satellites", "spacecraft", "space vehicle", "space vehicles",
+    "orbital", "orbit", "on-orbit", "in-space", "cislunar", "lunar",
+    "launch", "launch vehicle", "launch vehicles", "launch services",
+    "rocket", "booster", "upper stage", "reentry", "re-entry",
+    "range operations", "spaceport", "payload", "payload integration",
+    "rideshare", "hosted payload", "satellite bus", "space bus",
+    "small satellite", "smallsat", "cubesat", "cube sat",
+    "constellation", "proliferated architecture", "proliferated warfighter",
+    "pws a", "pws-a", "tracking layer", "transport layer", "custody layer",
+    "tranche 0", "tranche 1", "tranche 2", "tranche 3",
+
+    # Mission areas
+    "space domain awareness", "space situational awareness", "sda mission",
+    "space surveillance", "space object tracking", "space traffic management",
+    "space traffic coordination", "space battle management", "space control",
+    "counterspace", "counter-space", "orbital warfare", "space superiority",
+    "missile warning", "missile tracking", "missile defense",
+    "hypersonic tracking", "tracking sensor", "overhead persistent infrared",
+    "opir", "sbirs", "next-gen opir", "next generation opir",
+    "weather satellite", "space weather", "environmental monitoring",
+    "remote sensing", "earth observation", "geospatial intelligence",
+    "electro-optical", "electro optical", "infrared", "eo/ir", "eo-ir",
+    "synthetic aperture radar", "sar", "radio frequency", "rf sensing",
+    "signals intelligence", "sigint", "persistent surveillance",
+
+    # Communications, networking, cyber, and C2
+    "satcom", "satellite communications", "military satellite communications",
+    "milsatcom", "protected communications", "protected tactical satcom",
+    "wideband communications", "narrowband communications", "tactical satcom",
+    "commercial satcom", "commercial satellite communications",
+    "laser communications", "optical communications", "optical crosslink",
+    "crosslink", "cross-link", "inter-satellite link", "inter satellite link",
+    "mesh network", "space data transport", "space networking",
+    "ground segment", "ground system", "ground station", "ground terminal",
+    "satellite terminal", "user terminal", "gateway", "telemetry tracking and command",
+    "telemetry, tracking and command", "tt&c", "ttc", "mission control",
+    "command and control", "c2", "battle management command and control",
+    "bmc2", "c3", "c4isr", "space c2", "space command and control",
+    "enterprise ground services", "egs", "unified data library", "udl",
+    "space cyber", "satellite cyber", "cybersecurity for space",
+
+    # PNT and timing
+    "positioning navigation timing", "positioning, navigation and timing",
+    "positioning navigation and timing", "pnt", "gps", "global positioning system",
+    "navigation warfare", "navwar", "alternative pnt", "assured pnt",
+    "resilient pnt", "timing synchronization", "precision timing",
+
+    # Space technology and engineering
+    "propulsion", "electric propulsion", "chemical propulsion", "ion propulsion",
+    "hall thruster", "thruster", "space power", "solar array", "solar arrays",
+    "radiation hardened", "radiation-hardened", "rad hard", "space qualified",
+    "space-qualified", "flight qualified", "flight-qualified", "space grade",
+    "space-grade", "space electronics", "space microelectronics",
+    "space sensor", "space sensors", "star tracker", "reaction wheel",
+    "attitude determination", "attitude control", "guidance navigation and control",
+    "gn&c", "gnc", "thermal control", "space materials", "space environment",
+    "vacuum testing", "thermal vacuum", "tvac", "vibration testing",
+    "radiation testing", "space test", "space experimentation",
+    "on-orbit servicing", "in-space servicing", "satellite servicing",
+    "refueling", "orbital transfer vehicle", "space tug", "debris removal",
+    "space logistics", "in-space manufacturing", "space-based", "space based",
+
+    # Civil/science and named organizations/programs
+    "nasa", "noaa", "darpa", "afrl", "air force research laboratory",
+    "national reconnaissance office", "nro", "national geospatial-intelligence agency",
+    "nga", "missile defense agency", "mda", "space telescope", "observatory",
+    "planetary", "asteroid", "comet", "mars", "moon", "lunar surface",
+    "deep space", "earth science", "heliophysics", "astrophysics",
+    "human spaceflight", "crew vehicle", "commercial crew", "artemis",
+    "gateway program", "international space station", "iss",
+
+    # Acquisition language that often appears in relevant notices
+    "space architecture", "space enterprise", "space capability",
+    "space mission", "space systems", "space system", "space technology",
+    "space acquisition", "space launch", "space communications",
+    "space data", "space operations", "space research", "space science",
+    "orbital services", "satellite services", "satellite operations",
 ]
 
 SAM_AGENCY_TERMS = [
-    "department of the air force",
-    "united states space force",
-    "space systems command",
-    "space development agency",
-    "national aeronautics and space administration",
-    "nasa",
-    "air force research laboratory",
-    "space rapid capabilities office",
-    "missile defense agency",
-    "national reconnaissance office",
-    "darpa",
-    "noaa",
+    "department of the air force", "united states air force", "air force",
+    "united states space force", "space force", "space systems command",
+    "space development agency", "space rapid capabilities office",
+    "national aeronautics and space administration", "nasa",
+    "air force research laboratory", "afrl", "missile defense agency",
+    "national reconnaissance office", "defense advanced research projects agency",
+    "darpa", "national oceanic and atmospheric administration", "noaa",
+    "national geospatial-intelligence agency", "space operations command",
+    "space training and readiness command",
 ]
 
 SAM_EXCLUDE_TERMS = [
-    "janitorial",
-    "custodial",
-    "grounds maintenance",
-    "landscaping",
-    "lawn care",
-    "snow removal",
-    "plumbing",
-    "office furniture",
-    "food service",
-    "pest control",
-    "roof repair",
-    "flooring",
-    "parking lot",
-    "security guard services",
-    "trash removal",
-    "waste removal",
-    "building maintenance",
-    "hvac maintenance",
+    "janitorial", "custodial", "grounds maintenance", "landscaping", "lawn care",
+    "snow removal", "plumbing", "office furniture", "food service", "pest control",
+    "roof repair", "roof replacement", "flooring", "parking lot", "trash removal",
+    "waste removal", "building maintenance", "hvac maintenance", "security guard services",
+    "lodging", "hotel rooms", "catering", "laundry service", "dining facility",
+    "fire alarm inspection", "elevator maintenance", "portable toilets",
 ]
 
 
 def load_sam_cache():
     """Load previously saved SAM.gov opportunities."""
-
     try:
         with open(SAM_CACHE_FILE, "r", encoding="utf-8") as file:
             data = json.load(file)
-
         if isinstance(data, dict):
             return data
-
     except (FileNotFoundError, json.JSONDecodeError, OSError):
         pass
-
     return {}
 
 
 def sam_cache_is_fresh(cache):
-    """Return True when the SAM.gov cache is less than 12 hours old."""
-
+    """Return True when the SAM.gov cache is within the configured age."""
     fetched_at = cache.get("fetched_at")
-
     if not fetched_at:
         return False
-
     try:
-        fetched_time = datetime.fromisoformat(
-            fetched_at.replace("Z", "+00:00")
-        )
-
+        fetched_time = datetime.fromisoformat(fetched_at.replace("Z", "+00:00"))
         age = datetime.now(timezone.utc) - fetched_time
-
         return age < timedelta(hours=SAM_CACHE_HOURS)
-
     except (TypeError, ValueError):
         return False
 
 
 def save_sam_cache(opportunities):
     """Save normalized SAM.gov opportunities for later workflow runs."""
-
     data = {
         "fetched_at": datetime.now(timezone.utc).isoformat(),
         "opportunities": opportunities,
     }
-
     temporary_file = SAM_CACHE_FILE + ".tmp"
-
     with open(temporary_file, "w", encoding="utf-8") as file:
         json.dump(data, file, indent=2, ensure_ascii=False)
-
     os.replace(temporary_file, SAM_CACHE_FILE)
 
 
 def get_sam_searchable_text(opportunity):
     """Combine available SAM.gov fields for relevance scoring."""
-
     fields = [
         opportunity.get("title"),
         opportunity.get("fullParentPathName"),
         opportunity.get("department"),
         opportunity.get("subtier"),
+        opportunity.get("subTier"),
         opportunity.get("office"),
         opportunity.get("description"),
         opportunity.get("solicitationNumber"),
+        opportunity.get("naicsCode"),
+        opportunity.get("classificationCode"),
     ]
-
-    return " ".join(
-        str(value)
-        for value in fields
-        if value
-    ).lower()
+    return " ".join(str(value) for value in fields if value).lower()
 
 
 def score_sam_opportunity(opportunity):
-    """Score an opportunity based on space relevance."""
-
+    """Score an opportunity based on broad space relevance."""
     searchable_text = get_sam_searchable_text(opportunity)
 
     if any(term in searchable_text for term in SAM_EXCLUDE_TERMS):
@@ -324,56 +361,39 @@ def score_sam_opportunity(opportunity):
         if term in searchable_text:
             score += 4
 
-    # Strong signals
-    if "space force" in searchable_text:
-        score += 6
-
-    if "space systems command" in searchable_text:
-        score += 6
-
-    if "space development agency" in searchable_text:
-        score += 6
-
-    if "satellite" in searchable_text:
-        score += 3
-
-    if "spacecraft" in searchable_text:
-        score += 3
+    # Strong, unambiguous signals receive extra weight.
+    strong_signals = [
+        "space force", "space systems command", "space development agency",
+        "satellite", "spacecraft", "orbital", "space domain awareness",
+        "missile warning", "missile tracking", "satcom", "launch vehicle",
+        "national aeronautics and space administration", "nasa",
+    ]
+    for signal in strong_signals:
+        if signal in searchable_text:
+            score += 4
 
     return score
 
 
 def normalize_sam_opportunity(opportunity):
     """Convert the SAM.gov response into fields used by the webpage."""
-
     title = opportunity.get("title") or "Untitled opportunity"
-
     agency = (
         opportunity.get("fullParentPathName")
         or opportunity.get("department")
         or opportunity.get("subtier")
+        or opportunity.get("subTier")
         or "Federal agency"
     )
-
     response_deadline = (
         opportunity.get("responseDeadLine")
         or opportunity.get("reponseDeadLine")
     )
-
-    link = (
-        opportunity.get("uiLink")
-        or opportunity.get("additionalInfoLink")
-    )
-
+    link = opportunity.get("uiLink") or opportunity.get("additionalInfoLink")
     notice_id = opportunity.get("noticeId")
 
     if not link and notice_id:
-        link = (
-            "https://sam.gov/opp/"
-            + str(notice_id)
-            + "/view"
-        )
-
+        link = "https://sam.gov/opp/" + str(notice_id) + "/view"
     if not link:
         link = "https://sam.gov/search/?index=opp"
 
@@ -391,30 +411,18 @@ def normalize_sam_opportunity(opportunity):
     }
 
 
-def fetch_sam_opportunities(limit=8):
-    """Fetch recent space-related opportunities from SAM.gov."""
-
-    api_key = os.environ.get("SAM_API_KEY")
-
-    if not api_key:
-        raise RuntimeError("SAM_API_KEY is missing.")
-
-    today = datetime.now(timezone.utc).date()
-    posted_from = today - timedelta(days=30)
-
+def fetch_sam_search(api_key, posted_from, posted_to, search_params):
+    """Run one targeted SAM.gov search and return its raw records."""
     params = {
         "api_key": api_key,
         "postedFrom": posted_from.strftime("%m/%d/%Y"),
-        "postedTo": today.strftime("%m/%d/%Y"),
-        "limit": 100,
+        "postedTo": posted_to.strftime("%m/%d/%Y"),
+        "limit": SAM_API_PAGE_LIMIT,
         "offset": 0,
+        **search_params,
     }
 
-    url = (
-        "https://api.sam.gov/opportunities/v2/search?"
-        + urlencode(params)
-    )
-
+    url = "https://api.sam.gov/opportunities/v2/search?" + urlencode(params)
     request = Request(
         url,
         headers={
@@ -423,26 +431,96 @@ def fetch_sam_opportunities(limit=8):
         },
     )
 
-    with urlopen(request, timeout=30) as response:
-        data = json.loads(
-            response.read().decode("utf-8")
-        )
+    with urlopen(request, timeout=45) as response:
+        data = json.loads(response.read().decode("utf-8"))
 
-    raw_opportunities = data.get("opportunitiesData", [])
+    records = data.get("opportunitiesData", [])
+    label = ", ".join(f"{key}={value}" for key, value in search_params.items())
+    print(f"ℹ️ SAM.gov targeted search ({label}) returned {len(records)} records.")
+    return records
+
+
+def fetch_sam_opportunities(limit=8):
+    """Fetch and merge targeted, recent space-related SAM.gov opportunities."""
+    api_key = os.environ.get("SAM_API_KEY")
+    if not api_key:
+        raise RuntimeError("SAM_API_KEY is missing.")
+
+    today = datetime.now(timezone.utc).date()
+    posted_from = today - timedelta(days=45)
+
+    raw_opportunities = []
+    successful_searches = 0
+
+    for search_params in SAM_TARGETED_SEARCHES:
+        try:
+            raw_opportunities.extend(
+                fetch_sam_search(api_key, posted_from, today, search_params)
+            )
+            successful_searches += 1
+        except Exception as error:
+            label = ", ".join(
+                f"{key}={value}" for key, value in search_params.items()
+            )
+            print(f"⚠️ SAM.gov targeted search failed ({label}): {error}")
+
+    if successful_searches == 0:
+        raise RuntimeError("All targeted SAM.gov searches failed.")
+
+    # Deduplicate raw results before relevance scoring.
+    unique_raw = []
+    seen_raw = set()
+    for opportunity in raw_opportunities:
+        unique_key = opportunity.get("noticeId") or (
+            opportunity.get("solicitationNumber"), opportunity.get("title")
+        )
+        if unique_key in seen_raw:
+            continue
+        seen_raw.add(unique_key)
+        unique_raw.append(opportunity)
 
     scored_opportunities = []
 
-    for opportunity in raw_opportunities:
+    for opportunity in unique_raw:
         score = score_sam_opportunity(opportunity)
 
-        # Require at least one meaningful space or agency match.
-        if score < 4:
+        # Require at least one actual space-related mission or technology term.
+        # Agency affiliation alone must not make an unrelated notice qualify.
+        searchable_text = get_sam_searchable_text(opportunity)
+
+        agency_only_terms = {
+            "department of the air force",
+            "united states air force",
+            "air force",
+            "national aeronautics and space administration",
+            "nasa",
+            "air force research laboratory",
+            "afrl",
+            "missile defense agency",
+            "mda",
+            "defense advanced research projects agency",
+            "darpa",
+            "national oceanic and atmospheric administration",
+            "noaa",
+            "national reconnaissance office",
+            "nro",
+            "national geospatial-intelligence agency",
+            "nga",
+        }
+
+        has_space_subject_match = any(
+            term in searchable_text
+            for term in SAM_INCLUDE_TERMS
+            if term not in agency_only_terms
+        )
+
+        if not has_space_subject_match:
             continue
 
         normalized = normalize_sam_opportunity(opportunity)
+        normalized["relevance_score"] = score
         scored_opportunities.append(normalized)
 
-    # Highest relevance first, then newest posted date.
     scored_opportunities.sort(
         key=lambda item: (
             item.get("relevance_score", 0),
@@ -451,36 +529,19 @@ def fetch_sam_opportunities(limit=8):
         reverse=True,
     )
 
-    # Remove duplicates by notice ID or title.
-    unique_opportunities = []
-    seen = set()
-
-    for opportunity in scored_opportunities:
-        unique_key = (
-            opportunity.get("notice_id")
-            or opportunity.get("title")
-        )
-
-        if unique_key in seen:
-            continue
-
-        seen.add(unique_key)
-        unique_opportunities.append(opportunity)
-
     print(
-        f"✅ SAM.gov returned {len(raw_opportunities)} records; "
-        f"{len(unique_opportunities)} passed the space filter."
+        f"✅ SAM.gov merged {len(unique_raw)} unique targeted records; "
+        f"{len(scored_opportunities)} passed the expanded space filter."
     )
 
-    return unique_opportunities[:limit]
+    return scored_opportunities[:limit]
 
 
 def get_sam_opportunities(limit=8):
     """
-    Use cached opportunities when fresh. If a new API request fails,
-    continue using the previous cache.
+    Use cached opportunities when fresh. If a new API request fails OR returns
+    zero relevant records, preserve and display the previous non-empty cache.
     """
-
     cache = load_sam_cache()
     cached_opportunities = cache.get("opportunities", [])
 
@@ -490,22 +551,29 @@ def get_sam_opportunities(limit=8):
 
     try:
         opportunities = fetch_sam_opportunities(limit=limit)
-        save_sam_cache(opportunities)
-        return opportunities
+
+        if opportunities:
+            save_sam_cache(opportunities)
+            return opportunities
+
+        # A valid API response with zero matches is not an error, but it should
+        # never erase previously displayed opportunities.
+        print("⚠️ No new space-relevant SAM.gov records found.")
+        if cached_opportunities:
+            print("ℹ️ Preserving the previous non-empty SAM.gov cache.")
+            return cached_opportunities[:limit]
+        return []
 
     except Exception as error:
         print(f"⚠️ SAM.gov update failed: {error}")
-
         if cached_opportunities:
             print("ℹ️ Using the previous SAM.gov cache.")
             return cached_opportunities[:limit]
-
         return []
 
 
 def format_sam_date(value):
     """Convert SAM.gov date values into readable dates."""
-
     if not value:
         return "Not listed"
 
@@ -515,68 +583,40 @@ def format_sam_date(value):
         "%Y-%m-%d",
         "%m/%d/%Y",
     ]
-
     normalized_value = str(value).replace("Z", "+0000")
     normalized_value = normalized_value.replace("+00:00", "+0000")
 
     for date_format in date_formats:
         try:
-            parsed_date = datetime.strptime(
-                normalized_value,
-                date_format,
-            )
+            parsed_date = datetime.strptime(normalized_value, date_format)
             return parsed_date.strftime("%b %d, %Y")
-
         except ValueError:
             continue
-
     return str(value)
+
 
 def format_sam_agency(value):
     """Shorten SAM.gov's long agency hierarchy for display."""
-
     if not value:
         return "Federal agency"
 
-    parts = [
-        part.strip()
-        for part in str(value).split(".")
-        if part.strip()
-    ]
-
-    # Usually the final part is the most specific office.
+    parts = [part.strip() for part in str(value).split(".") if part.strip()]
     agency = parts[-1] if parts else str(value).strip()
 
-    # Convert all-caps SAM.gov text into readable title case.
     if agency.isupper():
         agency = agency.title()
 
-    # Restore common acronyms that title case changes incorrectly.
     replacements = {
-        "Nasa": "NASA",
-        "Noaa": "NOAA",
-        "Darpa": "DARPA",
-        "Ussf": "USSF",
-        "Usaf": "USAF",
-        "Afrl": "AFRL",
-        "Dod": "DoD",
-        "Ssc": "SSC",
-        "Sda": "SDA",
+        "Nasa": "NASA", "Noaa": "NOAA", "Darpa": "DARPA",
+        "Ussf": "USSF", "Usaf": "USAF", "Afrl": "AFRL",
+        "Dod": "DoD", "Ssc": "SSC", "Sda": "SDA",
     }
-
     for old, new in replacements.items():
-        agency = re.sub(
-            rf"\b{re.escape(old)}\b",
-            new,
-            agency,
-            flags=re.I,
-        )
-
+        agency = re.sub(rf"\b{re.escape(old)}\b", new, agency, flags=re.I)
     return agency
 
 # ============================================================
 # END SAM.GOV — SPACE ACQUISITION WATCH
-# ============================================================
 
 
 # CONVERT TIMESTAMP TO "Xh ago" or "Xm ago"
