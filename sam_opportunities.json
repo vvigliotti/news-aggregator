@@ -1,0 +1,101 @@
+{
+  "fetched_at": "2026-08-03T14:49:57.648812+00:00",
+  "opportunities": [
+    {
+      "notice_id": "0cd8895d1deb486896fa51044ea40e93",
+      "title": "ASME SECTION IX ORBITAL WELDING TRAINING",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-07-28",
+      "response_deadline": "2026-07-31T20:30:00-05:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC26938626Q",
+      "naics_code": "611519",
+      "link": "https://sam.gov/workspace/contract/opp/0cd8895d1deb486896fa51044ea40e93/view",
+      "relevance_score": 38
+    },
+    {
+      "notice_id": "401e84c62b5f433195cf3c76f3b08454",
+      "title": "GDP Space Systems Two Channel Telemetry Gateway Bundle",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-07-29",
+      "response_deadline": "2026-08-03T15:00:00-05:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC26939965Q",
+      "naics_code": "334290",
+      "link": "https://sam.gov/workspace/contract/opp/401e84c62b5f433195cf3c76f3b08454/view",
+      "relevance_score": 37
+    },
+    {
+      "notice_id": "393adb465e9247048cd163f30c667e29",
+      "title": "Generative AI for NASA Earth Science Mission Data Hackweek",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-07-16",
+      "response_deadline": "2026-07-20T15:00:00-05:00",
+      "notice_type": "Solicitation",
+      "solicitation_number": "80NSSC26935062Q",
+      "naics_code": "611310",
+      "link": "https://sam.gov/workspace/contract/opp/393adb465e9247048cd163f30c667e29/view",
+      "relevance_score": 34
+    },
+    {
+      "notice_id": "874d51611f7b4200be46f9dd2e998c16",
+      "title": "RFI - Concepts for Design, Construction, and Operation of a Regional Liquefied Natural Gas (LNG) Production and Storage Facility at Kennedy Space Center or Cape Canaveral Space Force Station",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
+      "posted_date": "2026-07-23",
+      "response_deadline": "2026-08-24T17:00:00-04:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "RFI-KSC-LNGplant-2026",
+      "naics_code": "236220",
+      "link": "https://sam.gov/workspace/contract/opp/874d51611f7b4200be46f9dd2e998c16/view",
+      "relevance_score": 33
+    },
+    {
+      "notice_id": "944f5edccf2b492f878328c75ed03b86",
+      "title": "Landsat 10 Spacecraft",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA GODDARD SPACE FLIGHT CENTER",
+      "posted_date": "2026-07-28",
+      "response_deadline": "2026-08-31T13:00:00-04:00",
+      "notice_type": "Solicitation",
+      "solicitation_number": "80GSFC26R0015",
+      "naics_code": "336414",
+      "link": "https://sam.gov/workspace/contract/opp/944f5edccf2b492f878328c75ed03b86/view",
+      "relevance_score": 32
+    },
+    {
+      "notice_id": "9327232ce9fa460ea08804d7b985b430",
+      "title": "NASA Commercial Satellite Data Acquisition (CSDA) and Evaluation of Data in Support of Sustainable Land Imaging (SLI) Commercialization",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA HEADQUARTERS",
+      "posted_date": "2026-07-22",
+      "response_deadline": "2026-08-06T17:00:00-04:00",
+      "notice_type": "Presolicitation",
+      "solicitation_number": "80HQTR26R0008",
+      "naics_code": "541990",
+      "link": "https://sam.gov/workspace/contract/opp/9327232ce9fa460ea08804d7b985b430/view",
+      "relevance_score": 32
+    },
+    {
+      "notice_id": "984e042d5bcd449abae6c009443ff220",
+      "title": "Gas Chromatograph/Coupled Plasma Optical Emission Spectrometer",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-07-31",
+      "response_deadline": "2026-08-07T15:00:00-05:00",
+      "notice_type": "Solicitation",
+      "solicitation_number": "80NSSC26939493Q",
+      "naics_code": "334516",
+      "link": "https://sam.gov/workspace/contract/opp/984e042d5bcd449abae6c009443ff220/view",
+      "relevance_score": 31
+    },
+    {
+      "notice_id": "311b24af74f244cda93564e0640940dd",
+      "title": "In-situ current voltage measurement of solar cells on the International Space Station.",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-07-31",
+      "response_deadline": "2026-08-04T16:00:00-05:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC26937840Q",
+      "naics_code": "541715",
+      "link": "https://sam.gov/workspace/contract/opp/311b24af74f244cda93564e0640940dd/view",
+      "relevance_score": 31
+    }
+  ]
+}
