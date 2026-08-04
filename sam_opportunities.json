@@ -1,11 +1,23 @@
 {
-  "fetched_at": "2026-08-03T14:49:57.648812+00:00",
+  "fetched_at": "2026-08-04T15:39:15.561744+00:00",
   "opportunities": [
+    {
+      "notice_id": "8cccde5123574f2b9967847200b9e78d",
+      "title": "Kill-web Operations Sustainment & Maintenance Of SDA (Space Domain Awareness) Systems (KOSMOSS) Update for Industry",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8820  SUSTAINMENT SDACP SSC/PKL",
+      "posted_date": "2026-07-17",
+      "response_deadline": "2026-10-31T12:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "SSC_BMC3I_SpOC_MD2_2STS_KOSMOSS_7-17-26Update",
+      "naics_code": "541330",
+      "link": "https://sam.gov/workspace/contract/opp/8cccde5123574f2b9967847200b9e78d/view",
+      "relevance_score": 43
+    },
     {
       "notice_id": "0cd8895d1deb486896fa51044ea40e93",
       "title": "ASME SECTION IX ORBITAL WELDING TRAINING",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-07-28",
+      "posted_date": "2026-07-29",
       "response_deadline": "2026-07-31T20:30:00-05:00",
       "notice_type": "Special Notice",
       "solicitation_number": "80NSSC26938626Q",
@@ -26,16 +38,52 @@
       "relevance_score": 37
     },
     {
-      "notice_id": "393adb465e9247048cd163f30c667e29",
-      "title": "Generative AI for NASA Earth Science Mission Data Hackweek",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-07-16",
-      "response_deadline": "2026-07-20T15:00:00-05:00",
-      "notice_type": "Solicitation",
-      "solicitation_number": "80NSSC26935062Q",
-      "naics_code": "611310",
-      "link": "https://sam.gov/workspace/contract/opp/393adb465e9247048cd163f30c667e29/view",
-      "relevance_score": 34
+      "notice_id": "40cad2ee60554dc6977c6a2ede12a1d8",
+      "title": "Sources Sought: Commercial Space Domain Awareness (SDA), Training Large Language Model (LLM) Module_Industry Update 7-17-2026",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8820  SUSTAINMENT SDACP SSC/PKL",
+      "posted_date": "2026-07-17",
+      "response_deadline": "2026-10-31T12:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "FA882026PKLBAS2_Update_7-17-2026",
+      "naics_code": "541512",
+      "link": "https://sam.gov/workspace/contract/opp/40cad2ee60554dc6977c6a2ede12a1d8/view",
+      "relevance_score": 37
+    },
+    {
+      "notice_id": "a5cb081fc2a845f18365914fcf1a2162",
+      "title": "National Security Space Launch (NSSL) Phase 3 Lane 1 Increased Ceiling Modifications",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
+      "posted_date": "2026-07-20",
+      "response_deadline": null,
+      "notice_type": "Justification",
+      "solicitation_number": "NSSLPhase3Lane1",
+      "naics_code": "481212",
+      "link": "https://sam.gov/workspace/contract/opp/a5cb081fc2a845f18365914fcf1a2162/view",
+      "relevance_score": 36
+    },
+    {
+      "notice_id": "3da6d5ae084d4f1fb62d3f3d714a8d1d",
+      "title": "National Security Space Launch (NSSL) Enterprise Payload Processing Management (EPPM) DRAFT Request for Proposal (RFP) and Request for Information",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
+      "posted_date": "2026-07-15",
+      "response_deadline": "2026-08-06T15:00:00-07:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "NSSL_EPPM_dRFP1",
+      "naics_code": "336414",
+      "link": "https://sam.gov/workspace/contract/opp/3da6d5ae084d4f1fb62d3f3d714a8d1d/view",
+      "relevance_score": 36
+    },
+    {
+      "notice_id": "0ac9746c77d8435c8347ddd5026a4960",
+      "title": "National Security Space Launch (NSSL) Phase 3 Lane 1 Industry Day",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
+      "posted_date": "2026-07-29",
+      "response_deadline": "2026-08-05T13:00:00-07:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "NSSL-Ph3Ln1-IndDay082026",
+      "naics_code": "481212",
+      "link": "https://sam.gov/workspace/contract/opp/0ac9746c77d8435c8347ddd5026a4960/view",
+      "relevance_score": 33
     },
     {
       "notice_id": "874d51611f7b4200be46f9dd2e998c16",
@@ -48,54 +96,6 @@
       "naics_code": "236220",
       "link": "https://sam.gov/workspace/contract/opp/874d51611f7b4200be46f9dd2e998c16/view",
       "relevance_score": 33
-    },
-    {
-      "notice_id": "944f5edccf2b492f878328c75ed03b86",
-      "title": "Landsat 10 Spacecraft",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA GODDARD SPACE FLIGHT CENTER",
-      "posted_date": "2026-07-28",
-      "response_deadline": "2026-08-31T13:00:00-04:00",
-      "notice_type": "Solicitation",
-      "solicitation_number": "80GSFC26R0015",
-      "naics_code": "336414",
-      "link": "https://sam.gov/workspace/contract/opp/944f5edccf2b492f878328c75ed03b86/view",
-      "relevance_score": 32
-    },
-    {
-      "notice_id": "9327232ce9fa460ea08804d7b985b430",
-      "title": "NASA Commercial Satellite Data Acquisition (CSDA) and Evaluation of Data in Support of Sustainable Land Imaging (SLI) Commercialization",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA HEADQUARTERS",
-      "posted_date": "2026-07-22",
-      "response_deadline": "2026-08-06T17:00:00-04:00",
-      "notice_type": "Presolicitation",
-      "solicitation_number": "80HQTR26R0008",
-      "naics_code": "541990",
-      "link": "https://sam.gov/workspace/contract/opp/9327232ce9fa460ea08804d7b985b430/view",
-      "relevance_score": 32
-    },
-    {
-      "notice_id": "984e042d5bcd449abae6c009443ff220",
-      "title": "Gas Chromatograph/Coupled Plasma Optical Emission Spectrometer",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-07-31",
-      "response_deadline": "2026-08-07T15:00:00-05:00",
-      "notice_type": "Solicitation",
-      "solicitation_number": "80NSSC26939493Q",
-      "naics_code": "334516",
-      "link": "https://sam.gov/workspace/contract/opp/984e042d5bcd449abae6c009443ff220/view",
-      "relevance_score": 31
-    },
-    {
-      "notice_id": "311b24af74f244cda93564e0640940dd",
-      "title": "In-situ current voltage measurement of solar cells on the International Space Station.",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-07-31",
-      "response_deadline": "2026-08-04T16:00:00-05:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC26937840Q",
-      "naics_code": "541715",
-      "link": "https://sam.gov/workspace/contract/opp/311b24af74f244cda93564e0640940dd/view",
-      "relevance_score": 31
     }
   ]
 }
