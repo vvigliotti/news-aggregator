@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-04T15:39:15.561744+00:00",
+  "fetched_at": "2026-08-05T16:57:09.901754+00:00",
   "opportunities": [
     {
       "notice_id": "8cccde5123574f2b9967847200b9e78d",
@@ -17,7 +17,7 @@
       "notice_id": "0cd8895d1deb486896fa51044ea40e93",
       "title": "ASME SECTION IX ORBITAL WELDING TRAINING",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-07-29",
+      "posted_date": "2026-07-28",
       "response_deadline": "2026-07-31T20:30:00-05:00",
       "notice_type": "Special Notice",
       "solicitation_number": "80NSSC26938626Q",
@@ -74,6 +74,18 @@
       "relevance_score": 36
     },
     {
+      "notice_id": "a23d8758adc647d2bde7c6af7c0825f4",
+      "title": "Two electrolysis stacks and one fuel cell stack to support the development of technology that can convert lunar water into rocket propellant.",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-08-04",
+      "response_deadline": "2026-08-07T13:00:00-05:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC26939712Q",
+      "naics_code": "541715",
+      "link": "https://sam.gov/workspace/contract/opp/a23d8758adc647d2bde7c6af7c0825f4/view",
+      "relevance_score": 34
+    },
+    {
       "notice_id": "0ac9746c77d8435c8347ddd5026a4960",
       "title": "National Security Space Launch (NSSL) Phase 3 Lane 1 Industry Day",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
@@ -83,18 +95,6 @@
       "solicitation_number": "NSSL-Ph3Ln1-IndDay082026",
       "naics_code": "481212",
       "link": "https://sam.gov/workspace/contract/opp/0ac9746c77d8435c8347ddd5026a4960/view",
-      "relevance_score": 33
-    },
-    {
-      "notice_id": "874d51611f7b4200be46f9dd2e998c16",
-      "title": "RFI - Concepts for Design, Construction, and Operation of a Regional Liquefied Natural Gas (LNG) Production and Storage Facility at Kennedy Space Center or Cape Canaveral Space Force Station",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
-      "posted_date": "2026-07-23",
-      "response_deadline": "2026-08-24T17:00:00-04:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "RFI-KSC-LNGplant-2026",
-      "naics_code": "236220",
-      "link": "https://sam.gov/workspace/contract/opp/874d51611f7b4200be46f9dd2e998c16/view",
       "relevance_score": 33
     }
   ]
