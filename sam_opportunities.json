@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-05T16:57:09.901754+00:00",
+  "fetched_at": "2026-08-06T22:56:53.089472+00:00",
   "opportunities": [
     {
       "notice_id": "8cccde5123574f2b9967847200b9e78d",
@@ -50,6 +50,18 @@
       "relevance_score": 37
     },
     {
+      "notice_id": "884bfd18a5a94dc89622eed6dba65c93",
+      "title": "National Security Space Launch (NSSL) Enterprise Payload Processing Management (EPPM) DRAFT Request for Proposal (RFP) and Request for Information",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
+      "posted_date": "2026-08-06",
+      "response_deadline": "2026-08-11T17:00:00-07:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "NSSL_EPPM_dRFP1",
+      "naics_code": "336414",
+      "link": "https://sam.gov/workspace/contract/opp/884bfd18a5a94dc89622eed6dba65c93/view",
+      "relevance_score": 36
+    },
+    {
       "notice_id": "a5cb081fc2a845f18365914fcf1a2162",
       "title": "National Security Space Launch (NSSL) Phase 3 Lane 1 Increased Ceiling Modifications",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
@@ -59,18 +71,6 @@
       "solicitation_number": "NSSLPhase3Lane1",
       "naics_code": "481212",
       "link": "https://sam.gov/workspace/contract/opp/a5cb081fc2a845f18365914fcf1a2162/view",
-      "relevance_score": 36
-    },
-    {
-      "notice_id": "3da6d5ae084d4f1fb62d3f3d714a8d1d",
-      "title": "National Security Space Launch (NSSL) Enterprise Payload Processing Management (EPPM) DRAFT Request for Proposal (RFP) and Request for Information",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
-      "posted_date": "2026-07-15",
-      "response_deadline": "2026-08-06T15:00:00-07:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "NSSL_EPPM_dRFP1",
-      "naics_code": "336414",
-      "link": "https://sam.gov/workspace/contract/opp/3da6d5ae084d4f1fb62d3f3d714a8d1d/view",
       "relevance_score": 36
     },
     {
