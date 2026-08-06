@@ -2,12 +2,15 @@ name: Update Headlines
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Runs every 5 minutes (UTC)
+    - cron: '2-59/5 * * * *'
   workflow_dispatch:
 
 concurrency:
   group: update-headlines
-  cancel-in-progress: true
+  cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
   build:
