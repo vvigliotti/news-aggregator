@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-10T23:54:52.239502+00:00",
+  "fetched_at": "2026-08-11T23:58:03.163269+00:00",
   "opportunities": [
     {
       "notice_id": "8cccde5123574f2b9967847200b9e78d",
@@ -14,10 +14,22 @@
       "relevance_score": 43
     },
     {
+      "notice_id": "3a1aaf8a92454076a2a149c3b704aabc",
+      "title": "TECHNOLOGY TRANSFER OPPORTUNITY: Method for Transferring a Spacecraft from Geosynchronous Transfer Orbit to Lunar Orbit (TOP2-272)",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA MARSHALL SPACE FLIGHT CENTER",
+      "posted_date": "2026-08-11",
+      "response_deadline": "2027-08-11T15:00:00-05:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "T2P-ARC-00125",
+      "naics_code": null,
+      "link": "https://sam.gov/workspace/contract/opp/3a1aaf8a92454076a2a149c3b704aabc/view",
+      "relevance_score": 41
+    },
+    {
       "notice_id": "0cd8895d1deb486896fa51044ea40e93",
       "title": "ASME SECTION IX ORBITAL WELDING TRAINING",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-07-29",
+      "posted_date": "2026-07-28",
       "response_deadline": "2026-07-31T20:30:00-05:00",
       "notice_type": "Special Notice",
       "solicitation_number": "80NSSC26938626Q",
@@ -48,18 +60,6 @@
       "naics_code": "541512",
       "link": "https://sam.gov/workspace/contract/opp/40cad2ee60554dc6977c6a2ede12a1d8/view",
       "relevance_score": 37
-    },
-    {
-      "notice_id": "884bfd18a5a94dc89622eed6dba65c93",
-      "title": "National Security Space Launch (NSSL) Enterprise Payload Processing Management (EPPM) DRAFT Request for Proposal (RFP) and Request for Information",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
-      "posted_date": "2026-08-06",
-      "response_deadline": "2026-08-11T17:00:00-07:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "NSSL_EPPM_dRFP1",
-      "naics_code": "336414",
-      "link": "https://sam.gov/workspace/contract/opp/884bfd18a5a94dc89622eed6dba65c93/view",
-      "relevance_score": 36
     },
     {
       "notice_id": "a5cb081fc2a845f18365914fcf1a2162",
