@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-13T02:11:57.188612+00:00",
+  "fetched_at": "2026-08-14T04:17:00.204312+00:00",
   "opportunities": [
     {
       "notice_id": "8cccde5123574f2b9967847200b9e78d",
@@ -62,6 +62,18 @@
       "relevance_score": 37
     },
     {
+      "notice_id": "cdb642fd15f645c3ac22204f3f9a16a7",
+      "title": "REQUEST FOR INFORMATION (RFI)/ SOURCES SOUGHT Space Force Mission Delta 9 (MD9) – SL-5 EC2-S Ground System Sustainment",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.AIR FORCE SPACE COMMAND.FA2518 USSF SPOC/SAIO",
+      "posted_date": "2026-08-13",
+      "response_deadline": "2026-09-11T11:00:00-06:00",
+      "notice_type": "Sources Sought",
+      "solicitation_number": "RFI-MD9-2026-01",
+      "naics_code": "541330",
+      "link": "https://sam.gov/workspace/contract/opp/cdb642fd15f645c3ac22204f3f9a16a7/view",
+      "relevance_score": 36
+    },
+    {
       "notice_id": "a5cb081fc2a845f18365914fcf1a2162",
       "title": "National Security Space Launch (NSSL) Phase 3 Lane 1 Increased Ceiling Modifications",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
@@ -84,18 +96,6 @@
       "naics_code": "541715",
       "link": "https://sam.gov/workspace/contract/opp/a23d8758adc647d2bde7c6af7c0825f4/view",
       "relevance_score": 34
-    },
-    {
-      "notice_id": "2d858b98ed9942e89b04a98338a7b8e7",
-      "title": "REQUEST FOR INFORMATION (RFI)/ SOURCES SOUGHT Space Force Mission Delta 9 (MD9) – SL-5 EC2-S Ground System Sustainment",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.AIR FORCE SPACE COMMAND.FA2518 USSF SPOC/SAIO",
-      "posted_date": "2026-08-12",
-      "response_deadline": "2026-09-11T12:00:00-06:00",
-      "notice_type": "Sources Sought",
-      "solicitation_number": "RFI-MD9-2026-01",
-      "naics_code": "541330",
-      "link": "https://sam.gov/workspace/contract/opp/2d858b98ed9942e89b04a98338a7b8e7/view",
-      "relevance_score": 33
     }
   ]
 }
