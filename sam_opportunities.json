@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-18T05:18:20.088378+00:00",
+  "fetched_at": "2026-08-19T05:39:39.245896+00:00",
   "opportunities": [
     {
       "notice_id": "8cccde5123574f2b9967847200b9e78d",
@@ -24,18 +24,6 @@
       "naics_code": null,
       "link": "https://sam.gov/workspace/contract/opp/3a1aaf8a92454076a2a149c3b704aabc/view",
       "relevance_score": 41
-    },
-    {
-      "notice_id": "401e84c62b5f433195cf3c76f3b08454",
-      "title": "GDP Space Systems Two Channel Telemetry Gateway Bundle",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-07-29",
-      "response_deadline": "2026-08-03T15:00:00-05:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC26939965Q",
-      "naics_code": "334290",
-      "link": "https://sam.gov/workspace/contract/opp/401e84c62b5f433195cf3c76f3b08454/view",
-      "relevance_score": 37
     },
     {
       "notice_id": "40cad2ee60554dc6977c6a2ede12a1d8",
@@ -95,6 +83,18 @@
       "solicitation_number": "NSSL-Ph3Ln1-IndDay082026",
       "naics_code": "481212",
       "link": "https://sam.gov/workspace/contract/opp/0ac9746c77d8435c8347ddd5026a4960/view",
+      "relevance_score": 33
+    },
+    {
+      "notice_id": "874d51611f7b4200be46f9dd2e998c16",
+      "title": "RFI - Concepts for Design, Construction, and Operation of a Regional Liquefied Natural Gas (LNG) Production and Storage Facility at Kennedy Space Center or Cape Canaveral Space Force Station",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
+      "posted_date": "2026-07-23",
+      "response_deadline": "2026-08-24T17:00:00-04:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "RFI-KSC-LNGplant-2026",
+      "naics_code": "236220",
+      "link": "https://sam.gov/workspace/contract/opp/874d51611f7b4200be46f9dd2e998c16/view",
       "relevance_score": 33
     }
   ]
