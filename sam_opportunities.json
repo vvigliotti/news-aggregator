@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-24T08:28:13.493459+00:00",
+  "fetched_at": "2026-08-25T08:56:20.545838+00:00",
   "opportunities": [
     {
       "notice_id": "8cccde5123574f2b9967847200b9e78d",
@@ -50,6 +50,18 @@
       "relevance_score": 36
     },
     {
+      "notice_id": "17917146aea5478595cf380663bdf19a",
+      "title": "RFI - Concepts for Design, Construction, and Operation of a Regional Liquefied Natural Gas (LNG) Production and Storage Facility at Kennedy Space Center or Cape Canaveral Space Force Station",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
+      "posted_date": "2026-08-24",
+      "response_deadline": "2026-09-21T17:00:00-04:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "RFI-KSC-LNGplant-2026",
+      "naics_code": "236220",
+      "link": "https://sam.gov/workspace/contract/opp/17917146aea5478595cf380663bdf19a/view",
+      "relevance_score": 33
+    },
+    {
       "notice_id": "0ac9746c77d8435c8347ddd5026a4960",
       "title": "National Security Space Launch (NSSL) Phase 3 Lane 1 Industry Day",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
@@ -59,18 +71,6 @@
       "solicitation_number": "NSSL-Ph3Ln1-IndDay082026",
       "naics_code": "481212",
       "link": "https://sam.gov/workspace/contract/opp/0ac9746c77d8435c8347ddd5026a4960/view",
-      "relevance_score": 33
-    },
-    {
-      "notice_id": "874d51611f7b4200be46f9dd2e998c16",
-      "title": "RFI - Concepts for Design, Construction, and Operation of a Regional Liquefied Natural Gas (LNG) Production and Storage Facility at Kennedy Space Center or Cape Canaveral Space Force Station",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
-      "posted_date": "2026-07-23",
-      "response_deadline": "2026-08-24T17:00:00-04:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "RFI-KSC-LNGplant-2026",
-      "naics_code": "236220",
-      "link": "https://sam.gov/workspace/contract/opp/874d51611f7b4200be46f9dd2e998c16/view",
       "relevance_score": 33
     },
     {
