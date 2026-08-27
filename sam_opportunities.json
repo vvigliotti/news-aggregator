@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-26T09:38:45.402967+00:00",
+  "fetched_at": "2026-08-27T10:37:29.155539+00:00",
   "opportunities": [
     {
       "notice_id": "8cccde5123574f2b9967847200b9e78d",
@@ -62,6 +62,18 @@
       "relevance_score": 36
     },
     {
+      "notice_id": "bf71dc3d2b1e4ca791116f29ef47f1dc",
+      "title": "Shadow Chaser: infrared camera for stellar occultations",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-08-26",
+      "response_deadline": "2026-09-01T07:00:00-05:00",
+      "notice_type": "Combined Synopsis/Solicitation",
+      "solicitation_number": "80NSSC26938932Q",
+      "naics_code": "334519",
+      "link": "https://sam.gov/workspace/contract/opp/bf71dc3d2b1e4ca791116f29ef47f1dc/view",
+      "relevance_score": 34
+    },
+    {
       "notice_id": "17917146aea5478595cf380663bdf19a",
       "title": "RFI - Concepts for Design, Construction, and Operation of a Regional Liquefied Natural Gas (LNG) Production and Storage Facility at Kennedy Space Center or Cape Canaveral Space Force Station",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
@@ -84,18 +96,6 @@
       "naics_code": "481212",
       "link": "https://sam.gov/workspace/contract/opp/0ac9746c77d8435c8347ddd5026a4960/view",
       "relevance_score": 33
-    },
-    {
-      "notice_id": "1cce3da03a5c45e08d39016e0872e54f",
-      "title": "Spacecraft Processing and Operations Contract (SPOC) On-Ramp",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
-      "posted_date": "2026-08-17",
-      "response_deadline": null,
-      "notice_type": "Award Notice",
-      "solicitation_number": "80KSC026D000X",
-      "naics_code": "336419",
-      "link": "https://sam.gov/workspace/contract/opp/1cce3da03a5c45e08d39016e0872e54f/view",
-      "relevance_score": 32
     }
   ]
 }
