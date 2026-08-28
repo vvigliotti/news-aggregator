@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-27T10:37:29.155539+00:00",
+  "fetched_at": "2026-08-28T17:12:32.389846+00:00",
   "opportunities": [
     {
       "notice_id": "8cccde5123574f2b9967847200b9e78d",
@@ -36,6 +36,18 @@
       "naics_code": null,
       "link": "https://sam.gov/workspace/contract/opp/3a1aaf8a92454076a2a149c3b704aabc/view",
       "relevance_score": 41
+    },
+    {
+      "notice_id": "7538e480f7674b50905dec793a70cf95",
+      "title": "GDP Space Systems 4 channel telemetry gateway bundle",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-08-27",
+      "response_deadline": "2026-09-01T08:00:00-05:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC2642673Q",
+      "naics_code": "334220",
+      "link": "https://sam.gov/workspace/contract/opp/7538e480f7674b50905dec793a70cf95/view",
+      "relevance_score": 37
     },
     {
       "notice_id": "40cad2ee60554dc6977c6a2ede12a1d8",
@@ -83,18 +95,6 @@
       "solicitation_number": "RFI-KSC-LNGplant-2026",
       "naics_code": "236220",
       "link": "https://sam.gov/workspace/contract/opp/17917146aea5478595cf380663bdf19a/view",
-      "relevance_score": 33
-    },
-    {
-      "notice_id": "0ac9746c77d8435c8347ddd5026a4960",
-      "title": "National Security Space Launch (NSSL) Phase 3 Lane 1 Industry Day",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
-      "posted_date": "2026-07-29",
-      "response_deadline": "2026-08-05T13:00:00-07:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "NSSL-Ph3Ln1-IndDay082026",
-      "naics_code": "481212",
-      "link": "https://sam.gov/workspace/contract/opp/0ac9746c77d8435c8347ddd5026a4960/view",
       "relevance_score": 33
     }
   ]
