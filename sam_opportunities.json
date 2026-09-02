@@ -1,6 +1,18 @@
 {
-  "fetched_at": "2026-09-01T21:16:55.924932+00:00",
+  "fetched_at": "2026-09-02T23:17:31.352972+00:00",
   "opportunities": [
+    {
+      "notice_id": "c07d4dc2c05e40349e1169124a31e279",
+      "title": "Vandenberg Space Force Base (VSFB) Call for Whitepapers for Mission Development Zone (MDZ) Outgrant",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND",
+      "posted_date": "2026-09-02",
+      "response_deadline": "2026-10-02T16:00:00-07:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "VSFBMDZCall",
+      "naics_code": null,
+      "link": "https://sam.gov/workspace/contract/opp/c07d4dc2c05e40349e1169124a31e279/view",
+      "relevance_score": 41
+    },
     {
       "notice_id": "0a4e5a77cdc54c409d873e87f8b33ffb",
       "title": "To make significant progress toward our understanding of the climate evolution and habitability of Mars, using the in situ SAM data, in particular, and related remote sensing data from relevant ground-based telescopes and spacecraft, in general",
@@ -74,27 +86,15 @@
       "relevance_score": 34
     },
     {
-      "notice_id": "17917146aea5478595cf380663bdf19a",
-      "title": "RFI - Concepts for Design, Construction, and Operation of a Regional Liquefied Natural Gas (LNG) Production and Storage Facility at Kennedy Space Center or Cape Canaveral Space Force Station",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
-      "posted_date": "2026-08-24",
-      "response_deadline": "2026-09-21T17:00:00-04:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "RFI-KSC-LNGplant-2026",
-      "naics_code": "236220",
-      "link": "https://sam.gov/workspace/contract/opp/17917146aea5478595cf380663bdf19a/view",
-      "relevance_score": 33
-    },
-    {
-      "notice_id": "0ac9746c77d8435c8347ddd5026a4960",
+      "notice_id": "d2fd1aa519c4400b86b8e44b62a67398",
       "title": "National Security Space Launch (NSSL) Phase 3 Lane 1 Industry Day",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO ASSURED ACCESS TO SPACE.FA8811 ASSRD ACSS TO SPC SSC/AAK-LA",
-      "posted_date": "2026-07-29",
+      "posted_date": "2026-09-02",
       "response_deadline": "2026-08-05T13:00:00-07:00",
       "notice_type": "Special Notice",
       "solicitation_number": "NSSL-Ph3Ln1-IndDay082026",
       "naics_code": "481212",
-      "link": "https://sam.gov/workspace/contract/opp/0ac9746c77d8435c8347ddd5026a4960/view",
+      "link": "https://sam.gov/workspace/contract/opp/d2fd1aa519c4400b86b8e44b62a67398/view",
       "relevance_score": 33
     }
   ]
