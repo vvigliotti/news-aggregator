@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-10T17:41:41.496159+00:00",
+  "fetched_at": "2026-09-11T19:59:30.698004+00:00",
   "opportunities": [
     {
       "notice_id": "c07d4dc2c05e40349e1169124a31e279",
@@ -36,6 +36,18 @@
       "naics_code": null,
       "link": "https://sam.gov/workspace/contract/opp/3a1aaf8a92454076a2a149c3b704aabc/view",
       "relevance_score": 41
+    },
+    {
+      "notice_id": "a23fbbc5aed741d5a4f1ad6b62e6f1c7",
+      "title": "Base Notice: Space Systems Command (SSC) Overhead Persistent Infrared (OPIR) Research and Development (R&D) Effort.",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE SENSING.FA8810  SPACE SENSING SSC/SNK",
+      "posted_date": "2026-09-10",
+      "response_deadline": "2026-09-25T15:45:00-07:00",
+      "notice_type": "Presolicitation",
+      "solicitation_number": "26-057",
+      "naics_code": "541715",
+      "link": "https://sam.gov/workspace/contract/opp/a23fbbc5aed741d5a4f1ad6b62e6f1c7/view",
+      "relevance_score": 39
     },
     {
       "notice_id": "7538e480f7674b50905dec793a70cf95",
@@ -84,18 +96,6 @@
       "naics_code": "334519",
       "link": "https://sam.gov/workspace/contract/opp/bf71dc3d2b1e4ca791116f29ef47f1dc/view",
       "relevance_score": 34
-    },
-    {
-      "notice_id": "bcec3727cd924792972bfcd06df13479",
-      "title": "Spaceport and Launch Assessment & Strategic Help (SPLASH)",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.FA2521  45 CONS PK",
-      "posted_date": "2026-09-03",
-      "response_deadline": "2026-09-18T15:00:00-04:00",
-      "notice_type": "Combined Synopsis/Solicitation",
-      "solicitation_number": "FA252126Q0010",
-      "naics_code": "541715",
-      "link": "https://sam.gov/workspace/contract/opp/bcec3727cd924792972bfcd06df13479/view",
-      "relevance_score": 33
     }
   ]
 }
