@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-13T21:47:35.198827+00:00",
+  "fetched_at": "2026-09-14T22:36:48.916117+00:00",
   "opportunities": [
     {
       "notice_id": "c07d4dc2c05e40349e1169124a31e279",
@@ -50,6 +50,18 @@
       "relevance_score": 39
     },
     {
+      "notice_id": "8ef119e2991149f9b1f36b1b07f00ef6",
+      "title": "ight-qualified imaging subsystem for the TERP RAPTOR 12U CubeSat mission to asteroid Apophis.",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-09-14",
+      "response_deadline": "2026-09-17T12:00:00-05:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC26941081Q",
+      "naics_code": "336419",
+      "link": "https://sam.gov/workspace/contract/opp/8ef119e2991149f9b1f36b1b07f00ef6/view",
+      "relevance_score": 37
+    },
+    {
       "notice_id": "7538e480f7674b50905dec793a70cf95",
       "title": "GDP Space Systems 4 channel telemetry gateway bundle",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
@@ -83,18 +95,6 @@
       "solicitation_number": "80NSSC26942389Q",
       "naics_code": "337214",
       "link": "https://sam.gov/workspace/contract/opp/35ce3bb6e2fa4645aced373757ab3a2d/view",
-      "relevance_score": 34
-    },
-    {
-      "notice_id": "bf71dc3d2b1e4ca791116f29ef47f1dc",
-      "title": "Shadow Chaser: infrared camera for stellar occultations",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-08-26",
-      "response_deadline": "2026-09-01T07:00:00-05:00",
-      "notice_type": "Combined Synopsis/Solicitation",
-      "solicitation_number": "80NSSC26938932Q",
-      "naics_code": "334519",
-      "link": "https://sam.gov/workspace/contract/opp/bf71dc3d2b1e4ca791116f29ef47f1dc/view",
       "relevance_score": 34
     }
   ]
