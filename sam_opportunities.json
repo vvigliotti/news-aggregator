@@ -1,6 +1,18 @@
 {
-  "fetched_at": "2026-09-16T00:32:29.138243+00:00",
+  "fetched_at": "2026-09-17T03:22:06.827877+00:00",
   "opportunities": [
+    {
+      "notice_id": "a71495f6ce5e4e2fb45ceed1162606ad",
+      "title": "United States Space Force (USSF) Battle Management, Command, Control, Communication and Space Intelligence (BMC3I) Satellite Communication Augmentation Resource (SCAR) Program Office (PMO) Commercial Solutions Opening (CSO) Two Phase Closed Variant",
+      "agency": "DEPT OF DEFENSE.MISSILE DEFENSE AGENCY (MDA).MISSILE DEFENSE AGENCY (MDA)",
+      "posted_date": "2026-09-16",
+      "response_deadline": "2026-10-15T14:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "HQ0860-26-S-C008",
+      "naics_code": "541715",
+      "link": "https://sam.gov/workspace/contract/opp/a71495f6ce5e4e2fb45ceed1162606ad/view",
+      "relevance_score": 50
+    },
     {
       "notice_id": "c07d4dc2c05e40349e1169124a31e279",
       "title": "Vandenberg Space Force Base (VSFB) Call for Whitepapers for Mission Development Zone (MDZ) Outgrant",
@@ -38,6 +50,18 @@
       "relevance_score": 39
     },
     {
+      "notice_id": "63c7ad7e26e1458aa36497f2cad3d9ed",
+      "title": "Request for Information (RFI) SG-XX Geosynchronous Space to Space (S2S) Radio Frequency Cross Link",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8819 SDA AND COMBAT POWER SZK-LA",
+      "posted_date": "2026-09-16",
+      "response_deadline": "2026-10-02T08:00:00-07:00",
+      "notice_type": "Sources Sought",
+      "solicitation_number": "RFI-16_09_2026",
+      "naics_code": null,
+      "link": "https://sam.gov/workspace/contract/opp/63c7ad7e26e1458aa36497f2cad3d9ed/view",
+      "relevance_score": 37
+    },
+    {
       "notice_id": "8ef119e2991149f9b1f36b1b07f00ef6",
       "title": "ight-qualified imaging subsystem for the TERP RAPTOR 12U CubeSat mission to asteroid Apophis.",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
@@ -47,18 +71,6 @@
       "solicitation_number": "80NSSC26941081Q",
       "naics_code": "336419",
       "link": "https://sam.gov/workspace/contract/opp/8ef119e2991149f9b1f36b1b07f00ef6/view",
-      "relevance_score": 37
-    },
-    {
-      "notice_id": "7538e480f7674b50905dec793a70cf95",
-      "title": "GDP Space Systems 4 channel telemetry gateway bundle",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-08-27",
-      "response_deadline": "2026-09-01T08:00:00-05:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC2642673Q",
-      "naics_code": "334220",
-      "link": "https://sam.gov/workspace/contract/opp/7538e480f7674b50905dec793a70cf95/view",
       "relevance_score": 37
     },
     {
@@ -83,18 +95,6 @@
       "solicitation_number": "80NSSC26942389Q",
       "naics_code": "337214",
       "link": "https://sam.gov/workspace/contract/opp/35ce3bb6e2fa4645aced373757ab3a2d/view",
-      "relevance_score": 34
-    },
-    {
-      "notice_id": "bf71dc3d2b1e4ca791116f29ef47f1dc",
-      "title": "Shadow Chaser: infrared camera for stellar occultations",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-08-26",
-      "response_deadline": "2026-09-01T07:00:00-05:00",
-      "notice_type": "Combined Synopsis/Solicitation",
-      "solicitation_number": "80NSSC26938932Q",
-      "naics_code": "334519",
-      "link": "https://sam.gov/workspace/contract/opp/bf71dc3d2b1e4ca791116f29ef47f1dc/view",
       "relevance_score": 34
     }
   ]
