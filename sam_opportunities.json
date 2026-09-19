@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-18T06:02:12.732165+00:00",
+  "fetched_at": "2026-09-19T10:50:53.669412+00:00",
   "opportunities": [
     {
       "notice_id": "a71495f6ce5e4e2fb45ceed1162606ad",
@@ -36,6 +36,18 @@
       "naics_code": null,
       "link": "https://sam.gov/workspace/contract/opp/3a1aaf8a92454076a2a149c3b704aabc/view",
       "relevance_score": 41
+    },
+    {
+      "notice_id": "62446f1684754112be95a66fff02eee3",
+      "title": "Rendezvous, Proximity Operations (RPO) Threat Response (RTR) VICTUS Responsive Launch Space Vehicle (SV)",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8819 SDA AND COMBAT POWER SZK-LA",
+      "posted_date": "2026-09-18",
+      "response_deadline": "2026-10-19T12:00:00-07:00",
+      "notice_type": "Sources Sought",
+      "solicitation_number": "SYD89-26-RPO-RLSV",
+      "naics_code": "541715",
+      "link": "https://sam.gov/workspace/contract/opp/62446f1684754112be95a66fff02eee3/view",
+      "relevance_score": 40
     },
     {
       "notice_id": "a23fbbc5aed741d5a4f1ad6b62e6f1c7",
@@ -84,18 +96,6 @@
       "naics_code": "541330",
       "link": "https://sam.gov/workspace/contract/opp/cdb642fd15f645c3ac22204f3f9a16a7/view",
       "relevance_score": 36
-    },
-    {
-      "notice_id": "35ce3bb6e2fa4645aced373757ab3a2d",
-      "title": "Mission control consoles to be delivered and installed at the NASA ARC",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-09-03",
-      "response_deadline": "2026-09-07T16:00:00-05:00",
-      "notice_type": "Combined Synopsis/Solicitation",
-      "solicitation_number": "80NSSC26942389Q",
-      "naics_code": "337214",
-      "link": "https://sam.gov/workspace/contract/opp/35ce3bb6e2fa4645aced373757ab3a2d/view",
-      "relevance_score": 34
     }
   ]
 }
