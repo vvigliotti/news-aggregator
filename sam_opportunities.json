@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-24T19:17:12.663128+00:00",
+  "fetched_at": "2026-09-25T19:30:28.990806+00:00",
   "opportunities": [
     {
       "notice_id": "f1d6ae6b9ecf42598f275ff8966b07ce",
@@ -12,6 +12,30 @@
       "naics_code": "541715",
       "link": "https://sam.gov/workspace/contract/opp/f1d6ae6b9ecf42598f275ff8966b07ce/view",
       "relevance_score": 50
+    },
+    {
+      "notice_id": "3e6cd02f0d5d4cf182b47c3365d18890",
+      "title": "Defense Meteorological Satellite Program (DMSP) Spacecraft Support",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO MILITARY COMMUNICATION AND POSITION NAVIGATION TIMING.FA8823  SUSTAINMENT MCPNT SSC/PKL",
+      "posted_date": "2026-09-24",
+      "response_deadline": "2026-10-16T16:30:00-06:00",
+      "notice_type": "Sources Sought",
+      "solicitation_number": "PCOL-DMSP-0001-27-0001",
+      "naics_code": "541330",
+      "link": "https://sam.gov/workspace/contract/opp/3e6cd02f0d5d4cf182b47c3365d18890/view",
+      "relevance_score": 47
+    },
+    {
+      "notice_id": "5a53ede8af7b470f9894b8c3dc59986e",
+      "title": "Justification and Approval for IDIQ Contract to Astrotech Space Operations LLC for payload processing services in support of SDA Transport Layer Tranche 2 (TLT2) launches",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE DEVELOPMENT AGENCY.FA2401 SPACE DEVELOPMENT AGENCY SDA",
+      "posted_date": "2026-09-24",
+      "response_deadline": null,
+      "notice_type": "Justification",
+      "solicitation_number": "SDA-SN-26-1006",
+      "naics_code": "541990",
+      "link": "https://sam.gov/workspace/contract/opp/5a53ede8af7b470f9894b8c3dc59986e/view",
+      "relevance_score": 42
     },
     {
       "notice_id": "c07d4dc2c05e40349e1169124a31e279",
@@ -50,18 +74,6 @@
       "relevance_score": 40
     },
     {
-      "notice_id": "ee46ed8a2bb949febe6d6ce03a1436b1",
-      "title": "Justification and Approval for IDIQ Contract to Astrotech Space Operations LLC for payload processing services in support of SDA Transport Layer Tranche 2 (TLT2) launches",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE DEVELOPMENT AGENCY.FA2401 SPACE DEVELOPMENT AGENCY SDA",
-      "posted_date": "2026-09-24",
-      "response_deadline": null,
-      "notice_type": "Justification",
-      "solicitation_number": "SDA-SN-26-1006",
-      "naics_code": "541990",
-      "link": "https://sam.gov/workspace/contract/opp/ee46ed8a2bb949febe6d6ce03a1436b1/view",
-      "relevance_score": 39
-    },
-    {
       "notice_id": "b4ddf1f7f0694098b0713a724a7b67e4",
       "title": "Award Notice of IDIQ Contract to Astrotech Space Operations LLC for payload processing services in support of SDA Transport Layer Tranche 2 (TLT2) launches",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE DEVELOPMENT AGENCY.FA2401 SPACE DEVELOPMENT AGENCY SDA",
@@ -84,18 +96,6 @@
       "naics_code": "541715",
       "link": "https://sam.gov/workspace/contract/opp/a23fbbc5aed741d5a4f1ad6b62e6f1c7/view",
       "relevance_score": 39
-    },
-    {
-      "notice_id": "6e7431f08a1a4012bf663ea1645f4f7f",
-      "title": "ight-qualified imaging subsystem for the TERP RAPTOR 12U CubeSat mission to asteroid Apophis.",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-09-23",
-      "response_deadline": "2026-09-26T12:00:00-05:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC26941081Q",
-      "naics_code": "336419",
-      "link": "https://sam.gov/workspace/contract/opp/6e7431f08a1a4012bf663ea1645f4f7f/view",
-      "relevance_score": 37
     }
   ]
 }
