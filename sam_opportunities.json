@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-25T19:30:28.990806+00:00",
+  "fetched_at": "2026-09-26T21:30:01.734590+00:00",
   "opportunities": [
     {
       "notice_id": "f1d6ae6b9ecf42598f275ff8966b07ce",
@@ -50,18 +50,6 @@
       "relevance_score": 41
     },
     {
-      "notice_id": "3a1aaf8a92454076a2a149c3b704aabc",
-      "title": "TECHNOLOGY TRANSFER OPPORTUNITY: Method for Transferring a Spacecraft from Geosynchronous Transfer Orbit to Lunar Orbit (TOP2-272)",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA MARSHALL SPACE FLIGHT CENTER",
-      "posted_date": "2026-08-11",
-      "response_deadline": "2027-08-11T15:00:00-05:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "T2P-ARC-00125",
-      "naics_code": null,
-      "link": "https://sam.gov/workspace/contract/opp/3a1aaf8a92454076a2a149c3b704aabc/view",
-      "relevance_score": 41
-    },
-    {
       "notice_id": "63cbb165d7ef42bab58aeea4a850378f",
       "title": "Rendezvous, Proximity Operations (RPO) Threat Response (RTR) VICTUS Responsive Launch Space Vehicle (SV)",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8819 SDA AND COMBAT POWER SZK-LA",
@@ -96,6 +84,18 @@
       "naics_code": "541715",
       "link": "https://sam.gov/workspace/contract/opp/a23fbbc5aed741d5a4f1ad6b62e6f1c7/view",
       "relevance_score": 39
+    },
+    {
+      "notice_id": "6e7431f08a1a4012bf663ea1645f4f7f",
+      "title": "ight-qualified imaging subsystem for the TERP RAPTOR 12U CubeSat mission to asteroid Apophis.",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-09-23",
+      "response_deadline": "2026-09-26T12:00:00-05:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC26941081Q",
+      "naics_code": "336419",
+      "link": "https://sam.gov/workspace/contract/opp/6e7431f08a1a4012bf663ea1645f4f7f/view",
+      "relevance_score": 37
     }
   ]
 }
