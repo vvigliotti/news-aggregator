@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-01T00:02:52.190928+00:00",
+  "fetched_at": "2026-10-02T01:38:47.154669+00:00",
   "opportunities": [
     {
       "notice_id": "f1d6ae6b9ecf42598f275ff8966b07ce",
@@ -38,15 +38,15 @@
       "relevance_score": 42
     },
     {
-      "notice_id": "0ed18d86669c4cbaa1cca2c8f8a8cde6",
+      "notice_id": "1a794955d12546b59698e15d84a87364",
       "title": "Rendezvous, Proximity Operations (RPO) Threat Response (RTR) VICTUS Responsive Launch Space Vehicle (SV)",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8819 SDA AND COMBAT POWER SZK-LA",
-      "posted_date": "2026-09-29",
+      "posted_date": "2026-10-01",
       "response_deadline": "2026-10-19T12:00:00-07:00",
       "notice_type": "Sources Sought",
       "solicitation_number": "SYD89-26-RPO-RLSV",
       "naics_code": "541715",
-      "link": "https://sam.gov/workspace/contract/opp/0ed18d86669c4cbaa1cca2c8f8a8cde6/view",
+      "link": "https://sam.gov/workspace/contract/opp/1a794955d12546b59698e15d84a87364/view",
       "relevance_score": 40
     },
     {
