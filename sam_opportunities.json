@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-08T20:13:50.690072+00:00",
+  "fetched_at": "2026-10-09T23:12:27.973258+00:00",
   "opportunities": [
     {
       "notice_id": "7ef056f2ec0d4fe7909220320293f532",
@@ -50,18 +50,6 @@
       "relevance_score": 40
     },
     {
-      "notice_id": "b4ddf1f7f0694098b0713a724a7b67e4",
-      "title": "Award Notice of IDIQ Contract to Astrotech Space Operations LLC for payload processing services in support of SDA Transport Layer Tranche 2 (TLT2) launches",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE DEVELOPMENT AGENCY.FA2401 SPACE DEVELOPMENT AGENCY SDA",
-      "posted_date": "2026-09-24",
-      "response_deadline": null,
-      "notice_type": "Award Notice",
-      "solicitation_number": "SDA-SN-26-1005",
-      "naics_code": "541990",
-      "link": "https://sam.gov/workspace/contract/opp/b4ddf1f7f0694098b0713a724a7b67e4/view",
-      "relevance_score": 39
-    },
-    {
       "notice_id": "a23fbbc5aed741d5a4f1ad6b62e6f1c7",
       "title": "Base Notice: Space Systems Command (SSC) Overhead Persistent Infrared (OPIR) Research and Development (R&D) Effort.",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE SENSING.FA8810  SPACE SENSING SSC/SNK",
@@ -95,6 +83,18 @@
       "solicitation_number": "80NSSC26941081Q",
       "naics_code": "336419",
       "link": "https://sam.gov/workspace/contract/opp/6e7431f08a1a4012bf663ea1645f4f7f/view",
+      "relevance_score": 37
+    },
+    {
+      "notice_id": "63c7ad7e26e1458aa36497f2cad3d9ed",
+      "title": "Request for Information (RFI) SG-XX Geosynchronous Space to Space (S2S) Radio Frequency Cross Link",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8819 SDA AND COMBAT POWER SZK-LA",
+      "posted_date": "2026-09-16",
+      "response_deadline": "2026-10-02T08:00:00-07:00",
+      "notice_type": "Sources Sought",
+      "solicitation_number": "RFI-16_09_2026",
+      "naics_code": null,
+      "link": "https://sam.gov/workspace/contract/opp/63c7ad7e26e1458aa36497f2cad3d9ed/view",
       "relevance_score": 37
     }
   ]
