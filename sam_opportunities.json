@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-09T23:12:27.973258+00:00",
+  "fetched_at": "2026-10-11T01:11:19.011496+00:00",
   "opportunities": [
     {
       "notice_id": "7ef056f2ec0d4fe7909220320293f532",
@@ -50,18 +50,6 @@
       "relevance_score": 40
     },
     {
-      "notice_id": "a23fbbc5aed741d5a4f1ad6b62e6f1c7",
-      "title": "Base Notice: Space Systems Command (SSC) Overhead Persistent Infrared (OPIR) Research and Development (R&D) Effort.",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE SENSING.FA8810  SPACE SENSING SSC/SNK",
-      "posted_date": "2026-09-10",
-      "response_deadline": "2026-09-25T15:45:00-07:00",
-      "notice_type": "Presolicitation",
-      "solicitation_number": "26-057",
-      "naics_code": "541715",
-      "link": "https://sam.gov/workspace/contract/opp/a23fbbc5aed741d5a4f1ad6b62e6f1c7/view",
-      "relevance_score": 39
-    },
-    {
       "notice_id": "053436c19dbd4979a19587b059158969",
       "title": "Vandenberg Space Force Base (VSFB) Call for Whitepapers for Mission Development Zone (MDZ) Outgrant",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND",
@@ -96,6 +84,18 @@
       "naics_code": null,
       "link": "https://sam.gov/workspace/contract/opp/63c7ad7e26e1458aa36497f2cad3d9ed/view",
       "relevance_score": 37
+    },
+    {
+      "notice_id": "bc1e80d2d0654720a6e0cfc85a29d0ba",
+      "title": "JOINT POLAR SATELLITE SYSTEM (JPSS) CONTRACTS, EXERCISE OF OPTION 1 - LONG TERM STORAGE FOR SPECIFIED INSTRUMENTS INTEGRATED ONTO THE JPSS-3 SPACECRAFT",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA GODDARD SPACE FLIGHT CENTER",
+      "posted_date": "2026-10-06",
+      "response_deadline": "2026-10-21T17:00:00-04:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "JPSS-OPT1-FY27",
+      "naics_code": null,
+      "link": "https://sam.gov/workspace/contract/opp/bc1e80d2d0654720a6e0cfc85a29d0ba/view",
+      "relevance_score": 36
     }
   ]
 }
