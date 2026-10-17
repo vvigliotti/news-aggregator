@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-16T13:53:27.165495+00:00",
+  "fetched_at": "2026-10-17T16:28:03.539223+00:00",
   "opportunities": [
     {
       "notice_id": "7ef056f2ec0d4fe7909220320293f532",
@@ -62,18 +62,6 @@
       "relevance_score": 38
     },
     {
-      "notice_id": "63c7ad7e26e1458aa36497f2cad3d9ed",
-      "title": "Request for Information (RFI) SG-XX Geosynchronous Space to Space (S2S) Radio Frequency Cross Link",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8819 SDA AND COMBAT POWER SZK-LA",
-      "posted_date": "2026-09-16",
-      "response_deadline": "2026-10-02T08:00:00-07:00",
-      "notice_type": "Sources Sought",
-      "solicitation_number": "RFI-16_09_2026",
-      "naics_code": null,
-      "link": "https://sam.gov/workspace/contract/opp/63c7ad7e26e1458aa36497f2cad3d9ed/view",
-      "relevance_score": 37
-    },
-    {
       "notice_id": "bc1e80d2d0654720a6e0cfc85a29d0ba",
       "title": "JOINT POLAR SATELLITE SYSTEM (JPSS) CONTRACTS, EXERCISE OF OPTION 1 - LONG TERM STORAGE FOR SPECIFIED INSTRUMENTS INTEGRATED ONTO THE JPSS-3 SPACECRAFT",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA GODDARD SPACE FLIGHT CENTER",
@@ -95,6 +83,18 @@
       "solicitation_number": "FA252127QB013",
       "naics_code": "561990",
       "link": "https://sam.gov/workspace/contract/opp/5a043cfd164c4bd2b057356cbf5e0664/view",
+      "relevance_score": 35
+    },
+    {
+      "notice_id": "4f57d85b34a740a4934f8c4627423464",
+      "title": "Orbital Safety Analysis (OSA) Support - JOFOC",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA GODDARD SPACE FLIGHT CENTER",
+      "posted_date": "2026-10-08",
+      "response_deadline": null,
+      "notice_type": "Justification",
+      "solicitation_number": "80GSFC26D0010JOFOC",
+      "naics_code": "541330",
+      "link": "https://sam.gov/workspace/contract/opp/4f57d85b34a740a4934f8c4627423464/view",
       "relevance_score": 35
     }
   ]
