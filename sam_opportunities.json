@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-19T20:11:26.865506+00:00",
+  "fetched_at": "2026-10-20T21:21:57.826963+00:00",
   "opportunities": [
     {
       "notice_id": "7ef056f2ec0d4fe7909220320293f532",
@@ -38,18 +38,6 @@
       "relevance_score": 42
     },
     {
-      "notice_id": "1a794955d12546b59698e15d84a87364",
-      "title": "Rendezvous, Proximity Operations (RPO) Threat Response (RTR) VICTUS Responsive Launch Space Vehicle (SV)",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8819 SDA AND COMBAT POWER SZK-LA",
-      "posted_date": "2026-10-01",
-      "response_deadline": "2026-10-19T12:00:00-07:00",
-      "notice_type": "Sources Sought",
-      "solicitation_number": "SYD89-26-RPO-RLSV",
-      "naics_code": "541715",
-      "link": "https://sam.gov/workspace/contract/opp/1a794955d12546b59698e15d84a87364/view",
-      "relevance_score": 40
-    },
-    {
       "notice_id": "053436c19dbd4979a19587b059158969",
       "title": "Vandenberg Space Force Base (VSFB) Call for Whitepapers for Mission Development Zone (MDZ) Outgrant",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND",
@@ -74,15 +62,15 @@
       "relevance_score": 36
     },
     {
-      "notice_id": "5a043cfd164c4bd2b057356cbf5e0664",
+      "notice_id": "0589c6ece0ff4cbb8cc1ac587b178587",
       "title": "Lifeguard Services at Patrick Space Force Base",
       "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.FA2521  45 CONS PK",
-      "posted_date": "2026-10-09",
+      "posted_date": "2026-10-20",
       "response_deadline": "2026-10-26T12:00:00-04:00",
       "notice_type": "Combined Synopsis/Solicitation",
       "solicitation_number": "FA252127QB013",
       "naics_code": "561990",
-      "link": "https://sam.gov/workspace/contract/opp/5a043cfd164c4bd2b057356cbf5e0664/view",
+      "link": "https://sam.gov/workspace/contract/opp/0589c6ece0ff4cbb8cc1ac587b178587/view",
       "relevance_score": 35
     },
     {
@@ -95,6 +83,18 @@
       "solicitation_number": "80GSFC26D0010JOFOC",
       "naics_code": "541330",
       "link": "https://sam.gov/workspace/contract/opp/4f57d85b34a740a4934f8c4627423464/view",
+      "relevance_score": 35
+    },
+    {
+      "notice_id": "fdbcf41cfbef450f9b4d290d1d1fd976",
+      "title": "Request for Information/Market Intelligence Notice: Multiple Projects at Vandenberg Space Force Base - Use of Progressive Design Build (PDB) with Other Transaction Authority (OTA)",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.FA4610 30 CONS PK",
+      "posted_date": "2026-10-06",
+      "response_deadline": "2026-10-20T14:00:00-07:00",
+      "notice_type": "Sources Sought",
+      "solicitation_number": "VSFB-FY27-PDBOTA",
+      "naics_code": "236220",
+      "link": "https://sam.gov/workspace/contract/opp/fdbcf41cfbef450f9b4d290d1d1fd976/view",
       "relevance_score": 35
     }
   ]
