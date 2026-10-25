@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-24T01:08:26.766284+00:00",
+  "fetched_at": "2026-10-25T04:34:33.465925+00:00",
   "opportunities": [
     {
       "notice_id": "7ef056f2ec0d4fe7909220320293f532",
@@ -24,18 +24,6 @@
       "naics_code": "541330",
       "link": "https://sam.gov/workspace/contract/opp/3e6cd02f0d5d4cf182b47c3365d18890/view",
       "relevance_score": 47
-    },
-    {
-      "notice_id": "5a53ede8af7b470f9894b8c3dc59986e",
-      "title": "Justification and Approval for IDIQ Contract to Astrotech Space Operations LLC for payload processing services in support of SDA Transport Layer Tranche 2 (TLT2) launches",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE DEVELOPMENT AGENCY.FA2401 SPACE DEVELOPMENT AGENCY SDA",
-      "posted_date": "2026-09-24",
-      "response_deadline": null,
-      "notice_type": "Justification",
-      "solicitation_number": "SDA-SN-26-1006",
-      "naics_code": "541990",
-      "link": "https://sam.gov/workspace/contract/opp/5a53ede8af7b470f9894b8c3dc59986e/view",
-      "relevance_score": 42
     },
     {
       "notice_id": "053436c19dbd4979a19587b059158969",
@@ -96,6 +84,18 @@
       "naics_code": "236220",
       "link": "https://sam.gov/workspace/contract/opp/fdbcf41cfbef450f9b4d290d1d1fd976/view",
       "relevance_score": 35
+    },
+    {
+      "notice_id": "489ed53c68dc4a4cbd249986544cd8e8",
+      "title": "Thermospheric Observing System Simulation Experiments (OSSEs) for Future NASA/Heliophysics Missions",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-10-13",
+      "response_deadline": "2026-10-16T15:00:00-05:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC27943636Q",
+      "naics_code": "541715",
+      "link": "https://sam.gov/workspace/contract/opp/489ed53c68dc4a4cbd249986544cd8e8/view",
+      "relevance_score": 34
     }
   ]
 }
