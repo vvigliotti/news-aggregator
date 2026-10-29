@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-28T06:13:18.708039+00:00",
+  "fetched_at": "2026-10-29T08:36:52.343414+00:00",
   "opportunities": [
     {
       "notice_id": "7ef056f2ec0d4fe7909220320293f532",
@@ -86,15 +86,15 @@
       "relevance_score": 35
     },
     {
-      "notice_id": "489ed53c68dc4a4cbd249986544cd8e8",
-      "title": "Thermospheric Observing System Simulation Experiments (OSSEs) for Future NASA/Heliophysics Missions",
+      "notice_id": "c9c1f0e34e7145bc80a7c50d9b9f4bb8",
+      "title": "Integration and flight support for EXoplanet Climate Infrared TElescope (EXCITE) Balloon Mission Gondola System science flight.",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-10-13",
-      "response_deadline": "2026-10-16T15:00:00-05:00",
+      "posted_date": "2026-10-28",
+      "response_deadline": "2026-11-02T12:00:00-06:00",
       "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC27943636Q",
+      "solicitation_number": "80NSSC27947883Q",
       "naics_code": "541715",
-      "link": "https://sam.gov/workspace/contract/opp/489ed53c68dc4a4cbd249986544cd8e8/view",
+      "link": "https://sam.gov/workspace/contract/opp/c9c1f0e34e7145bc80a7c50d9b9f4bb8/view",
       "relevance_score": 34
     }
   ]
