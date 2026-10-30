@@ -1,18 +1,6 @@
 {
-  "fetched_at": "2026-10-29T08:36:52.343414+00:00",
+  "fetched_at": "2026-10-30T12:44:34.374208+00:00",
   "opportunities": [
-    {
-      "notice_id": "7ef056f2ec0d4fe7909220320293f532",
-      "title": "United States Space Force (USSF) Battle Management, Command, Control, Communication and Space Intelligence (BMC3I) Satellite Communication Augmentation Resource (SCAR) Program Office (PMO) Commercial Solutions Opening (CSO) Two Phase Closed Variant",
-      "agency": "DEPT OF DEFENSE.MISSILE DEFENSE AGENCY (MDA).MISSILE DEFENSE AGENCY (MDA)",
-      "posted_date": "2026-10-06",
-      "response_deadline": "2026-10-15T14:00:00-06:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "HQ0860-26-S-C008",
-      "naics_code": "541715",
-      "link": "https://sam.gov/workspace/contract/opp/7ef056f2ec0d4fe7909220320293f532/view",
-      "relevance_score": 50
-    },
     {
       "notice_id": "3e6cd02f0d5d4cf182b47c3365d18890",
       "title": "Defense Meteorological Satellite Program (DMSP) Spacecraft Support",
@@ -24,6 +12,18 @@
       "naics_code": "541330",
       "link": "https://sam.gov/workspace/contract/opp/3e6cd02f0d5d4cf182b47c3365d18890/view",
       "relevance_score": 47
+    },
+    {
+      "notice_id": "161c1cece72942558ae428ce0f729dee",
+      "title": "Space Communications and Networking (SCaN) & Tracking and Data Relay Satellite System (TDRS) Support",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA MARSHALL SPACE FLIGHT CENTER",
+      "posted_date": "2026-10-29",
+      "response_deadline": "2026-11-05T15:00:00-06:00",
+      "notice_type": "Sources Sought",
+      "solicitation_number": "80MSFC27ENG1026",
+      "naics_code": "541715",
+      "link": "https://sam.gov/workspace/contract/opp/161c1cece72942558ae428ce0f729dee/view",
+      "relevance_score": 38
     },
     {
       "notice_id": "053436c19dbd4979a19587b059158969",
