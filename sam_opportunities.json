@@ -1,18 +1,6 @@
 {
-  "fetched_at": "2026-10-30T12:44:34.374208+00:00",
+  "fetched_at": "2026-10-31T13:52:19.534806+00:00",
   "opportunities": [
-    {
-      "notice_id": "3e6cd02f0d5d4cf182b47c3365d18890",
-      "title": "Defense Meteorological Satellite Program (DMSP) Spacecraft Support",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO MILITARY COMMUNICATION AND POSITION NAVIGATION TIMING.FA8823  SUSTAINMENT MCPNT SSC/PKL",
-      "posted_date": "2026-09-24",
-      "response_deadline": "2026-10-16T16:30:00-06:00",
-      "notice_type": "Sources Sought",
-      "solicitation_number": "PCOL-DMSP-0001-27-0001",
-      "naics_code": "541330",
-      "link": "https://sam.gov/workspace/contract/opp/3e6cd02f0d5d4cf182b47c3365d18890/view",
-      "relevance_score": 47
-    },
     {
       "notice_id": "161c1cece72942558ae428ce0f729dee",
       "title": "Space Communications and Networking (SCaN) & Tracking and Data Relay Satellite System (TDRS) Support",
@@ -23,18 +11,6 @@
       "solicitation_number": "80MSFC27ENG1026",
       "naics_code": "541715",
       "link": "https://sam.gov/workspace/contract/opp/161c1cece72942558ae428ce0f729dee/view",
-      "relevance_score": 38
-    },
-    {
-      "notice_id": "053436c19dbd4979a19587b059158969",
-      "title": "Vandenberg Space Force Base (VSFB) Call for Whitepapers for Mission Development Zone (MDZ) Outgrant",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND",
-      "posted_date": "2026-09-30",
-      "response_deadline": "2026-10-16T16:00:00-07:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "VSFBMDZCall",
-      "naics_code": null,
-      "link": "https://sam.gov/workspace/contract/opp/053436c19dbd4979a19587b059158969/view",
       "relevance_score": 38
     },
     {
@@ -96,6 +72,30 @@
       "naics_code": "541715",
       "link": "https://sam.gov/workspace/contract/opp/c9c1f0e34e7145bc80a7c50d9b9f4bb8/view",
       "relevance_score": 34
+    },
+    {
+      "notice_id": "86750493376a45dfa7fe2b92b6cc3e5d",
+      "title": "Justification for Other Than Full and Open Competition: Spacecraft Optical Navigation and Autonomy Modules (Contract 80ARC026C0006)",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA AMES RESEARCH CENTER",
+      "posted_date": "2026-10-20",
+      "response_deadline": null,
+      "notice_type": "Justification",
+      "solicitation_number": "80ARC026C0006",
+      "naics_code": "334511",
+      "link": "https://sam.gov/workspace/contract/opp/86750493376a45dfa7fe2b92b6cc3e5d/view",
+      "relevance_score": 32
+    },
+    {
+      "notice_id": "a66e5b1f22a14a89a6f642b898b05b8a",
+      "title": "Award/JOFOC Notification for NASA Commercial Satellite Data Acquisition (CSDA) and Evaluation of Data in Support of Sustainable Land Imaging (SLI) Commercialization",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA HEADQUARTERS",
+      "posted_date": "2026-10-08",
+      "response_deadline": null,
+      "notice_type": "Justification",
+      "solicitation_number": "80HQTR26C0010",
+      "naics_code": "541990",
+      "link": "https://sam.gov/workspace/contract/opp/a66e5b1f22a14a89a6f642b898b05b8a/view",
+      "relevance_score": 32
     }
   ]
 }
