@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-04T21:58:39.281478+00:00",
+  "fetched_at": "2026-11-05T22:53:02.905993+00:00",
   "opportunities": [
     {
       "notice_id": "fd49be0ed9194064a6b05b619960ae7e",
@@ -12,18 +12,6 @@
       "naics_code": "541715",
       "link": "https://sam.gov/workspace/contract/opp/fd49be0ed9194064a6b05b619960ae7e/view",
       "relevance_score": 38
-    },
-    {
-      "notice_id": "bc1e80d2d0654720a6e0cfc85a29d0ba",
-      "title": "JOINT POLAR SATELLITE SYSTEM (JPSS) CONTRACTS, EXERCISE OF OPTION 1 - LONG TERM STORAGE FOR SPECIFIED INSTRUMENTS INTEGRATED ONTO THE JPSS-3 SPACECRAFT",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA GODDARD SPACE FLIGHT CENTER",
-      "posted_date": "2026-10-06",
-      "response_deadline": "2026-10-21T17:00:00-04:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "JPSS-OPT1-FY27",
-      "naics_code": null,
-      "link": "https://sam.gov/workspace/contract/opp/bc1e80d2d0654720a6e0cfc85a29d0ba/view",
-      "relevance_score": 36
     },
     {
       "notice_id": "1ebaf86be283451ba1b8147926de71d7",
@@ -86,15 +74,27 @@
       "relevance_score": 32
     },
     {
-      "notice_id": "9b4d0c1a336b493ab609194828873ecf",
+      "notice_id": "2048d1fc867a43c5bc306c0614cdaceb",
+      "title": "Rohde & Schwarz FSV3000 Signal and Spectrum Analyzers (or Equivalent)",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-05",
+      "response_deadline": "2026-11-11T16:00:00-06:00",
+      "notice_type": "Combined Synopsis/Solicitation",
+      "solicitation_number": "80NSSC27948682Q",
+      "naics_code": "334515",
+      "link": "https://sam.gov/workspace/contract/opp/2048d1fc867a43c5bc306c0614cdaceb/view",
+      "relevance_score": 31
+    },
+    {
+      "notice_id": "0380cc72e682471cb26ed7574af7ef36",
       "title": "LUMBER REPLENISHMENT FOR EGS",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-04",
+      "posted_date": "2026-11-05",
       "response_deadline": "2026-11-11T15:00:00-06:00",
       "notice_type": "Solicitation",
       "solicitation_number": "80NSSC26948332Q",
       "naics_code": "321912",
-      "link": "https://sam.gov/workspace/contract/opp/9b4d0c1a336b493ab609194828873ecf/view",
+      "link": "https://sam.gov/workspace/contract/opp/0380cc72e682471cb26ed7574af7ef36/view",
       "relevance_score": 31
     }
   ]
