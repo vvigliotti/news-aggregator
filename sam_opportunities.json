@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-05T22:53:02.905993+00:00",
+  "fetched_at": "2026-11-07T02:16:06.829567+00:00",
   "opportunities": [
     {
       "notice_id": "fd49be0ed9194064a6b05b619960ae7e",
@@ -38,6 +38,18 @@
       "relevance_score": 35
     },
     {
+      "notice_id": "0b3de87f477c45fa865d2a6c3053a2f3",
+      "title": "INRODES Supplemental RDRE TCA Hardware",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-06",
+      "response_deadline": "2026-11-11T15:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC27943792Q",
+      "naics_code": "332999",
+      "link": "https://sam.gov/workspace/contract/opp/0b3de87f477c45fa865d2a6c3053a2f3/view",
+      "relevance_score": 34
+    },
+    {
       "notice_id": "c9c1f0e34e7145bc80a7c50d9b9f4bb8",
       "title": "Integration and flight support for EXoplanet Climate Infrared TElescope (EXCITE) Balloon Mission Gondola System science flight.",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
@@ -74,27 +86,15 @@
       "relevance_score": 32
     },
     {
-      "notice_id": "2048d1fc867a43c5bc306c0614cdaceb",
-      "title": "Rohde & Schwarz FSV3000 Signal and Spectrum Analyzers (or Equivalent)",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-05",
-      "response_deadline": "2026-11-11T16:00:00-06:00",
-      "notice_type": "Combined Synopsis/Solicitation",
-      "solicitation_number": "80NSSC27948682Q",
-      "naics_code": "334515",
-      "link": "https://sam.gov/workspace/contract/opp/2048d1fc867a43c5bc306c0614cdaceb/view",
-      "relevance_score": 31
-    },
-    {
-      "notice_id": "0380cc72e682471cb26ed7574af7ef36",
+      "notice_id": "2d1878769a184498b93dd0820c9ff4e0",
       "title": "LUMBER REPLENISHMENT FOR EGS",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-05",
+      "posted_date": "2026-11-06",
       "response_deadline": "2026-11-11T15:00:00-06:00",
       "notice_type": "Solicitation",
       "solicitation_number": "80NSSC26948332Q",
       "naics_code": "321912",
-      "link": "https://sam.gov/workspace/contract/opp/0380cc72e682471cb26ed7574af7ef36/view",
+      "link": "https://sam.gov/workspace/contract/opp/2d1878769a184498b93dd0820c9ff4e0/view",
       "relevance_score": 31
     }
   ]
