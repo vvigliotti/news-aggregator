@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-07T02:16:06.829567+00:00",
+  "fetched_at": "2026-11-08T02:20:26.652945+00:00",
   "opportunities": [
     {
       "notice_id": "fd49be0ed9194064a6b05b619960ae7e",
@@ -23,18 +23,6 @@
       "solicitation_number": "FA252127QB013",
       "naics_code": "561990",
       "link": "https://sam.gov/workspace/contract/opp/1ebaf86be283451ba1b8147926de71d7/view",
-      "relevance_score": 35
-    },
-    {
-      "notice_id": "4f57d85b34a740a4934f8c4627423464",
-      "title": "Orbital Safety Analysis (OSA) Support - JOFOC",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA GODDARD SPACE FLIGHT CENTER",
-      "posted_date": "2026-10-08",
-      "response_deadline": null,
-      "notice_type": "Justification",
-      "solicitation_number": "80GSFC26D0010JOFOC",
-      "naics_code": "541330",
-      "link": "https://sam.gov/workspace/contract/opp/4f57d85b34a740a4934f8c4627423464/view",
       "relevance_score": 35
     },
     {
@@ -74,18 +62,6 @@
       "relevance_score": 32
     },
     {
-      "notice_id": "a66e5b1f22a14a89a6f642b898b05b8a",
-      "title": "Award/JOFOC Notification for NASA Commercial Satellite Data Acquisition (CSDA) and Evaluation of Data in Support of Sustainable Land Imaging (SLI) Commercialization",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA HEADQUARTERS",
-      "posted_date": "2026-10-08",
-      "response_deadline": null,
-      "notice_type": "Justification",
-      "solicitation_number": "80HQTR26C0010",
-      "naics_code": "541990",
-      "link": "https://sam.gov/workspace/contract/opp/a66e5b1f22a14a89a6f642b898b05b8a/view",
-      "relevance_score": 32
-    },
-    {
       "notice_id": "2d1878769a184498b93dd0820c9ff4e0",
       "title": "LUMBER REPLENISHMENT FOR EGS",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
@@ -95,6 +71,30 @@
       "solicitation_number": "80NSSC26948332Q",
       "naics_code": "321912",
       "link": "https://sam.gov/workspace/contract/opp/2d1878769a184498b93dd0820c9ff4e0/view",
+      "relevance_score": 31
+    },
+    {
+      "notice_id": "2a7f1339e426427e8a29ab274061b115",
+      "title": "2 Lunar GNSS antennas and 1 hat coupler",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-05",
+      "response_deadline": "2026-11-10T15:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC27948181Q",
+      "naics_code": "334220",
+      "link": "https://sam.gov/workspace/contract/opp/2a7f1339e426427e8a29ab274061b115/view",
+      "relevance_score": 31
+    },
+    {
+      "notice_id": "2048d1fc867a43c5bc306c0614cdaceb",
+      "title": "Rohde & Schwarz FSV3000 Signal and Spectrum Analyzers (or Equivalent)",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-05",
+      "response_deadline": "2026-11-11T16:00:00-06:00",
+      "notice_type": "Combined Synopsis/Solicitation",
+      "solicitation_number": "80NSSC27948682Q",
+      "naics_code": "334515",
+      "link": "https://sam.gov/workspace/contract/opp/2048d1fc867a43c5bc306c0614cdaceb/view",
       "relevance_score": 31
     }
   ]
