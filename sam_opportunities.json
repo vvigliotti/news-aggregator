@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-09T05:49:23.318601+00:00",
+  "fetched_at": "2026-11-10T13:04:17.251455+00:00",
   "opportunities": [
     {
       "notice_id": "fd49be0ed9194064a6b05b619960ae7e",
@@ -62,6 +62,30 @@
       "relevance_score": 32
     },
     {
+      "notice_id": "b90c48ba3497484f8d9fae14e20de44b",
+      "title": "10x10TransData unit replacements",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-09",
+      "response_deadline": "2026-11-12T13:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC27948290Q",
+      "naics_code": "334515",
+      "link": "https://sam.gov/workspace/contract/opp/b90c48ba3497484f8d9fae14e20de44b/view",
+      "relevance_score": 31
+    },
+    {
+      "notice_id": "b196b1da83ae4d9098dfc7cd2d647849",
+      "title": "Multi-Mission Commercial Launch Services (MCLS)  Request for Information",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
+      "posted_date": "2026-11-09",
+      "response_deadline": "2026-11-17T15:00:00-05:00",
+      "notice_type": "Sources Sought",
+      "solicitation_number": "80KSC027R0006",
+      "naics_code": "336414",
+      "link": "https://sam.gov/workspace/contract/opp/b196b1da83ae4d9098dfc7cd2d647849/view",
+      "relevance_score": 31
+    },
+    {
       "notice_id": "2d1878769a184498b93dd0820c9ff4e0",
       "title": "LUMBER REPLENISHMENT FOR EGS",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
@@ -71,30 +95,6 @@
       "solicitation_number": "80NSSC26948332Q",
       "naics_code": "321912",
       "link": "https://sam.gov/workspace/contract/opp/2d1878769a184498b93dd0820c9ff4e0/view",
-      "relevance_score": 31
-    },
-    {
-      "notice_id": "2a7f1339e426427e8a29ab274061b115",
-      "title": "2 Lunar GNSS antennas and 1 hat coupler",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-05",
-      "response_deadline": "2026-11-10T15:00:00-06:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC27948181Q",
-      "naics_code": "334220",
-      "link": "https://sam.gov/workspace/contract/opp/2a7f1339e426427e8a29ab274061b115/view",
-      "relevance_score": 31
-    },
-    {
-      "notice_id": "2048d1fc867a43c5bc306c0614cdaceb",
-      "title": "Rohde & Schwarz FSV3000 Signal and Spectrum Analyzers (or Equivalent)",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-05",
-      "response_deadline": "2026-11-11T16:00:00-06:00",
-      "notice_type": "Combined Synopsis/Solicitation",
-      "solicitation_number": "80NSSC27948682Q",
-      "naics_code": "334515",
-      "link": "https://sam.gov/workspace/contract/opp/2048d1fc867a43c5bc306c0614cdaceb/view",
       "relevance_score": 31
     }
   ]
