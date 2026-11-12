@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-11T15:27:30.631959+00:00",
+  "fetched_at": "2026-11-12T18:48:34.162745+00:00",
   "opportunities": [
     {
       "notice_id": "a62a1dca4c8b4258abc83f100b24c322",
@@ -26,16 +26,16 @@
       "relevance_score": 38
     },
     {
-      "notice_id": "1ebaf86be283451ba1b8147926de71d7",
-      "title": "Lifeguard Services at Patrick Space Force Base",
-      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.FA2521  45 CONS PK",
-      "posted_date": "2026-10-26",
-      "response_deadline": "2026-10-28T12:00:00-04:00",
-      "notice_type": "Combined Synopsis/Solicitation",
-      "solicitation_number": "FA252127QB013",
-      "naics_code": "561990",
-      "link": "https://sam.gov/workspace/contract/opp/1ebaf86be283451ba1b8147926de71d7/view",
-      "relevance_score": 35
+      "notice_id": "823968a3448140d9b7c3ca5d4fc9ebae",
+      "title": "INRODES Supplemental RDRE TCA Hardware",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-12",
+      "response_deadline": "2026-11-12T15:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC27943792Q",
+      "naics_code": "332999",
+      "link": "https://sam.gov/workspace/contract/opp/823968a3448140d9b7c3ca5d4fc9ebae/view",
+      "relevance_score": 34
     },
     {
       "notice_id": "b31e55fc145541c798a96d592a58f0f4",
@@ -47,18 +47,6 @@
       "solicitation_number": "80KSC021R0034_On-Ramp_Issue02",
       "naics_code": "481212",
       "link": "https://sam.gov/workspace/contract/opp/b31e55fc145541c798a96d592a58f0f4/view",
-      "relevance_score": 34
-    },
-    {
-      "notice_id": "0b3de87f477c45fa865d2a6c3053a2f3",
-      "title": "INRODES Supplemental RDRE TCA Hardware",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-06",
-      "response_deadline": "2026-11-11T15:00:00-06:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC27943792Q",
-      "naics_code": "332999",
-      "link": "https://sam.gov/workspace/contract/opp/0b3de87f477c45fa865d2a6c3053a2f3/view",
       "relevance_score": 34
     },
     {
@@ -86,15 +74,27 @@
       "relevance_score": 32
     },
     {
-      "notice_id": "c51c9c8eae6e43eb9a69ada1993c5f18",
-      "title": "LUMBER REPLENISHMENT FOR EGS",
+      "notice_id": "e61c22c092c34443bd869e6ef8f48330",
+      "title": "Niobium (formerly Columbium) Raw Materials",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-10",
-      "response_deadline": "2026-11-11T15:00:00-06:00",
-      "notice_type": "Solicitation",
-      "solicitation_number": "80NSSC26948332Q",
-      "naics_code": "321912",
-      "link": "https://sam.gov/workspace/contract/opp/c51c9c8eae6e43eb9a69ada1993c5f18/view",
+      "posted_date": "2026-11-12",
+      "response_deadline": "2026-11-18T16:00:00-06:00",
+      "notice_type": "Combined Synopsis/Solicitation",
+      "solicitation_number": "80NSSC27949192Q",
+      "naics_code": "331410",
+      "link": "https://sam.gov/workspace/contract/opp/e61c22c092c34443bd869e6ef8f48330/view",
+      "relevance_score": 31
+    },
+    {
+      "notice_id": "a1b2686774cc4451997128c3dae4592f",
+      "title": "LMDE Project:  Procurement of 20 Series Weld Head and associated hardware",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-12",
+      "response_deadline": "2026-11-16T07:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC27948961Q",
+      "naics_code": "334516",
+      "link": "https://sam.gov/workspace/contract/opp/a1b2686774cc4451997128c3dae4592f/view",
       "relevance_score": 31
     }
   ]
