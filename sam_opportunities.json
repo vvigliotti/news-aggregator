@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-12T18:48:34.162745+00:00",
+  "fetched_at": "2026-11-13T20:37:20.744489+00:00",
   "opportunities": [
     {
       "notice_id": "a62a1dca4c8b4258abc83f100b24c322",
@@ -26,6 +26,18 @@
       "relevance_score": 38
     },
     {
+      "notice_id": "411819b0246f48b891a8a5167cc1ec5b",
+      "title": "Venture-Class Acquisition of Dedicated and Rideshare (VADR) Launch Services",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
+      "posted_date": "2026-11-13",
+      "response_deadline": "2026-12-23T16:00:00-05:00",
+      "notice_type": "Combined Synopsis/Solicitation",
+      "solicitation_number": "80KSC021R0034_On-Ramp_Issue02",
+      "naics_code": "481212",
+      "link": "https://sam.gov/workspace/contract/opp/411819b0246f48b891a8a5167cc1ec5b/view",
+      "relevance_score": 34
+    },
+    {
       "notice_id": "823968a3448140d9b7c3ca5d4fc9ebae",
       "title": "INRODES Supplemental RDRE TCA Hardware",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
@@ -35,18 +47,6 @@
       "solicitation_number": "80NSSC27943792Q",
       "naics_code": "332999",
       "link": "https://sam.gov/workspace/contract/opp/823968a3448140d9b7c3ca5d4fc9ebae/view",
-      "relevance_score": 34
-    },
-    {
-      "notice_id": "b31e55fc145541c798a96d592a58f0f4",
-      "title": "Venture-Class Acquisition of Dedicated and Rideshare (VADR) Launch Services",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA KENNEDY SPACE CENTER",
-      "posted_date": "2026-11-10",
-      "response_deadline": "2026-12-10T16:00:00-05:00",
-      "notice_type": "Combined Synopsis/Solicitation",
-      "solicitation_number": "80KSC021R0034_On-Ramp_Issue02",
-      "naics_code": "481212",
-      "link": "https://sam.gov/workspace/contract/opp/b31e55fc145541c798a96d592a58f0f4/view",
       "relevance_score": 34
     },
     {
@@ -74,6 +74,18 @@
       "relevance_score": 32
     },
     {
+      "notice_id": "d5a962ec18be46f9be23b66777921929",
+      "title": "NASA Goddard Space Flight Center (GSFC) Earth Sciences Division: Cloud-Native Data Services for NASA’s Earth-System Modeling Portfolio",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-13",
+      "response_deadline": "2026-11-18T12:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC27946568Q",
+      "naics_code": "518210",
+      "link": "https://sam.gov/workspace/contract/opp/d5a962ec18be46f9be23b66777921929/view",
+      "relevance_score": 31
+    },
+    {
       "notice_id": "e61c22c092c34443bd869e6ef8f48330",
       "title": "Niobium (formerly Columbium) Raw Materials",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
@@ -83,18 +95,6 @@
       "solicitation_number": "80NSSC27949192Q",
       "naics_code": "331410",
       "link": "https://sam.gov/workspace/contract/opp/e61c22c092c34443bd869e6ef8f48330/view",
-      "relevance_score": 31
-    },
-    {
-      "notice_id": "a1b2686774cc4451997128c3dae4592f",
-      "title": "LMDE Project:  Procurement of 20 Series Weld Head and associated hardware",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-12",
-      "response_deadline": "2026-11-16T07:00:00-06:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC27948961Q",
-      "naics_code": "334516",
-      "link": "https://sam.gov/workspace/contract/opp/a1b2686774cc4451997128c3dae4592f/view",
       "relevance_score": 31
     }
   ]
