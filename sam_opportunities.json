@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-16T01:34:26.186150+00:00",
+  "fetched_at": "2026-11-17T02:18:38.307617+00:00",
   "opportunities": [
     {
       "notice_id": "a62a1dca4c8b4258abc83f100b24c322",
@@ -24,6 +24,18 @@
       "naics_code": "541715",
       "link": "https://sam.gov/workspace/contract/opp/fd49be0ed9194064a6b05b619960ae7e/view",
       "relevance_score": 38
+    },
+    {
+      "notice_id": "b56c1ebfd7c346a7879529e643fe9b2d",
+      "title": "EGS REPLENISHMENT OF TACKY MAT",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-16",
+      "response_deadline": "2026-11-20T15:00:00-06:00",
+      "notice_type": "Solicitation",
+      "solicitation_number": "80NSSC27948646Q",
+      "naics_code": "326199",
+      "link": "https://sam.gov/workspace/contract/opp/b56c1ebfd7c346a7879529e643fe9b2d/view",
+      "relevance_score": 34
     },
     {
       "notice_id": "411819b0246f48b891a8a5167cc1ec5b",
@@ -74,27 +86,15 @@
       "relevance_score": 32
     },
     {
-      "notice_id": "d5a962ec18be46f9be23b66777921929",
-      "title": "NASA Goddard Space Flight Center (GSFC) Earth Sciences Division: Cloud-Native Data Services for NASA’s Earth-System Modeling Portfolio",
+      "notice_id": "dcf34a0ad96f4815a1068fc35d6a5348",
+      "title": "30 lbs of M55J Carbon Prepreg 12\" wide fiber tape embedded with F6 cyanate ester resin; 30 lbs of K13C2U Carbon Prepreg 12\" wide fiber tape embedded with F6 cyanate ester resin",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-13",
-      "response_deadline": "2026-11-18T12:00:00-06:00",
+      "posted_date": "2026-11-16",
+      "response_deadline": "2026-11-18T07:00:00-06:00",
       "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC27946568Q",
-      "naics_code": "518210",
-      "link": "https://sam.gov/workspace/contract/opp/d5a962ec18be46f9be23b66777921929/view",
-      "relevance_score": 31
-    },
-    {
-      "notice_id": "e61c22c092c34443bd869e6ef8f48330",
-      "title": "Niobium (formerly Columbium) Raw Materials",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-12",
-      "response_deadline": "2026-11-18T16:00:00-06:00",
-      "notice_type": "Combined Synopsis/Solicitation",
-      "solicitation_number": "80NSSC27949192Q",
-      "naics_code": "331410",
-      "link": "https://sam.gov/workspace/contract/opp/e61c22c092c34443bd869e6ef8f48330/view",
+      "solicitation_number": "80NSSC27948132Q",
+      "naics_code": "325211",
+      "link": "https://sam.gov/workspace/contract/opp/dcf34a0ad96f4815a1068fc35d6a5348/view",
       "relevance_score": 31
     }
   ]
