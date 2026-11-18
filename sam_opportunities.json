@@ -1,6 +1,18 @@
 {
-  "fetched_at": "2026-11-17T02:18:38.307617+00:00",
+  "fetched_at": "2026-11-18T09:30:58.603236+00:00",
   "opportunities": [
+    {
+      "notice_id": "69c567dbc7b04e79b55440786e61fd07",
+      "title": "Continued sustainment and enhancement of the Nuclear Command, Control, and Communications (NC3) Missile Warning and Legacy Space Command (LSC2) missions. Contractor personnel shall have a secure, reliable System Integration Lab (SIL/SCIF)",
+      "agency": "DEPT OF DEFENSE.DEPT OF THE AIR FORCE.SPACE SYSTEMS COMMAND.PEO SPACE DOMAIN AWARENESS ANDCOMBAT POWER.FA8723  SSC BCK-CO",
+      "posted_date": "2026-11-17",
+      "response_deadline": null,
+      "notice_type": "Justification",
+      "solicitation_number": "JustificationApproval2613",
+      "naics_code": "541513",
+      "link": "https://sam.gov/workspace/contract/opp/69c567dbc7b04e79b55440786e61fd07/view",
+      "relevance_score": 50
+    },
     {
       "notice_id": "a62a1dca4c8b4258abc83f100b24c322",
       "title": "Space Data Network (SDN) Industry Consortium for Space-to-Space Communications",
@@ -62,18 +74,6 @@
       "relevance_score": 34
     },
     {
-      "notice_id": "c9c1f0e34e7145bc80a7c50d9b9f4bb8",
-      "title": "Integration and flight support for EXoplanet Climate Infrared TElescope (EXCITE) Balloon Mission Gondola System science flight.",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-10-28",
-      "response_deadline": "2026-11-02T12:00:00-06:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC27947883Q",
-      "naics_code": "541715",
-      "link": "https://sam.gov/workspace/contract/opp/c9c1f0e34e7145bc80a7c50d9b9f4bb8/view",
-      "relevance_score": 34
-    },
-    {
       "notice_id": "86750493376a45dfa7fe2b92b6cc3e5d",
       "title": "Justification for Other Than Full and Open Competition: Spacecraft Optical Navigation and Autonomy Modules (Contract 80ARC026C0006)",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA AMES RESEARCH CENTER",
@@ -86,15 +86,15 @@
       "relevance_score": 32
     },
     {
-      "notice_id": "dcf34a0ad96f4815a1068fc35d6a5348",
-      "title": "30 lbs of M55J Carbon Prepreg 12\" wide fiber tape embedded with F6 cyanate ester resin; 30 lbs of K13C2U Carbon Prepreg 12\" wide fiber tape embedded with F6 cyanate ester resin",
+      "notice_id": "cbea685f00544a10b18d2c3047cbe0fa",
+      "title": "TS-405 Vessel",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-16",
-      "response_deadline": "2026-11-18T07:00:00-06:00",
+      "posted_date": "2026-11-17",
+      "response_deadline": "2026-11-19T16:00:00-06:00",
       "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC27948132Q",
-      "naics_code": "325211",
-      "link": "https://sam.gov/workspace/contract/opp/dcf34a0ad96f4815a1068fc35d6a5348/view",
+      "solicitation_number": "80NSSC27949127Q",
+      "naics_code": "332420",
+      "link": "https://sam.gov/workspace/contract/opp/cbea685f00544a10b18d2c3047cbe0fa/view",
       "relevance_score": 31
     }
   ]
