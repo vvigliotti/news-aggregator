@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-19T17:14:16.792194+00:00",
+  "fetched_at": "2026-11-20T21:17:29.073436+00:00",
   "opportunities": [
     {
       "notice_id": "69c567dbc7b04e79b55440786e61fd07",
@@ -26,16 +26,16 @@
       "relevance_score": 40
     },
     {
-      "notice_id": "fd49be0ed9194064a6b05b619960ae7e",
-      "title": "Space Communications and Networking (SCaN) & Tracking and Data Relay Satellite System (TDRS) Support",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA MARSHALL SPACE FLIGHT CENTER",
-      "posted_date": "2026-11-03",
-      "response_deadline": "2026-11-05T15:00:00-06:00",
-      "notice_type": "Sources Sought",
-      "solicitation_number": "80MSFC27ENG1026",
-      "naics_code": "541715",
-      "link": "https://sam.gov/workspace/contract/opp/fd49be0ed9194064a6b05b619960ae7e/view",
-      "relevance_score": 38
+      "notice_id": "2c490d2182554dc189d0366922cf3119",
+      "title": "NASA Announces Ka-Band Satellite Relay Awards for Space Communications",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION",
+      "posted_date": "2026-11-20",
+      "response_deadline": null,
+      "notice_type": "Special Notice",
+      "solicitation_number": "80MSFC26R0006",
+      "naics_code": null,
+      "link": "https://sam.gov/workspace/contract/opp/2c490d2182554dc189d0366922cf3119/view",
+      "relevance_score": 35
     },
     {
       "notice_id": "b56c1ebfd7c346a7879529e643fe9b2d",
@@ -74,6 +74,18 @@
       "relevance_score": 34
     },
     {
+      "notice_id": "318e7d62afe946449c3ae7a0730dc069",
+      "title": "Modeling the dynamics of the Earth’s natural and artificial radiation belts with the CIMI model",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-19",
+      "response_deadline": "2026-11-24T16:00:00-06:00",
+      "notice_type": "Special Notice",
+      "solicitation_number": "80NSSC27949224Q",
+      "naics_code": "611310",
+      "link": "https://sam.gov/workspace/contract/opp/318e7d62afe946449c3ae7a0730dc069/view",
+      "relevance_score": 31
+    },
+    {
       "notice_id": "0d066648ad374f69b192a8c73bf3f559",
       "title": "Haskel Booster & Components",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
@@ -83,18 +95,6 @@
       "solicitation_number": "80NSSC27949318Q",
       "naics_code": "561210",
       "link": "https://sam.gov/workspace/contract/opp/0d066648ad374f69b192a8c73bf3f559/view",
-      "relevance_score": 31
-    },
-    {
-      "notice_id": "463bbd94f0d54a878bcdc875e62f8e55",
-      "title": "Stock replenishment of valves for LH2 Pad B launch readiness.",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-18",
-      "response_deadline": "2026-11-24T15:00:00-06:00",
-      "notice_type": "Solicitation",
-      "solicitation_number": "80NSSC26949068Q",
-      "naics_code": "423840",
-      "link": "https://sam.gov/workspace/contract/opp/463bbd94f0d54a878bcdc875e62f8e55/view",
       "relevance_score": 31
     }
   ]
