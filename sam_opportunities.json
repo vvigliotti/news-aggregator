@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-26T05:11:27.242198+00:00",
+  "fetched_at": "2026-11-27T07:41:18.844331+00:00",
   "opportunities": [
     {
       "notice_id": "69c567dbc7b04e79b55440786e61fd07",
@@ -62,18 +62,6 @@
       "relevance_score": 34
     },
     {
-      "notice_id": "823968a3448140d9b7c3ca5d4fc9ebae",
-      "title": "INRODES Supplemental RDRE TCA Hardware",
-      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
-      "posted_date": "2026-11-12",
-      "response_deadline": "2026-11-12T15:00:00-06:00",
-      "notice_type": "Special Notice",
-      "solicitation_number": "80NSSC27943792Q",
-      "naics_code": "332999",
-      "link": "https://sam.gov/workspace/contract/opp/823968a3448140d9b7c3ca5d4fc9ebae/view",
-      "relevance_score": 34
-    },
-    {
       "notice_id": "318e7d62afe946449c3ae7a0730dc069",
       "title": "Modeling the dynamics of the Earth’s natural and artificial radiation belts with the CIMI model",
       "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
@@ -95,6 +83,18 @@
       "solicitation_number": "80NSSC27949318Q",
       "naics_code": "561210",
       "link": "https://sam.gov/workspace/contract/opp/0d066648ad374f69b192a8c73bf3f559/view",
+      "relevance_score": 31
+    },
+    {
+      "notice_id": "463bbd94f0d54a878bcdc875e62f8e55",
+      "title": "Stock replenishment of valves for LH2 Pad B launch readiness.",
+      "agency": "NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NATIONAL AERONAUTICS AND SPACE ADMINISTRATION.NASA SHARED SERVICES CENTER",
+      "posted_date": "2026-11-18",
+      "response_deadline": "2026-11-24T15:00:00-06:00",
+      "notice_type": "Solicitation",
+      "solicitation_number": "80NSSC26949068Q",
+      "naics_code": "423840",
+      "link": "https://sam.gov/workspace/contract/opp/463bbd94f0d54a878bcdc875e62f8e55/view",
       "relevance_score": 31
     }
   ]
